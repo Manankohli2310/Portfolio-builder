@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manan Kohli - Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+  <div class="carousel-container">
+    <button class="arrow left" onclick="scrollCarousel(-1)">&#10094;</button>
+
+    <div class="carousel-wrapper">
+      <div class="carousel" id="carousel">
+        <!-- Section 1 -->
+        <div class="card">
+          <div class="text">
+            Hey I am <span id="orange">Manan</span> and I am a Creative <div id="typewriter"></div>
+            <div class="social-button-group">
+              <a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-btn">
+                <i class="fab fa-linkedin-in"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://github.com/yourprofile" target="_blank" class="social-btn">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+              </a>
+              <a href="https://twitter.com/yourprofile" target="_blank" class="social-btn">
+                <i class="fab fa-twitter"></i>
+                <span>Twitter</span>
+              </a>
+              <a href="https://instagram.com/yourprofile" target="_blank" class="social-btn">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+              </a>
+            </div>
+            
+          </div>
+          <div class="image">
+            <img src="profile.png" alt="Profile" />
+          </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="card1">
+          <div class="text1">
+            <h1>About Me</h1>
+            <p>Passionate about creating beautiful, functional UIs using modern tools and best practices. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur tempore ipsa autem sint aperiam velit accusantium laudantium itaque eligendi veniam ullam odit ratione asperiores esse voluptatibus, tenetur, rem reprehenderit voluptas quibusdam? Eos laudantium nobis fugiat culpa numquam magni libero, repellendus placeat incidunt ea quasi quia, consequuntur adipisci totam corrupti, accusamus repudiandae quibusdam similique reiciendis beatae quidem harum. Commodi culpa at officia quisquam, tempore assumenda officiis nostrum odit blanditiis quibusdam cumque, animi vero laborum error cum magni numquam! Placeat iusto natus veritatis temporibus tempora cum. Et!</p>
+            <h1>Lets Talk,</h1>
+            <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+            <p>Phone: <a href="tel:+911234567890">+91 12345 67890</a></p>
+            <p>Location: New Delhi, India</p>
+            <a href="Manan_Kohli_Resume.pdf" class="resume-btn" download>Download My Resume</a>
+
+          </div>
+          
+        </div>
+
+        <!-- Section 3 -->
+        <div class="card">
+          <div class="text2">
+            <h1>Skills</h1>
+            <p>HTML, CSS, JS, React, Python, Node.js, Git, APIs, Responsive Design</p>
+          </div>
+          
+        </div>
+
+        <!-- Section 4 -->
+        <div class="card">
+          <div class="text3">
+            <h1>Projects</h1>
+            <p>Tour Plansfsdfsdfner, AI Tools, Image to PDF Converter, Weather App, File Converter</p>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <button class="arrow right" onclick="scrollCarousel(1)">&#10095;</button>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>

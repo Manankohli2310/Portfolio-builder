@@ -1,0 +1,222 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #f1e7db;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+
+.carousel-wrapper {
+  box-shadow: 0 0px 20px rgba(238, 123, 47, 0.527);
+  border-radius: 20px;
+  overflow: hidden;
+  width: 90vw;
+
+}
+
+.carousel {
+  height: 85vh;
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.card {
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 60px;
+  box-sizing: border-box;
+  background-color: #fef9ec;
+  border-radius: 20px;
+}
+.card1 {
+  min-width: 100%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+  padding: 40px 60px;
+  box-sizing: border-box;
+  background-color: #fef9ec;
+  border-radius: 20px;
+}
+
+.text{
+  color: #444;
+  max-width: 40%;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: left;
+}
+#orange , #typewriter {
+  color: rgb(235, 153, 71);
+}
+/* .text h1 {
+  font-size: 5em;
+  font-weight: bold;
+  color: #444;
+  margin: 0;
+} */
+
+.text p {
+  font-size: 2em;
+  font-weight: 600;
+  color: #666;
+  margin-top: 12px;
+}
+.text1 h1 {
+  font-size: 2.8em;
+  font-weight: bold;
+  color: #444;
+  margin: 0;
+}
+
+.text1 p {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #666;
+  margin-top: 12px;
+}
+.text2 h1 {
+  font-size: 2.8em;
+  font-weight: bold;
+  color: #444;
+  margin: 0;
+}
+
+.text2 p {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #666;
+  margin-top: 12px;
+}
+.text3 h1 {
+  font-size: 2.8em;
+  font-weight: bold;
+  color: #444;
+  margin: 0;
+}
+
+.text3 p {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #666;
+  margin-top: 12px;
+}
+
+.image img {
+  width: 325px;
+  height: 325px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 8px solid #e2d3c2;
+  box-shadow: 0 0 12px rgba(27, 27, 27, 0.26);
+}
+
+.arrow {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  user-select: none;
+}
+
+.arrow:hover {
+  color: #444;
+}
+
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+.hold-popup {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #444;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  z-index: 999;
+  animation: fadein 0.5s ease;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translate(-50%, 20px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+#typewriter {
+  min-height: 1.2em; /* ensures consistent height even when empty */
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+.card1 a{
+  text-decoration: none;
+  color: rgb(235, 153, 71);
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+/* Font Awesome Icons CDN */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+.social-button-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+.social-button-group span{
+  font-weight: 600;
+}
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-radius: 50px;
+  background-color: #444;
+  color: #fef9ec;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  width: 110px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.social-btn i {
+  font-size: 18px;
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  background-color: #333;
+}
+
+.social-btn span {
+  flex: 1;
+}
