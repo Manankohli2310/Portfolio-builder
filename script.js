@@ -113,6 +113,5 @@ function typeEffect() {
     }
   }
 }
-
 // Start typewriter effect
 typeEffect();

@@ -43,7 +43,7 @@ body {
   display: flex;
   /* align-items: center; */
   justify-content: space-between;
-  padding: 40px 60px;
+  padding: 30px 60px;
   box-sizing: border-box;
   background-color: #fef9ec;
   border-radius: 20px;
@@ -80,8 +80,8 @@ body {
 }
 
 .text1 p {
-  font-size: 1.2em;
-  font-weight: 600;
+  font-size: 1.1em;
+  font-weight: 500;
   color: #666;
   margin-top: 12px;
 }
@@ -178,7 +178,21 @@ body {
   font-size: 1rem;
   transition: color 0.3s ease;
 }
-/* Font Awesome Icons CDN */
+.resume-btn{
+  display: inline-block;
+  font-weight: 600;
+  padding: 10px 15px;
+  border-radius: 50px;
+  background-color: #444;
+  transition: all 1.6s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.resume-btn:hover{
+  /* transform: translateY(-2px); */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  background-color: #333;
+}
+
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
 
 .social-button-group {
