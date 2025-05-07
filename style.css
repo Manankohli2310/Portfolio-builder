@@ -5,7 +5,10 @@ body {
   font-family: Arial, sans-serif;
   overflow-x: hidden;
 }
-
+@font-face {
+  font-family: "MoonWalk";
+  src: url("Moon\ Walk.otf") format("opentype");
+}
 .carousel-container {
   display: flex;
   align-items: center;
@@ -19,7 +22,6 @@ body {
   border-radius: 20px;
   overflow: hidden;
   width: 90vw;
-
 }
 
 .carousel {
@@ -41,14 +43,30 @@ body {
 .card1 {
   min-width: 100%;
   display: flex;
-  /* align-items: center; */
   justify-content: space-between;
   padding: 30px 60px;
   box-sizing: border-box;
   background-color: #fef9ec;
   border-radius: 20px;
 }
-
+.card2{
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 60px;
+  box-sizing: border-box;
+  background-color: #fef9ec;
+  border-radius: 20px;
+}
+.card3{
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 60px;
+  box-sizing: border-box;
+  background-color: #fef9ec;
+  border-radius: 20px;
+}
 .text{
   color: #444;
   max-width: 40%;
@@ -59,12 +77,6 @@ body {
 #orange , #typewriter {
   color: rgb(235, 153, 71);
 }
-/* .text h1 {
-  font-size: 5em;
-  font-weight: bold;
-  color: #444;
-  margin: 0;
-} */
 
 .text p {
   font-size: 2em;
@@ -166,7 +178,7 @@ body {
   to { opacity: 1; transform: translate(-50%, 0); }
 }
 #typewriter {
-  min-height: 1.2em; /* ensures consistent height even when empty */
+  min-height: 1.2em; 
   display: inline-block;
   white-space: nowrap;
   vertical-align: bottom;
@@ -179,23 +191,21 @@ body {
   transition: color 0.3s ease;
 }
 
-
 .resume-btn {
   display: inline-flex;
-font-weight:600;
-  align-items: center;     /* Vertically centers image and text */
-  justify-content: center; /* Horizontally centers content if needed */
-  gap: 10px;               /* Space between image and text */
+  font-weight:600;
+  align-items: center;     
+  justify-content: center; 
+  gap: 10px;               
   padding: 10px 15px;
-  background-color: #444;  /* Adjust as needed */
-  color: #f4a259;          /* Adjust text color */
-  border-radius: 50px;    /* Fully rounded pill shape */
+  background-color: #444;  
+  color: #f4a259;          
+  border-radius: 50px;    
   text-decoration: none;
-transition: all 1.6s ease;
+  transition: all 1.6s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 .resume-btn:hover{
-  /* transform: translateY(-2px); */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
   background-color: #333;
 }
@@ -203,6 +213,10 @@ transition: all 1.6s ease;
   height: 24px;
   width: auto;
   display: block;
+}
+.resume{
+  height: 256px;
+  width: 256px;
 }
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');

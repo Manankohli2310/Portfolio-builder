@@ -1,6 +1,6 @@
 let index = 0;
 const carousel = document.getElementById("carousel");
-const totalSlides = document.querySelectorAll(".card").length;
+const totalSlides = document.querySelectorAll(".card, .card1, .card2, .card3").length;
 let autoScroll = null;
 let messageShown = false;
 let holdTimer = null;
