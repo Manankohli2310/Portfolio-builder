@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Manan Kohli - Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
 <body>
   <div class="carousel-container">
@@ -18,7 +17,8 @@
         <!-- Section 1 -->
         <div class="card">
           <div class="text">
-            Hey! I am <span id="orange">Manan</span> and I am a Creative <br><div id="typewriter"></div>
+            Hey! I am <span id="orange">Manan</span> and I am a Creative <br>
+            <div id="typewriter"></div>
             <div class="social-button-group">
               <a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-btn">
                 <i class="fab fa-linkedin-in"></i>
@@ -37,7 +37,7 @@
                 <span>Instagram</span>
               </a>
             </div>
-            
+
           </div>
           <div class="image">
             <img src="profile.jpg" alt="Profile" />
@@ -48,42 +48,96 @@
         <div class="card1">
           <div class="text1">
             <h1>About Me</h1>
-            <p>Passionate about creating beautiful, functional UIs using modern tools and best practices. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur tempore ipsa autem sint aperiam velit accusantium laudantium itaque eligendi veniam ullam odit ratione asperiores esse voluptatibus, tenetur, rem reprehenderit voluptas quibusdam? Eos laudantium nobis fugiat culpa numquam magni libero, repellendus placeat incidunt ea quasi quia, consequuntur adipisci totam corrupti, accusamus repudiandae quibusdam similique reiciendis beatae quidem harum. Commodi culpa at officia quisquam, tempore assumenda officiis nostrum odit blanditiis quibusdam cumque, animi vero laborum error cum magni numquam! Placeat iusto natus veritatis temporibus tempora cum. Et!</p>
+            <p>Passionate about creating beautiful, functional UIs using modern tools and technologies. I specialize in front-end development with a focus on creating responsive, user-friendly interfaces that provide exceptional user experiences.</p>
+            <p>With expertise in HTML, CSS, JavaScript, and modern frameworks like React, I build applications that are not only visually appealing but also performant and accessible.</p>
             <h1>Lets Talk,</h1>
             <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
             <p>Phone: <a href="tel:+911234567890">+91 12345 67890</a></p>
             <p>Location: New Delhi, India</p>
             <a href="Manan_Kohli_Resume.pdf" class="resume-btn" download>
               <img src="cv.png" alt=""> Download My Resume</a>
-            <img class="resume" src="resume.png" alt="">
-
           </div>
-          
         </div>
-
-        <!-- Section 3 -->
-        <div class="card2">
+        <!-- Section 3 - Skills -->
+        <div class="card2" id="skills-card">
           <div class="text2">
             <h1>Skills</h1>
-            <p>HTML, CSS, JS, React, Python, Node.js, Git, APIs, Responsive Design</p>
+            <div class="skills">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JS</span>
+              <span>React</span>
+              <span>Python</span>
+              <span>Node.js</span>
+              <span>Git</span>
+              <span>APIs</span>
+              <span>Responsive Design</span>
+            </div>
+            <h1 style="margin-top: 30px;">Projects</h1>
+            <div class="projects" id="projects-container">
+              <!-- Projects will be dynamically distributed -->
+            </div>
           </div>
-          
         </div>
-
-        <!-- Section 4 -->
-        <div class="card3">
-          <div class="text3">
-            <h1>Projects</h1>
-            <p>Tour Plansfsdfsdfner, AI Tools, Image to PDF Converter, Weather App, File Converter</p>
-          </div>
-          
-        </div>
+        <!-- Additional cards will be added dynamically if needed -->
       </div>
     </div>
-
     <button class="arrow right" onclick="scrollCarousel(1)">&#10095;</button>
   </div>
-  
+
+  <!-- Project templates (hidden) -->
+  <div id="project-templates" style="display: none;">
+    <div class="project-box" data-project="tour-planner">
+      <div class="project-img" style="background-image: url('project1.jpg');"></div>
+      <div class="project-description">
+        <h3>Virtual Tour Planner</h3>
+        <p>Plan virtual tours with an interactive interface, personalized to user interests and destination preferences.</p>
+      </div>
+    </div>
+    <div class="project-box" data-project="ai-tools">
+      <div class="project-img" style="background-image: url('project2.jpg');"></div>
+      <div class="project-description">
+        <h3>AI Tools Suite</h3>
+        <p>A suite of AI-powered tools for a variety of purposes, including image processing, text analysis, and more.</p>
+      </div>
+    </div>
+    <div class="project-box" data-project="image-pdf">
+      <div class="project-img" style="background-image: url('project3.jpg');"></div>
+      <div class="project-description">
+        <h3>Image to PDF Converter</h3>
+        <p>Convert your images to PDF format with ease, preserving quality and layout.</p>
+      </div>
+    </div>
+    <div class="project-box" data-project="weather-app">
+      <div class="project-img" style="background-image: url('project4.jpg');"></div>
+      <div class="project-description">
+        <h3>Weather App</h3>
+        <p>Get accurate weather information with real-time updates, forecasts, and more.</p>
+      </div>
+    </div>
+    <div class="project-box" data-project="file-converter">
+      <div class="project-img" style="background-image: url('project5.jpg');"></div>
+      <div class="project-description">
+        <h3>All-in-One File Converter</h3>
+        <p>Convert multiple file types, including images, documents, and more, without losing quality.</p>
+      </div>
+    </div>
+    <div class="project-box" data-project="task-manager">
+      <div class="project-img" style="background-image: url('project6.jpg');"></div>
+      <div class="project-description">
+        <h3>Task Manager</h3>
+        <p>Keep track of your tasks with this intuitive task manager application featuring prioritization and reminders.</p>
+      </div>
+    </div>
+    <div class="project-box" data-project="recipe-finder">
+      <div class="project-img" style="background-image: url('project7.jpg');"></div>
+      <div class="project-description">
+        <h3>Recipe Finder</h3>
+        <p>Find recipes based on ingredients you have, dietary preferences, and cooking time constraints.</p>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
