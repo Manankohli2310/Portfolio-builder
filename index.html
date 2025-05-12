@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Manan Kohli - Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
@@ -14,7 +14,8 @@
 
     <div class="carousel-wrapper">
       <div class="carousel" id="carousel">
-        <!-- Section 1 -->
+        
+        <!-- Section 1 - Intro -->
         <div class="card">
           <div class="text">
             Hey! I am <span id="orange">Manan</span> and I am a Creative <br>
@@ -37,20 +38,19 @@
                 <span>Instagram</span>
               </a>
             </div>
-
           </div>
           <div class="image">
             <img src="profile.jpg" alt="Profile" />
           </div>
         </div>
 
-        <!-- Section 2 -->
+        <!-- Section 2 - About Me -->
         <div class="card1">
           <div class="text1">
             <h1>About Me</h1>
             <p>Passionate about creating beautiful, functional UIs using modern tools and technologies. I specialize in front-end development with a focus on creating responsive, user-friendly interfaces that provide exceptional user experiences.</p>
             <p>With expertise in HTML, CSS, JavaScript, and modern frameworks like React, I build applications that are not only visually appealing but also performant and accessible.</p>
-            <h1>Lets Talk,</h1>
+            <h1>Let's Talk,</h1>
             <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
             <p>Phone: <a href="tel:+911234567890">+91 12345 67890</a></p>
             <p>Location: New Delhi, India</p>
@@ -58,7 +58,8 @@
               <img src="cv.png" alt=""> Download My Resume</a>
           </div>
         </div>
-        <!-- Section 3 - Skills -->
+
+        <!-- Section 3 - Skills & Projects -->
         <div class="card2" id="skills-card">
           <div class="text2">
             <h1>Skills</h1>
@@ -75,17 +76,18 @@
             </div>
             <h1 style="margin-top: 30px;">Projects</h1>
             <div class="projects" id="projects-container">
-              <!-- Projects will be dynamically distributed -->
+              <!-- Projects dynamically inserted via JS -->
             </div>
           </div>
         </div>
-        <!-- Additional cards will be added dynamically if needed -->
+
       </div>
     </div>
+
     <button class="arrow right" onclick="scrollCarousel(1)">&#10095;</button>
   </div>
 
-  <!-- Project templates (hidden) -->
+  <!-- Hidden project templates -->
   <div id="project-templates" style="display: none;">
     <div class="project-box" data-project="tour-planner">
       <div class="project-img" style="background-image: url('project1.jpg');"></div>
