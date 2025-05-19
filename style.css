@@ -86,25 +86,37 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 40px 60px;
+  padding: 80px 60px;
   box-sizing: border-box;
   background-color: #fef9ec;
   border-radius: 20px;
 }
 
-.text {
-  color: #444;
-  max-width: 40%;
-  font-size: 3rem;
-  font-weight: bold;
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+body {
+  background-color: #fef9ed;
+  margin: 0;
+  /* padding: 20px; */
+  font-family: Arial, sans-serif;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 600px;
+  margin: 0 auto;
   text-align: left;
 }
 
-.text p {
-  font-size: 2em;
-  font-weight: 600;
-  color: #666;
-  margin-top: 12px;
+.text {
+  white-space: nowrap;
+  color: #444;
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1.4;
+  word-break: keep-word;
 }
 
 #orange,
@@ -119,18 +131,13 @@ body {
   vertical-align: bottom;
 }
 
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
-
 .social-button-group {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-wrap: wrap;
+  /* justify-content: center; */
   gap: 12px;
   margin-top: 20px;
-}
-
-.social-button-group span {
-  font-weight: 600;
+  width: 100%;
 }
 
 .social-btn {
@@ -144,13 +151,20 @@ body {
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
-  width: 110px;
+  width: 100px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  justify-content: center;
 }
 
 .social-btn i {
   font-size: 18px;
+}
+
+.social-btn span {
+  font-weight: 600;
+  flex: 1;
+  text-align: left;
 }
 
 .social-btn:hover {
@@ -159,9 +173,23 @@ body {
   background-color: #333;
 }
 
-.social-btn span {
-  flex: 1;
+/* RESPONSIVE: Stack text and buttons for small screens */
+@media (max-width: 600px) {
+  .text {
+    font-size: 2rem;
+    text-align: center;
+    align-self: center;
+  }
+
+  .text-container {
+    align-items: center;
+  }
+
+  .social-button-group {
+    justify-content: center;
+  }
 }
+
 
 .image img {
   width: 325px;
