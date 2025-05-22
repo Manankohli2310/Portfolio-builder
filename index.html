@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Manan Kohli - Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
   <div class="carousel-container">
     <button class="arrow left" onclick="scrollCarousel(-1)">&#10094;</button>
 
     <div class="carousel-wrapper">
       <div class="carousel" id="carousel">
-        
+
         <!-- Section 1 - Intro -->
         <div class="card">
           <div class="text">
-            Hey! I am <span id="orange">Manan</span><br>  and I am a Creative <br>
+            Hey! I am <span id="orange">Manan</span><br> and I am a Creative <br>
             <div id="typewriter"></div>
             <div class="social-button-group">
               <a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-btn">
@@ -48,8 +50,15 @@
         <div class="card1">
           <div class="text1">
             <h1>About Me</h1>
-            <p>Passionate about creating beautiful,Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto beatae molestias ipsum enim officia, maiores voluptate iusto incidunt eaque accusamus? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum atque quisquam fugit voluptatibus sit labore aliquam quas sapiente? Alias, maxime. functional UIs using modern tools and technologies. I specialize in front-end development with a focus on creating responsive, user-friendly interfaces that provide exceptional user experiences.</p>
-            <p>With expertise in HTML, CSS, JavaScript, and Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis neque quasi sunt? Sapiente, iste voluptas! modern frameworks like React, I build applications that are not only visually appealing but also performant and accessible.</p>
+            <p>Passionate about creating beautiful,Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto
+              beatae molestias ipsum enim officia, maiores voluptate iusto incidunt eaque accusamus? Lorem ipsum, dolor
+              sit amet consectetur adipisicing elit. Ipsum atque quisquam fugit voluptatibus sit labore aliquam quas
+              sapiente? Alias, maxime. functional UIs using modern tools and technologies. I specialize in front-end
+              development with a focus on creating responsive, user-friendly interfaces that provide exceptional user
+              experiences.</p>
+            <p>With expertise in HTML, CSS, JavaScript, and Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Omnis neque quasi sunt? Sapiente, iste voluptas! modern frameworks like React, I build applications that
+              are not only visually appealing but also performant and accessible.</p>
             <h1>Skills</h1>
             <div class="skills">
               <span>HTML</span>
@@ -72,36 +81,42 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Section 3 - Skills & Projects -->
         <div class="card2">
           <div class="text2">
-            
-  <h1>Work Experience</h1>
-  <div class="experience-list">
-    <div class="experience-item"><span class="year">2010–11:</span> Junior Web Designer at ABC Co.</div>
-    <div class="experience-item"><span class="year">2012–14:</span> Front-End Developer at XYZ Ltd.</div>
-    <div class="experience-item"><span class="year">2015–18:</span> UI/UX Specialist at DesignHub</div>
-    <div class="experience-item"><span class="year">2019–21:</span> Full-Stack Developer at DevTech</div>
-    <div class="experience-item"><span class="year">2022–Present:</span> Senior Developer at CreativeWorks</div>
-  </div>
+
+            <h1>Work Experience</h1>
+            <div class="experience-list">
+              <div class="experience-item"><span class="year">2010–11:</span> Junior Web Designer at ABC Co.</div>
+              <div class="experience-item"><span class="year">2012–14:</span> Front-End Developer at XYZ Ltd.</div>
+              <div class="experience-item"><span class="year">2015–18:</span> UI/UX Specialist at DesignHub</div>
+              <div class="experience-item"><span class="year">2019–21:</span> Full-Stack Developer at DevTech</div>
+              <div class="experience-item"><span class="year">2022–Present:</span> Senior Developer at CreativeWorks
+              </div>
+              <div class="experience-item"><span class="year">2022–Present:</span> Senior Developer at CreativeWorks
+              </div>
+              <div class="experience-item"><span class="year">2022–Present:</span> Senior Developer at CreativeWorks
+              </div>
+            </div>
+            <h1>Projects</h1>
+            <div class="projects" id="projects-container">
+              <!-- Projects dynamically inserted via JS -->
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section 4 - Contact -->
+        <div class="card3">
+          <div class="text3">
+
             <h1>Let's Talk,</h1>
             <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
             <p>Phone: <a href="tel:+911234567890">+91 12345 67890</a></p>
             <p>Location: New Delhi, India</p>
             <a href="Manan_Kohli_Resume.pdf" class="resume-btn" download>
               <img src="cv.png" alt=""> Download My Resume</a>
-          </div>
-        </div>
-        
-        <!-- Section 4 - Contact -->
-        <div class="card3" >
-          <div class="text3">
-            
-            <h1>Projects</h1>
-            <div class="projects" id="projects-container">
-              <!-- Projects dynamically inserted via JS -->
-            </div>
           </div>
         </div>
       </div>
@@ -116,14 +131,16 @@
       <div class="project-img" style="background-image: url('project1.jpg');"></div>
       <div class="project-description">
         <h3>Virtual Tour Planner</h3>
-        <p>Plan virtual tours with an interactive interface, personalized to user interests and destination preferences.</p>
+        <p>Plan virtual tours with an interactive interface, personalized to user interests and destination preferences.
+        </p>
       </div>
     </div>
     <div class="project-box" data-project="ai-tools">
       <div class="project-img" style="background-image: url('project2.jpg');"></div>
       <div class="project-description">
         <h3>AI Tools Suite</h3>
-        <p>A suite of AI-powered tools for a variety of purposes, including image processing, text analysis, and more.</p>
+        <p>A suite of AI-powered tools for a variety of purposes, including image processing, text analysis, and more.
+        </p>
       </div>
     </div>
     <div class="project-box" data-project="image-pdf">
@@ -151,7 +168,24 @@
       <div class="project-img" style="background-image: url('project6.jpg');"></div>
       <div class="project-description">
         <h3>Task Manager</h3>
-        <p>Keep track of your tasks with this intuitive task manager application featuring prioritization and reminders.</p>
+        <p>Keep track of your tasks with this intuitive task manager application featuring prioritization and reminders.
+        </p>
+      </div>
+    </div>
+    <div class="project-box" data-project="task-manager">
+      <div class="project-img" style="background-image: url('project6.jpg');"></div>
+      <div class="project-description">
+        <h3>Task Manager</h3>
+        <p>Keep track of your tasks with this intuitive task manager application featuring prioritization and reminders.
+        </p>
+      </div>
+    </div>
+    <div class="project-box" data-project="task-manager">
+      <div class="project-img" style="background-image: url('project6.jpg');"></div>
+      <div class="project-description">
+        <h3>Task Manager</h3>
+        <p>Keep track of your tasks with this intuitive task manager application featuring prioritization and reminders.
+        </p>
       </div>
     </div>
     <div class="project-box" data-project="recipe-finder">
@@ -165,4 +199,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
