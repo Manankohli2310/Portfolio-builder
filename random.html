@@ -1,0 +1,60 @@
+<div class="social-button-group">
+              <a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-btn">
+                <i class="fab fa-linkedin-in"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://github.com/yourprofile" target="_blank" class="social-btn">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+              </a>
+              <a href="https://twitter.com/yourprofile" target="_blank" class="social-btn">
+                <i class="fab fa-twitter"></i>
+                <span>Twitter</span>
+              </a>
+              <a href="https://instagram.com/yourprofile" target="_blank" class="social-btn">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+              </a>
+            </div>
+
+
+
+
+.social-button-group {
+  display: flex;
+  flex-wrap: wrap; /* Important for responsiveness */
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-radius: 50px;
+  background-color: #444;
+  color: #fef9ec;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  background-color: #333;
+}
+
+.social-btn i {
+  font-size: 18px;
+}
+
+.social-btn span {
+  flex: 1;
+  font-weight: 600;
+  text-align: left;
+}

@@ -18,26 +18,27 @@
       <div class="carousel" id="carousel">
 
         <!-- Section 1 - Intro -->
+        <!-- Section 1 - Intro -->
         <div class="card">
           <div class="text">
             Hey! I am <span id="orange">Manan</span><br> and I am a Creative <br>
             <div id="typewriter"></div>
-            <div class="social-button-group">
-              <a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-btn">
-                <i class="fab fa-linkedin-in"></i>
-                <span>LinkedIn</span>
+            <div class="about-button-group">
+              <a href="#about-me" class="about-btn nav-btn" data-section="1">
+                <i class="fas fa-user"></i>
+                <span>About Me</span>
               </a>
-              <a href="https://github.com/yourprofile" target="_blank" class="social-btn">
-                <i class="fab fa-github"></i>
-                <span>GitHub</span>
+              <a href="#skills" class="about-btn nav-btn" data-section="1">
+                <i class="fas fa-code"></i>
+                <span>Skills</span>
               </a>
-              <a href="https://twitter.com/yourprofile" target="_blank" class="social-btn">
-                <i class="fab fa-twitter"></i>
-                <span>Twitter</span>
+              <a href="#projects" class="about-btn nav-btn" data-section="2">
+                <i class="fas fa-project-diagram"></i>
+                <span>Projects</span>
               </a>
-              <a href="https://instagram.com/yourprofile" target="_blank" class="social-btn">
-                <i class="fab fa-instagram"></i>
-                <span>Instagram</span>
+              <a href="#contact" class="about-btn nav-btn" data-section="3">
+                <i class="fas fa-comments"></i>
+                <span>Let's Talk</span>
               </a>
             </div>
           </div>
@@ -49,7 +50,7 @@
         <!-- Section 2 - About Me -->
         <div class="card1">
           <div class="text1">
-            <h1>About Me</h1>
+            <h1 id="about-me">About Me</h1>
             <p>Passionate about creating beautiful,Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto
               beatae molestias ipsum enim officia, maiores voluptate iusto incidunt eaque accusamus? Lorem ipsum, dolor
               sit amet consectetur adipisicing elit. Ipsum atque quisquam fugit voluptatibus sit labore aliquam quas
@@ -59,7 +60,7 @@
             <p>With expertise in HTML, CSS, JavaScript, and Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Omnis neque quasi sunt? Sapiente, iste voluptas! modern frameworks like React, I build applications that
               are not only visually appealing but also performant and accessible.</p>
-            <h1>Skills</h1>
+            <h1 id="skills">Skills</h1>
             <div class="skills">
               <span>HTML</span>
               <span>CSS</span>
@@ -99,7 +100,7 @@
               <div class="experience-item"><span class="year">2022–Present:</span> Senior Developer at CreativeWorks
               </div>
             </div>
-            <h1>Projects</h1>
+            <h1 id="projects">Projects</h1>
             <div class="projects" id="projects-container">
               <!-- Projects dynamically inserted via JS -->
             </div>
@@ -108,17 +109,40 @@
         </div>
 
         <!-- Section 4 - Contact -->
-        <div class="card3">
-          <div class="text3">
+       <div class="card3">
+  <div class="text3">
+    <h1>Let's Talk</h1>
+    
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <p><i class="fas fa-envelope"></i> Email: <a href="mailto:you@example.com">you@example.com</a></p>
+      <p><i class="fas fa-phone"></i> Phone: <a href="tel:+911234567890">+91 12345 67890</a></p>
+      <p><i class="fas fa-map-marker-alt"></i> Location: New Delhi, India</p>
+    </div>
 
-            <h1>Let's Talk,</h1>
-            <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
-            <p>Phone: <a href="tel:+911234567890">+91 12345 67890</a></p>
-            <p>Location: New Delhi, India</p>
-            <a href="Manan_Kohli_Resume.pdf" class="resume-btn" download>
-              <img src="cv.png" alt=""> Download My Resume</a>
-          </div>
-        </div>
+    <!-- Contact Form -->
+    <h2>Send Me a Message</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit" class="resume-btn">Send Message</button>
+    </form>
+
+    <!-- Social Links -->
+    <h2>Connect With Me</h2>
+    <div class="social-links">
+      <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/yourprofile" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i></a>
+    </div>
+
+    <!-- Resume Download -->
+    <a href="Manan_Kohli_Resume.pdf" class="resume-btn" download>
+      <i class="fas fa-download"></i> Download My Resume
+    </a>
+  </div>
+</div>
       </div>
     </div>
 

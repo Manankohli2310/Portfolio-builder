@@ -123,14 +123,14 @@ body {
   vertical-align: bottom;
 }
 
-.social-button-group {
+.about-button-group {
   display: flex;
   flex-wrap: wrap; /* Important for responsiveness */
   gap: 12px;
   margin-top: 20px;
 }
 
-.social-btn {
+.about-btn {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -146,17 +146,17 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.social-btn:hover {
+.about-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
   background-color: #333;
 }
 
-.social-btn i {
-  font-size: 18px;
+.about-btn i {
+  font-size: 16px;
 }
 
-.social-btn span {
+.about-btn span {
   flex: 1;
   font-weight: 600;
   text-align: left;
@@ -219,7 +219,7 @@ body {
   flex: 1;
   /* This ensures padding is always maintained even with overflow */
   scrollbar-width: thin;
-  scrollbar-color: rgba(238, 123, 47, 0.3) transparent;
+  scrollbar-color: rgba(189, 82, 11, 0.3) transparent;
 }
 
 /* Custom scrollbar styling for webkit browsers */
@@ -232,7 +232,7 @@ body {
 }
 
 .text1::-webkit-scrollbar-thumb {
-  background: rgba(238, 123, 47, 0.3);
+  background: rgba(189, 82, 11, 0.3);
   border-radius: 3px;
 }
 
@@ -295,7 +295,7 @@ body {
   flex: 1;
   /* This ensures padding is always maintained even with overflow */
   scrollbar-width: thin;
-  scrollbar-color: rgba(238, 123, 47, 0.3) transparent;
+  scrollbar-color: rgba(189, 82, 11, 0.3) transparent;
 }
 
 /* Custom scrollbar styling for webkit browsers */
@@ -304,16 +304,16 @@ body {
 }
 
 .text2::-webkit-scrollbar-track {
-  background: transparent;
+  background: white;
 }
 
 .text2::-webkit-scrollbar-thumb {
-  background: rgba(238, 123, 47, 0.3);
+  background: rgba(189, 82, 11, 0.3);
   border-radius: 3px;
 }
 
 .text2::-webkit-scrollbar-thumb:hover {
-  background: rgba(238, 123, 47, 0.5);
+  background: rgba(71, 33, 8, 0.993);
 }
 
 .text2 h1, .text-projects h1 {
@@ -371,7 +371,7 @@ body {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(238, 123, 47, 0.527);
-  height: 250px; /* Reduced height to fit better */
+  height: 300px; /* Reduced height to fit better */
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -384,7 +384,7 @@ body {
 
 .project-img {
   width: 100%;
-  height: 130px; 
+  height: 160px; 
   background-size: cover;
   background-position: center;
   border-radius: 15px 15px 0 0;
@@ -435,7 +435,7 @@ body {
   flex: 1;
   /* This ensures padding is always maintained even with overflow */
   scrollbar-width: thin;
-  scrollbar-color: rgba(238, 123, 47, 0.3) transparent;
+  scrollbar-color: rgba(189, 82, 11, 0.3) transparent;
 }
 
 /* Custom scrollbar styling for webkit browsers */
@@ -448,7 +448,7 @@ body {
 }
 
 .text3::-webkit-scrollbar-thumb {
-  background: rgba(238, 123, 47, 0.3);
+  background: rgba(189, 82, 11, 0.3);
   border-radius: 3px;
 }
 
@@ -497,10 +497,65 @@ body {
   background-color: #333;
 }
 
-.resume-btn img {
-  height: 24px;
-  width: auto;
-  display: block;
+
+
+.card3 h2{
+  color: #444;
+}
+/* Contact Form Styling */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: 1px solid #e2d3c2;
+  border-radius: 8px;
+  font-size: 1em;
+}
+
+.contact-form button {
+  align-self: flex-start;
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.social-links a {
+  color: #444;
+  font-size: 1.5em;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: rgb(235, 153, 71);
+}
+
+/* Quick Contact */
+.quick-contact {
+  display: flex;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.contact-method {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  background: #fae7d821;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #444;
+  font-weight: 600;
 }
 
 @media (max-width: 1200px) {

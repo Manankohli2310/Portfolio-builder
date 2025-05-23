@@ -120,3 +120,39 @@ function typeEffect() {
     }
   }
 }
+
+
+// Enhanced navigation functionality with better scrolling
+document.querySelectorAll('.nav-btn').forEach(button => {
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href').substring(1);
+    
+    // First scroll to the correct card section
+    if (targetId === 'about-me' || targetId === 'skills') {
+      scrollCarousel(1); // Scroll to section 2 (About Me)
+    } else if (targetId === 'projects') {
+      scrollCarousel(2); // Scroll to section 3 (Projects)
+    } else if (targetId === 'contact') {
+      scrollCarousel(3); // Scroll to section 4 (Contact)
+    }
+
+    // Then scroll within the section if needed
+    setTimeout(() => {
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        // Calculate the scroll position considering the card's padding
+        const card = targetElement.closest('.card1, .card2, .card3');
+        const cardRect = card.getBoundingClientRect();
+        const elementRect = targetElement.getBoundingClientRect();
+        const scrollPosition = elementRect.top - cardRect.top + card.scrollTop;
+        
+        // Smooth scroll to the element within the card
+        card.scrollTo({
+          top: scrollPosition - 20, // 20px offset from top
+          behavior: 'smooth'
+        });
+      }
+    }, 500); // Wait for the carousel animation to complete
+  });
+});
