@@ -381,6 +381,58 @@ body {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(238, 123, 47, 0.527);
 }
+.project-box {
+  position: relative;
+  background: #fef9ec;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(238, 123, 47, 0.527);
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Blur and darken effect on hover */
+.project-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  background-color: transparent;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  border-radius: 15px;
+}
+
+.project-box:hover::after {
+  opacity: 1;
+}
+
+/* Repo link button */
+.repo-link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(235, 153, 71);
+  color: white;
+  padding: 10px 16px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 2;
+}
+
+.project-box:hover .repo-link {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.05);
+}
 
 .project-img {
   width: 100%;
@@ -460,7 +512,7 @@ body {
   text-decoration: none;
   color: rgb(235, 153, 71);
   font-size: 1rem;
-  transition: color 0.3s ease;
+  /* transition: color 0.3s ease; */
 }
 
 .text3 h1 {
@@ -484,23 +536,29 @@ body {
   justify-content: center;
   gap: 10px;
   padding: 10px 15px;
+  border: none;
   background-color: #444;
   color: #f4a259;
   border-radius: 50px;
   text-decoration: none;
   transition: all 0.3s ease;
+  outline: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .resume-btn:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25) !important;
   background-color: #333;
 }
 
-
+.resume{
+      margin-top: 5px;
+    margin-bottom: 20px;
+}
 
 .card3 h2{
   color: #444;
+  margin: 0;
 }
 /* Contact Form Styling */
 .contact-form {
@@ -515,9 +573,16 @@ body {
   padding: 12px;
   border: 1px solid #e2d3c2;
   border-radius: 8px;
+  background-color: transparent;
   font-size: 1em;
 }
 
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border: 1px solid #f4a259;
+  box-shadow: 0 0 0 3px rgba(244, 162, 89, 0.3);
+}
 .contact-form button {
   align-self: flex-start;
 }
