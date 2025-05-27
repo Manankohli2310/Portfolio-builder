@@ -1,3 +1,15 @@
+*{
+  outline: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  font-family: sans-serif;
+  -webkit-tap-highlight-color: rgba(32, 110, 77, 0) !important;
+  -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
+  outline: none !important;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -82,6 +94,7 @@ body {
 
 /* section 1 */
 .card {
+  /* position: relative; */
   min-width: 100%;
   display: flex;
   align-items: center;
@@ -125,7 +138,7 @@ body {
 
 .about-button-group {
   display: flex;
-  flex-wrap: wrap; /* Important for responsiveness */
+  flex-wrap: wrap; 
   gap: 12px;
   margin-top: 20px;
 }
@@ -171,43 +184,14 @@ body {
   box-shadow: 0 0 12px rgba(27, 27, 27, 0.26);
 }
 
-@media (max-width: 1050px) {
-  .card {
-    padding: 60px 40px;
-  }
 
-  .text {
-    font-size: 2.75rem;
-  }
-
-  .image img {
-    width: 300px;
-    height: 300px;
-  }
-}
-/* RESPONSIVE: Stack text and buttons for small screens */
-@media (max-width: 600px) {
-  .text {
-    text-align: center;
-    align-self: center;
-  }
-
-  .text-container {
-    align-items: center;
-  }
-
-  .social-button-group {
-    justify-content: center;
-  }
-}
-
-/* section 2 - FIXED PADDING ISSUE */
+/* section 2  */
 .card1 {
   min-width: 100%;
   background-color: #fef9ec;
   border-radius: 20px;
   height: 100%;
-  overflow: hidden; /* Prevent outer container from scrolling */
+  overflow: hidden; 
   display: flex;
   flex-direction: column;
 }
@@ -215,14 +199,12 @@ body {
 .text1 {
   padding: 30px 60px;
   box-sizing: border-box;
-  overflow-y: auto; /* Add scrollbar to content area only */
+  overflow-y: auto; 
   flex: 1;
-  /* This ensures padding is always maintained even with overflow */
   scrollbar-width: thin;
   scrollbar-color: rgba(189, 82, 11, 0.3) transparent;
 }
 
-/* Custom scrollbar styling for webkit browsers */
 .text1::-webkit-scrollbar {
   width: 6px;
 }
@@ -277,13 +259,13 @@ body {
   transform: scale(1.025);
 }
 
-/* section 3 - FIXED PADDING ISSUE */
+/* section 3 */
 .card2, .card-projects {
   min-width: 100%;
   background-color: #fef9ec;
   border-radius: 20px;
   height: 100%;
-  overflow: hidden; /* Prevent outer container from scrolling */
+  overflow: hidden; 
   display: flex;
   flex-direction: column;
 }
@@ -291,14 +273,12 @@ body {
 .text2 {
   padding: 30px 60px;
   box-sizing: border-box;
-  overflow-y: auto; /* Add scrollbar to content area only */
+  overflow-y: auto; 
   flex: 1;
-  /* This ensures padding is always maintained even with overflow */
   scrollbar-width: thin;
   scrollbar-color: rgba(189, 82, 11, 0.3) transparent;
 }
 
-/* Custom scrollbar styling for webkit browsers */
 .text2::-webkit-scrollbar {
   width: 6px;
 }
@@ -355,7 +335,6 @@ body {
   margin-right: 8px;
 }
 
-/* Improved project section styling */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -371,7 +350,7 @@ body {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(238, 123, 47, 0.527);
-  height: 300px; /* Reduced height to fit better */
+  height: 300px; 
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -393,7 +372,6 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Blur and darken effect on hover */
 .project-box::after {
   content: '';
   position: absolute;
@@ -410,7 +388,6 @@ body {
   opacity: 1;
 }
 
-/* Repo link button */
 .repo-link {
   position: absolute;
   top: 50%;
@@ -443,7 +420,7 @@ body {
 }
 
 .project-description {
-  padding: 12px; /* Reduced padding */
+  padding: 12px; 
   color: rgb(235, 153, 71);
   display: flex;
   flex-direction: column;
@@ -452,7 +429,7 @@ body {
 
 .project-description h3 {
   margin: 0;
-  font-size: 1.3rem; /* Reduced font size */
+  font-size: 1.3rem;
   font-weight: bold;
   color: rgb(235, 153, 71);
   margin-bottom: 6px;
@@ -460,22 +437,20 @@ body {
 
 .project-description p {
   margin: 0;
-  font-size: 0.85rem; /* Reduced font size */
+  font-size: 0.85rem; 
   color: #444;
   line-height: 1.3;
-  display: -webkit-box;
-  -webkit-line-clamp: 4; 
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* section 4 - FIXED PADDING ISSUE */
+/* section 4 */
 .card3 {
   min-width: 100%;
   background-color: #fef9ec;
   border-radius: 20px;
   height: 100%;
-  overflow: hidden; /* Prevent outer container from scrolling */
+  overflow: hidden; 
   display: flex;
   flex-direction: column;
 }
@@ -483,14 +458,12 @@ body {
 .text3 {
   padding: 30px 60px;
   box-sizing: border-box;
-  overflow-y: auto; /* Add scrollbar to content area only */
+  overflow-y: auto;
   flex: 1;
-  /* This ensures padding is always maintained even with overflow */
   scrollbar-width: thin;
   scrollbar-color: rgba(189, 82, 11, 0.3) transparent;
 }
 
-/* Custom scrollbar styling for webkit browsers */
 .text3::-webkit-scrollbar {
   width: 6px;
 }
@@ -512,7 +485,6 @@ body {
   text-decoration: none;
   color: rgb(235, 153, 71);
   font-size: 1rem;
-  /* transition: color 0.3s ease; */
 }
 
 .text3 h1 {
@@ -560,7 +532,7 @@ body {
   color: #444;
   margin: 0;
 }
-/* Contact Form Styling */
+
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -587,7 +559,6 @@ body {
   align-self: flex-start;
 }
 
-/* Social Links */
 .social-links {
   display: flex;
   gap: 15px;
@@ -604,7 +575,6 @@ body {
   color: rgb(235, 153, 71);
 }
 
-/* Quick Contact */
 .quick-contact {
   display: flex;
   gap: 15px;
@@ -621,78 +591,4 @@ body {
   text-decoration: none;
   color: #444;
   font-weight: 600;
-}
-
-@media (max-width: 1200px) {
-  .projects {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-  }
-  
-  .project-box {
-    height: 230px;
-  }
-  
-  .project-img {
-    height: 120px;
-  }
-}
-
-@media (max-width: 992px) {
-  .projects {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 12px;
-  }
-  
-  .text2, .text3 {
-    padding: 25px 30px;
-  }
-}
-
-@media (max-width: 768px) {
-  .card {
-    flex-direction: column;
-    text-align: center;
-    padding: 30px;
-  }
-  
-  .text {
-    max-width: 100%;
-    margin-bottom: 30px;
-  }
-  
-  .social-button-group {
-    justify-content: center;
-  }
-  
-  .image img {
-    width: 250px;
-    height: 250px;
-  }
-  
-  .projects {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 10px;
-  }
-  
-  .project-box {
-    height: 210px;
-  }
-  
-  .project-img {
-    height: 100px;
-  }
-  
-  .project-description h3 {
-    font-size: 1.1rem;
-  }
-  
-  .project-description p {
-    font-size: 0.8rem;
-    -webkit-line-clamp: 3;
-  }
-  
-  .text1, .text2, .text3 {
-    padding: 20px 25px;
-  }
 }

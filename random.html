@@ -1,60 +1,827 @@
-<div class="social-button-group">
-              <a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-btn">
-                <i class="fab fa-linkedin-in"></i>
-                <span>LinkedIn</span>
-              </a>
-              <a href="https://github.com/yourprofile" target="_blank" class="social-btn">
-                <i class="fab fa-github"></i>
-                <span>GitHub</span>
-              </a>
-              <a href="https://twitter.com/yourprofile" target="_blank" class="social-btn">
-                <i class="fab fa-twitter"></i>
-                <span>Twitter</span>
-              </a>
-              <a href="https://instagram.com/yourprofile" target="_blank" class="social-btn">
-                <i class="fab fa-instagram"></i>
-                <span>Instagram</span>
-              </a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Generator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ff6b35;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background: #e55a2b;
+      transform: translateY(-2px);
+    }
+
+    /* Form Styles */
+    .form-section {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 30px;
+      margin: 20px 0;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .form-section h2 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 24px;
+      border-bottom: 3px solid #ff6b35;
+      padding-bottom: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #ff6b35;
+    }
+
+    .array-input {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .array-input input {
+      flex: 1;
+    }
+
+    .btn {
+      background: #ff6b35;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #e55a2b;
+    }
+
+    .btn-small {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    .skill-tag, .experience-item, .project-item {
+      background: #f0f0f0;
+      padding: 8px 12px;
+      margin: 5px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .remove-btn {
+      background: #ff4757;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    /* Portfolio Preview Styles */
+    .portfolio-preview {
+      display: none;
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .carousel {
+      display: flex;
+      width: 400%;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .card, .card1, .card2, .card3 {
+      width: 25%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      color: white;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .card1 {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .card2 {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .card3 {
+      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+
+    .text, .text1, .text2, .text3 {
+      flex: 1;
+      padding-right: 40px;
+    }
+
+    .text h1, .text1 h1, .text2 h1, .text3 h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    #orange {
+      color: #ff6b35;
+      font-weight: bold;
+    }
+
+    .about-button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .about-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .about-btn:hover {
+      background: rgba(255, 107, 53, 0.8);
+      transform: translateY(-2px);
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .skills span {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .experience-list {
+      margin: 20px 0;
+    }
+
+    .experience-item {
+      margin: 10px 0;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .year {
+      font-weight: bold;
+      color: #ffd700;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .project-box {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+    }
+
+    .project-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-box h3 {
+      color: #ffd700;
+      margin-bottom: 10px;
+    }
+
+    .repo-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: #ff6b35;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .contact-info p {
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact-info a {
+      color: #ffd700;
+      text-decoration: none;
+    }
+
+    .resume-btn {
+      background: #ff6b35;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 20px 0;
+      transition: all 0.3s ease;
+    }
+
+    .resume-btn:hover {
+      background: #e55a2b;
+      transform: translateY(-2px);
+    }
+
+    .contact-form {
+      margin: 20px 0;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      backdrop-filter: blur(10px);
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .social-links a:hover {
+      background: #ff6b35;
+      transform: translateY(-3px);
+    }
+
+    .image {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: #999;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: none;
+      padding: 15px 20px;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+
+    .arrow:hover {
+      background: rgba(255, 107, 53, 0.8);
+    }
+
+    .arrow.left {
+      left: 20px;
+    }
+
+    .arrow.right {
+      right: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .text, .text1, .text2, .text3 {
+        padding-right: 0;
+      }
+      
+      .card, .card1, .card2, .card3 {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+      }
+      
+      .text h1, .text1 h1, .text2 h1, .text3 h1 {
+        font-size: 2rem;
+      }
+      
+      .image {
+        width: 200px;
+        height: 200px;
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-btn" onclick="toggleView()">Preview Portfolio</button>
+
+  <!-- Form Section -->
+  <div id="form-view" class="container">
+    <h1 style="text-align: center; color: white; margin-bottom: 30px; font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Portfolio Generator</h1>
+    
+    <!-- Personal Info Section -->
+    <div class="form-section">
+      <h2><i class="fas fa-user"></i> Personal Information</h2>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Enter your name" value="Manan">
+      </div>
+      <div class="form-group">
+        <label for="title">Professional Title</label>
+        <input type="text" id="title" placeholder="e.g., Creative Developer" value="Creative Developer">
+      </div>
+      <div class="form-group">
+        <label for="aboutMe1">About Me (Paragraph 1)</label>
+        <textarea id="aboutMe1" rows="4" placeholder="Write about yourself...">Passionate about creating beautiful, functional UIs using modern tools and technologies. I specialize in front-end development with a focus on creating responsive, user-friendly interfaces that provide exceptional user experiences.</textarea>
+      </div>
+      <div class="form-group">
+        <label for="aboutMe2">About Me (Paragraph 2)</label>
+        <textarea id="aboutMe2" rows="4" placeholder="Additional information...">With expertise in HTML, CSS, JavaScript, and modern frameworks like React, I build applications that are not only visually appealing but also performant and accessible.</textarea>
+      </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="form-section">
+      <h2><i class="fas fa-code"></i> Skills</h2>
+      <div class="form-group">
+        <label>Add Skills</label>
+        <div class="array-input">
+          <input type="text" id="skillInput" placeholder="Enter a skill">
+          <button class="btn" onclick="addSkill()">Add</button>
+        </div>
+        <div id="skillsList"></div>
+      </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="form-section">
+      <h2><i class="fas fa-briefcase"></i> Work Experience</h2>
+      <div class="form-group">
+        <label>Add Experience</label>
+        <div class="array-input">
+          <input type="text" id="expYear" placeholder="Year range (e.g., 2020-2022)" style="flex: 0.3;">
+          <input type="text" id="expRole" placeholder="Role and Company" style="flex: 0.7;">
+          <button class="btn" onclick="addExperience()">Add</button>
+        </div>
+        <div id="experiencesList"></div>
+      </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="form-section">
+      <h2><i class="fas fa-project-diagram"></i> Projects</h2>
+      <div class="form-group">
+        <label>Add Project</label>
+        <div style="display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 10px; margin-bottom: 10px;">
+          <input type="text" id="projName" placeholder="Project Name">
+          <input type="text" id="projDesc" placeholder="Project Description">
+          <input type="url" id="projRepo" placeholder="Repository URL">
+        </div>
+        <button class="btn" onclick="addProject()">Add Project</button>
+        <div id="projectsList"></div>
+      </div>
+    </div>
+
+    <!-- Contact Info Section -->
+    <div class="form-section">
+      <h2><i class="fas fa-envelope"></i> Contact Information</h2>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="your@email.com" value="you@example.com">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" placeholder="+1 234 567 8900" value="+91 12345 67890">
+      </div>
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" id="location" placeholder="City, Country" value="New Delhi, India">
+      </div>
+      <div class="form-group">
+        <label for="linkedin">LinkedIn URL</label>
+        <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile" value="https://linkedin.com/in/yourprofile">
+      </div>
+      <div class="form-group">
+        <label for="github">GitHub URL</label>
+        <input type="url" id="github" placeholder="https://github.com/yourprofile" value="https://github.com/yourprofile">
+      </div>
+      <div class="form-group">
+        <label for="twitter">Twitter URL</label>
+        <input type="url" id="twitter" placeholder="https://twitter.com/yourprofile" value="https://twitter.com/yourprofile">
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 40px 0;">
+      <button class="btn" style="font-size: 18px; padding: 15px 30px;" onclick="generatePortfolio()">Generate Portfolio</button>
+    </div>
+  </div>
+
+  <!-- Portfolio Preview Section -->
+  <div id="portfolio-view" class="portfolio-preview">
+    <div class="carousel-container">
+      <button class="arrow left" onclick="scrollCarousel(-1)">&#10094;</button>
+      
+      <div class="carousel-wrapper">
+        <div class="carousel" id="carousel">
+          <!-- Section 1 - Intro -->
+          <div class="card">
+            <div class="text">
+              <div id="intro-content"></div>
+              <div class="about-button-group">
+                <a href="#about-me" class="about-btn" onclick="scrollCarousel(1)">
+                  <i class="fas fa-user"></i>
+                  <span>About Me</span>
+                </a>
+                <a href="#skills" class="about-btn" onclick="scrollCarousel(1)">
+                  <i class="fas fa-code"></i>
+                  <span>Skills</span>
+                </a>
+                <a href="#projects" class="about-btn" onclick="scrollCarousel(2)">
+                  <i class="fas fa-project-diagram"></i>
+                  <span>Projects</span>
+                </a>
+                <a href="#contact" class="about-btn" onclick="scrollCarousel(3)">
+                  <i class="fas fa-comments"></i>
+                  <span>Let's Talk</span>
+                </a>
+              </div>
             </div>
+            <div class="image">
+              <i class="fas fa-user-circle"></i>
+            </div>
+          </div>
 
+          <!-- Section 2 - About Me -->
+          <div class="card1">
+            <div class="text1" id="about-content">
+              <!-- About content will be inserted here -->
+            </div>
+          </div>
 
+          <!-- Section 3 - Experience & Projects -->
+          <div class="card2">
+            <div class="text2" id="experience-projects-content">
+              <!-- Experience and projects content will be inserted here -->
+            </div>
+          </div>
 
+          <!-- Section 4 - Contact -->
+          <div class="card3">
+            <div class="text3" id="contact-content">
+              <!-- Contact content will be inserted here -->
+            </div>
+          </div>
+        </div>
+      </div>
 
-.social-button-group {
-  display: flex;
-  flex-wrap: wrap; /* Important for responsiveness */
-  gap: 12px;
-  margin-top: 20px;
-}
+      <button class="arrow right" onclick="scrollCarousel(1)">&#10095;</button>
+    </div>
+  </div>
 
-.social-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
-  border-radius: 50px;
-  background-color: #444;
-  color: #fef9ec;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  width: 100px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
+  <script>
+    let currentSection = 0;
+    let skills = ['HTML', 'CSS', 'JS', 'React', 'Python', 'Node.js', 'Git', 'APIs', 'Responsive Design'];
+    let experiences = [
+      { year: '2010–11', role: 'Junior Web Designer at ABC Co.' },
+      { year: '2012–14', role: 'Front-End Developer at XYZ Ltd.' },
+      { year: '2015–18', role: 'UI/UX Specialist at DesignHub' },
+      { year: '2019–21', role: 'Full-Stack Developer at DevTech' },
+      { year: '2022–Present', role: 'Senior Developer at CreativeWorks' }
+    ];
+    let projects = [
+      { name: 'Virtual Tour Planner', description: 'Plan virtual tours with an interactive interface, personalized to user interests and destination preferences.', repo: 'https://github.com/your-repo/tour-planner' },
+      { name: 'AI Tools Suite', description: 'A suite of AI-powered tools for a variety of purposes, including image processing, text analysis, and more.', repo: 'https://github.com/your-repo/ai-tools' },
+      { name: 'Image to PDF Converter', description: 'Convert your images to PDF format with ease, preserving quality and layout.', repo: 'https://github.com/your-repo/image-pdf' }
+    ];
 
-.social-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-  background-color: #333;
-}
+    function updateSkillsList() {
+      const container = document.getElementById('skillsList');
+      container.innerHTML = skills.map((skill, index) => 
+        `<span class="skill-tag">${skill} <button class="remove-btn" onclick="removeSkill(${index})">×</button></span>`
+      ).join('');
+    }
 
-.social-btn i {
-  font-size: 18px;
-}
+    function updateExperiencesList() {
+      const container = document.getElementById('experiencesList');
+      container.innerHTML = experiences.map((exp, index) => 
+        `<div class="experience-item">${exp.year}: ${exp.role} <button class="remove-btn" onclick="removeExperience(${index})">×</button></div>`
+      ).join('');
+    }
 
-.social-btn span {
-  flex: 1;
-  font-weight: 600;
-  text-align: left;
-}
+    function updateProjectsList() {
+      const container = document.getElementById('projectsList');
+      container.innerHTML = projects.map((proj, index) => 
+        `<div class="project-item"><strong>${proj.name}</strong>: ${proj.description} <button class="remove-btn" onclick="removeProject(${index})">×</button></div>`
+      ).join('');
+    }
+
+    function addSkill() {
+      const input = document.getElementById('skillInput');
+      if (input.value.trim()) {
+        skills.push(input.value.trim());
+        input.value = '';
+        updateSkillsList();
+      }
+    }
+
+    function removeSkill(index) {
+      skills.splice(index, 1);
+      updateSkillsList();
+    }
+
+    function addExperience() {
+      const year = document.getElementById('expYear');
+      const role = document.getElementById('expRole');
+      if (year.value.trim() && role.value.trim()) {
+        experiences.push({ year: year.value.trim(), role: role.value.trim() });
+        year.value = '';
+        role.value = '';
+        updateExperiencesList();
+      }
+    }
+
+    function removeExperience(index) {
+      experiences.splice(index, 1);
+      updateExperiencesList();
+    }
+
+    function addProject() {
+      const name = document.getElementById('projName');
+      const desc = document.getElementById('projDesc');
+      const repo = document.getElementById('projRepo');
+      if (name.value.trim() && desc.value.trim()) {
+        projects.push({ 
+          name: name.value.trim(), 
+          description: desc.value.trim(), 
+          repo: repo.value.trim() || '#' 
+        });
+        name.value = '';
+        desc.value = '';
+        repo.value = '';
+        updateProjectsList();
+      }
+    }
+
+    function removeProject(index) {
+      projects.splice(index, 1);
+      updateProjectsList();
+    }
+
+    function toggleView() {
+      const formView = document.getElementById('form-view');
+      const portfolioView = document.getElementById('portfolio-view');
+      const toggleBtn = document.querySelector('.toggle-btn');
+      
+      if (formView.style.display === 'none') {
+        formView.style.display = 'block';
+        portfolioView.style.display = 'none';
+        toggleBtn.textContent = 'Preview Portfolio';
+      } else {
+        generatePortfolio();
+        formView.style.display = 'none';
+        portfolioView.style.display = 'block';
+        toggleBtn.textContent = 'Edit Portfolio';
+      }
+    }
+
+    function scrollCarousel(direction) {
+      if (typeof direction === 'number') {
+        currentSection = Math.max(0, Math.min(3, direction));
+      } else {
+        currentSection = Math.max(0, Math.min(3, currentSection + direction));
+      }
+      const carousel = document.getElementById('carousel');
+      carousel.style.transform = `translateX(-${currentSection * 25}%)`;
+    }
+
+    function generatePortfolio() {
+      const name = document.getElementById('name').value || 'Your Name';
+      const title = document.getElementById('title').value || 'Your Title';
+      const aboutMe1 = document.getElementById('aboutMe1').value;
+      const aboutMe2 = document.getElementById('aboutMe2').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const location = document.getElementById('location').value;
+      const linkedin = document.getElementById('linkedin').value;
+      const github = document.getElementById('github').value;
+      const twitter = document.getElementById('twitter').value;
+
+      // Generate intro content
+      document.getElementById('intro-content').innerHTML = `
+        Hey! I am <span id="orange">${name}</span><br> and I am a Creative <br>
+        <div id="typewriter"></div>
+      `;
+
+      // Generate about content
+      document.getElementById('about-content').innerHTML = `
+        <h1>About Me</h1>
+        <p>${aboutMe1}</p>
+        <p>${aboutMe2}</p>
+        <h1>Skills</h1>
+        <div class="skills">
+          ${skills.map(skill => `<span>${skill}</span>`).join('')}
+        </div>
+      `;
+
+      // Generate experience and projects content
+      document.getElementById('experience-projects-content').innerHTML = `
+        <h1>Work Experience</h1>
+        <div class="experience-list">
+          ${experiences.map(exp => `<div class="experience-item"><span class="year">${exp.year}:</span> ${exp.role}</div>`).join('')}
+        </div>
+        <h1>Projects</h1>
+        <div class="projects">
+          ${projects.map(proj => `
+            <div class="project-box">
+              <div class="project-description">
+                <h3>${proj.name}</h3>
+                <p>${proj.description}</p>
+              </div>
+              <a href="${proj.repo}" target="_blank" class="repo-link">View Repo</a>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      // Generate contact content
+      document.getElementById('contact-content').innerHTML = `
+        <h1>Let's Connect!</h1>
+        <div class="contact-info">
+          <p><i class="fas fa-envelope"></i> Email: <a href="mailto:${email}">${email}</a></p>
+          <p><i class="fas fa-phone"></i> Phone: <a href="tel:${phone}">${phone}</a></p>
+          <p><i class="fas fa-map-marker-alt"></i> Location: ${location}</p>
+        </div>
+        <a href="#" class="resume-btn">
+          <i class="fas fa-download"></i> Download My Resume
+        </a>
+        <h2>Send Me a Message</h2>
+        <form class="contact-form">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea placeholder="Your Message" rows="4" required></textarea>
+          <button type="submit" class="resume-btn">Send Message</button>
+        </form>
+        <div class="social-links">
+          <h2>Connect With Me</h2>
+          <a href="${linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="${github}" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="${twitter}" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+      `;
+
+      // Initialize typewriter effect
+      if (typeof Typed !== 'undefined') {
+        new Typed('#typewriter', {
+          strings: [title, 'Developer', 'Designer', 'Problem Solver'],
+          typeSpeed: 100,
+          backSpeed: 100,
+          loop: true
+        });
+      }
+    }
+
+    // Initialize the form with default data
+    document.addEventListener('DOMContentLoaded', function() {
+      updateSkillsList();
+      updateExperiencesList();
+      updateProjectsList();
+      
+      // Add Enter key support for inputs
+      document.getElementById('skillInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') addSkill();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -6,19 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Manan Kohli - Portfolio</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <link rel="stylesheet" href="responsiveness.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
   <div class="carousel-container">
     <button class="arrow left" onclick="scrollCarousel(-1)">&#10094;</button>
-
     <div class="carousel-wrapper">
       <div class="carousel" id="carousel">
-
-        <!-- Section 1 - Intro -->
-        <!-- Section 1 - Intro -->
+        <!-- Section 1 -->
         <div class="card">
           <div class="text">
             Hey! I am <span id="orange">Manan</span><br> and I am a Creative <br>
@@ -47,7 +44,7 @@
           </div>
         </div>
 
-        <!-- Section 2 - About Me -->
+        <!-- Section 2-->
         <div class="card1">
           <div class="text1">
             <h1 id="about-me">About Me</h1>
@@ -83,10 +80,9 @@
           </div>
         </div>
 
-        <!-- Section 3 - Skills & Projects -->
+        <!-- Section 3 -->
         <div class="card2">
           <div class="text2">
-
             <h1>Work Experience</h1>
             <div class="experience-list">
               <div class="experience-item"><span class="year">2010–11:</span> Junior Web Designer at ABC Co.</div>
@@ -104,53 +100,47 @@
             <div class="projects" id="projects-container">
               <!-- Projects dynamically inserted via JS -->
             </div>
-
           </div>
         </div>
 
-        <!-- Section 4 - Contact -->
-       <div class="card3">
-  <div class="text3">
-    <h1>Let's Connect!</h1>
-    
-    <!-- Contact Info -->
-    <div class="contact-info">
-      <p><i class="fas fa-envelope"></i> Email: <a href="mailto:you@example.com">you@example.com</a></p>
-      <p><i class="fas fa-phone"></i> Phone: <a href="tel:+911234567890">+91 12345 67890</a></p>
-      <p><i class="fas fa-map-marker-alt"></i> Location: New Delhi, India</p>
-    </div>
+        <!-- Section 4-->
+        <div class="card3">
+          <div class="text3">
+            <h1>Let's Connect!</h1>
 
-    <a href="Manan_Kohli_Resume.pdf" class="resume-btn resume" download>
-      <i class="fas fa-download"></i> Download My Resume
-    </a>
-    <!-- Contact Form -->
-    <h2>Send Me a Message</h2>
-    <form class="contact-form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" rows="4" required></textarea>
-      <button type="submit" class="resume-btn">Send Message</button>
-    </form>
+            <div class="contact-info">
+              <p><i class="fas fa-envelope"></i> Email: <a href="mailto:you@example.com">you@example.com</a></p>
+              <p><i class="fas fa-phone"></i> Phone: <a href="tel:+911234567890">+91 12345 67890</a></p>
+              <p><i class="fas fa-map-marker-alt"></i> Location: New Delhi, India</p>
+            </div>
 
-    <!-- Social Links -->
-    
-    <div class="social-links">
-    <h2>Connect With Me</h2>
-      <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/yourprofile" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i></a>
-    </div>
+            <a href="Manan_Kohli_Resume.pdf" class="resume-btn resume" download>
+              <i class="fas fa-download"></i> Download My Resume
+            </a>
+            <h2>Send Me a Message</h2>
+            <form class="contact-form">
+              <input type="text" placeholder="Your Name" required>
+              <input type="email" placeholder="Your Email" required>
+              <textarea placeholder="Your Message" rows="4" required></textarea>
+              <button type="submit" class="resume-btn">Send Message</button>
+            </form>
 
-    <!-- Resume Download -->
-  </div>
-</div>
+            <div class="social-links">
+              <h2>Connect With Me</h2>
+              <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="https://github.com/yourprofile" target="_blank"><i class="fab fa-github"></i></a>
+              <a href="https://twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
 
     <button class="arrow right" onclick="scrollCarousel(1)">&#10095;</button>
   </div>
 
-  <!-- Hidden project templates -->
+  <!-- project templates -->
   <div id="project-templates" style="display: none;">
     <div class="project-box" data-project="tour-planner">
       <div class="project-img" style="background-image: url('project1.jpg');"></div>
@@ -229,7 +219,6 @@
       </div>
       <a href="https://github.com/your-repo/tour-planner" target="_blank" class="repo-link">View Repo</a>
     </div>
-
   </div>
 
   <script src="script.js"></script>
