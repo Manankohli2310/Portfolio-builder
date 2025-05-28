@@ -94,7 +94,6 @@ body {
 
 /* section 1 */
 .card {
-  /* position: relative; */
   min-width: 100%;
   display: flex;
   align-items: center;
