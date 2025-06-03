@@ -23,7 +23,6 @@ body {
   align-items: center;
   justify-content: center;
  height: 100vh;
-  /* position: relative; */
 }
 
 .carousel-wrapper {
@@ -83,7 +82,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background: #444;
-  color: #fff;
+  color: #fef9ec;
   padding: 10px 20px;
   border-radius: 25px;
   font-size: 1rem;
@@ -123,13 +122,14 @@ body {
   white-space: nowrap;
 }
 
-#orange,
-#typewriter {
+#orange{
   color: rgb(235, 153, 71);
+  
 }
 
 #typewriter {
-  min-height: 1.2em;
+  min-height: 1.3em;
+  color: rgb(235, 153, 71);
   display: inline-block;
   white-space: nowrap;
   vertical-align: bottom;

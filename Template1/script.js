@@ -87,7 +87,7 @@ function cancelHold() {
 }
 
 // --- Typewriter Effect ---
-const texts = ["Web Developer.", "Python Developer."];
+const texts = ["Web Developer", "Python Developer"];
 let textIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
