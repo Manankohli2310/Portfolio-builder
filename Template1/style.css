@@ -16,8 +16,25 @@ body {
   background: #f1e7db;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(189, 82, 11, 0.3) transparent;
+}
+body::-webkit-scrollbar {
+  width: 6px;
 }
 
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgba(189, 82, 11, 0.3);
+  border-radius: 3px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: rgba(238, 123, 47, 0.5);
+}
 .carousel-container {
   display: flex;
   align-items: center;
@@ -86,6 +103,7 @@ body {
   padding: 10px 20px;
   border-radius: 25px;
   font-size: 1rem;
+  font-weight: 600;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   z-index: 999;
   animation: fadein 0.5s ease;
@@ -200,26 +218,8 @@ body {
   box-sizing: border-box;
   overflow-y: auto; 
   flex: 1;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(189, 82, 11, 0.3) transparent;
 }
 
-.text1::-webkit-scrollbar {
-  width: 6px;
-}
-
-.text1::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.text1::-webkit-scrollbar-thumb {
-  background: rgba(189, 82, 11, 0.3);
-  border-radius: 3px;
-}
-
-.text1::-webkit-scrollbar-thumb:hover {
-  background: rgba(238, 123, 47, 0.5);
-}
 
 .text1 h1 {
   font-size: 2.8em;
@@ -274,26 +274,8 @@ body {
   box-sizing: border-box;
   overflow-y: auto; 
   flex: 1;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(189, 82, 11, 0.3) transparent;
 }
 
-.text2::-webkit-scrollbar {
-  width: 6px;
-}
-
-.text2::-webkit-scrollbar-track {
-  background: white;
-}
-
-.text2::-webkit-scrollbar-thumb {
-  background: rgba(189, 82, 11, 0.3);
-  border-radius: 3px;
-}
-
-.text2::-webkit-scrollbar-thumb:hover {
-  background: rgba(71, 33, 8, 0.993);
-}
 
 .text2 h1, .text-projects h1 {
   font-size: 2.8em;
@@ -459,26 +441,8 @@ body {
   box-sizing: border-box;
   overflow-y: auto;
   flex: 1;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(189, 82, 11, 0.3) transparent;
 }
 
-.text3::-webkit-scrollbar {
-  width: 6px;
-}
-
-.text3::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.text3::-webkit-scrollbar-thumb {
-  background: rgba(189, 82, 11, 0.3);
-  border-radius: 3px;
-}
-
-.text3::-webkit-scrollbar-thumb:hover {
-  background: rgba(238, 123, 47, 0.5);
-}
 
 .card3 a {
   text-decoration: none;

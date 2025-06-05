@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');@media (min-width: 1800px) {
+@media screen and (min-width:1800px) {
   /* section 1 */
   .card {
     padding: 100px 130px;
@@ -10,9 +11,9 @@
   .image img{
     height: 425px;
     width: 425px;
-  }
-  
+  }  
 }
+ 
 @media  (min-width:1600px) and (max-width: 1800px) {
   /* section 1 */
   .card {
@@ -252,8 +253,55 @@
     font-size: 12px;
   }
 }
+@media  screen and (max-width: 400px){
+.card{
+  padding: 40px 0px;
+  }
+} 
+@media screen and (max-width: 400px)  and (min-width:380px){
+  .arrow{
+    font-size: 1.3rem;
+  }
+  .arrow.left{
+    left: 18px;
+  
+  }
+  .arrow.right{
+    right: 18px;
+  }
+  /* section 1 */
+  .image img {
+    width: 235px;
+    height: 235px;
+  }
 
-@media screen and (max-width: 400px)  and (min-width:355px){
+  .text {
+    font-size: 2rem;
+  }
+
+  .about-button-group {
+    margin-top: 40px;
+    align-items: center;
+  }
+
+  .about-btn {
+    width: 95px;
+    padding: 10px 0px;
+    font-size: 11px;
+    gap: 10px;
+  }
+
+  .about-btn i {
+    font-size: 12px;
+    margin-left: 10px;
+  }
+
+  .about-btn span {
+    font-size: 10px;
+  }
+
+}
+@media screen and (max-width: 380px) and (min-width:355px) {
   .arrow{
     font-size: 1.3rem;
   }
@@ -271,7 +319,7 @@
   }
 
   .text {
-    font-size: 1.9rem;
+    font-size: 1.95rem;
   }
 
   .about-button-group {
@@ -280,7 +328,7 @@
   }
 
   .about-btn {
-    width: 85px;
+    width: 92px;
     padding: 10px 0px;
     font-size: 11px;
     gap: 10px;
@@ -288,11 +336,11 @@
 
   .about-btn i {
     font-size: 12px;
-    margin-left: 10px;
+    margin-left: 12px;
   }
 
   .about-btn span {
-    font-size: 9px;
+    font-size: 10px;
   }
 }
 @media screen and (max-width: 355px){
@@ -317,13 +365,13 @@
   }
 
   .about-button-group {
-    transform: scale(0.9);
+    transform: scale(0.95);
     margin-top: 40px;
     align-items: center;
   }
 
   .about-btn {
-    width: 85px;
+    width: 90px;
     padding: 10px 0px;
     font-size: 11px;
     gap: 10px;
@@ -335,7 +383,7 @@
   }
 
   .about-btn span {
-    font-size: 9px;
+    font-size: 10px;
   }
   
 }
