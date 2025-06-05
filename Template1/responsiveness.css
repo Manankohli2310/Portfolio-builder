@@ -260,7 +260,7 @@
 } 
 @media screen and (max-width: 400px)  and (min-width:380px){
   .arrow{
-    font-size: 2rem;
+    font-size: 1.3rem;
   }
   .arrow.left{
     left: 18px;
@@ -276,7 +276,7 @@
   }
 
   .text {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .about-button-group {
