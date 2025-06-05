@@ -260,7 +260,7 @@
 } 
 @media screen and (max-width: 400px)  and (min-width:380px){
   .arrow{
-    font-size: 1.3rem;
+    font-size: 2rem;
   }
   .arrow.left{
     left: 18px;
@@ -285,7 +285,7 @@
   }
 
   .about-btn {
-    width: 95px;
+    width: 95px; 
     padding: 10px 0px;
     font-size: 11px;
     gap: 10px;
