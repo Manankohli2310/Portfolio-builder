@@ -445,6 +445,23 @@
   .about-btn span {
     font-size: 10px;
   }
+  /* section 2 */
+  .text1{
+    padding: 30px 32px;
+  }
+  .text1 p{
+    line-height: 1.4;
+    font-size: 0.9em;
+    font-weight: 520;
+  }
+  .text1 h1{
+    font-size: 2.2rem;
+  }
+  
+  .skills span{
+    font-size: 0.9em;
+    font-weight: 540;
+  }
 }
 @media screen and (max-width: 355px){
   .arrow{
@@ -488,5 +505,22 @@
   .about-btn span {
     font-size: 10px;
   }
+  /* section 2 */
+  .text1{
+    padding: 30px 32px;
+  }
+  .text1 p{
+    line-height: 1.5;
+    font-size: 0.9em;
+    font-weight: 520;
+  }
+  .text1 h1{
+    font-size: 2.15rem;
+  }
   
+  .skills span{
+    font-size: 0.8em;
+    font-weight: 540;
+    padding: 8px 12px;
+  }
 }
