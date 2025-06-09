@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
+@media screen and (min-width: 1900px) {
+  /* section 2 */
+  .text1 {
+    padding: 70px 80px;
+  }
+  .text1 h1{
+    font-size: 3.3rem;
+  }
+  .text1 p{
+    font-size: 1.4em;
+  }
+  .skills span{
+    font-size: 1.3em;
+  }
+  
+}
 @media screen and (min-width:1800px) {
   /* section 1 */
   .card {
@@ -12,6 +28,19 @@
     height: 425px;
     width: 425px;
   }  
+  /* section 2 */
+  .text1 {
+    padding: 70px 80px;
+  }
+  .text1 h1{
+    font-size: 3.3rem;
+  }
+  .text1 p{
+    font-size: 1.4em;
+  }
+  .skills span{
+    font-size: 1.3em;
+  }
 }
  
 @media  (min-width:1600px) and (max-width: 1800px) {
@@ -23,10 +52,26 @@
     font-size: 3.75rem;
   }
   .image img{
-    height: 350px;
-    width: 350px;
+    height: 375px;
+    width: 375px;
+  }
+  /* section 2 */
+  .text1 {
+    padding: 70px 80px;
+  }
+  .text1 h1{
+    font-size: 3.2rem;
+  }
+  .text1 p{
+    font-size: 1.4em;
+    /* font-weight: 520; */
+  }
+  .skills span{
+    font-size: 1.3em;
+    /* font-weight: 550; */
   }
 }
+
 
 @media (max-width: 1050px) {
   /* section 1 */
@@ -119,7 +164,14 @@
 
   /* section 2 */
   .text1 h1{
-        font-size: 3rem;
+    font-size: 3rem;
+  }
+  /* section 3 */
+  .text2 h1{
+    font-size: 3rem;
+  }
+  .experience-list{
+    margin-top: 12px;
   }
 }
 
@@ -157,6 +209,14 @@
   .text1 h1{
     font-size: 2.8rem;
   }
+  /* section 3 */
+  .text2{
+    padding: 30px 50px;
+  }
+  .text2 h1{
+    font-size: 2.8rem;
+  }
+
 }
 @media screen and (max-width: 700px) and (min-width: 600px) {
   /* section 1 */
@@ -164,21 +224,32 @@
     width: 310px;
     height: 310px;
   }
-
   .text {
     font-size: 2.75rem;
   }
-
  /* section 2 */
  .text1{
     padding: 30px 50px;
   }
  .text1 h1{
-  font-size: 2.6rem;
+    font-size: 2.6rem;
  }
  .text1 p{
-  font-size: 1.1em;
-  font-weight: 520;
+    font-size: 1.1em;
+    font-weight: 520;
+ }
+ /* section 3 */
+ .text2{
+    padding: 30px 50px;
+  }
+  .text2 h1{
+    font-size: 2.6rem;
+ }
+ .projects{
+  justify-items: center;
+ }
+ .project-box{
+  max-width: 400px;
  }
 }
 @media screen and (max-width: 600px) and (min-width: 520px){
@@ -340,6 +411,7 @@
   
 }
 @media  screen and (max-width: 400px){
+/* section 1 */
 .card{
   padding: 40px 0px;
   }

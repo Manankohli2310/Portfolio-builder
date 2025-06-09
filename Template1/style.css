@@ -278,7 +278,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 
-.text2 h1, .text-projects h1 {
+.text2 h1{
   font-size: 2.8em;
   font-weight: bold;
   color: #444;
