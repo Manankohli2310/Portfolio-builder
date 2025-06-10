@@ -64,11 +64,9 @@
   }
   .text1 p{
     font-size: 1.4em;
-    /* font-weight: 520; */
   }
   .skills span{
     font-size: 1.3em;
-    /* font-weight: 550; */
   }
 }
 
@@ -118,7 +116,7 @@
   }
 
   .image img {
-    width: 375px; /* Reduced size for better fit */
+    width: 375px; 
     height: 375px;
     margin-top: 0;
     object-fit: cover;
@@ -252,6 +250,22 @@
   max-width: 400px;
  }
 }
+@media screen and (max-width:645px){
+  /* section 3 */
+  .project-box{
+    max-width: 360px;
+    height: 330px;
+  }
+  .project-img{
+    height: 180px;
+  }
+  .project-description h3{
+    font-size: 1.3rem;
+  }
+  .project-description p{
+    font-size: 0.9rem;
+  }
+}
 @media screen and (max-width: 600px) and (min-width: 520px){
   /* section 1 */
   .image img {
@@ -278,6 +292,16 @@
     font-size: 0.95em;
     font-weight: 550;
   }
+  /* section 3 */
+  .text2{
+    padding: 30px 50px;
+  }
+  .text2 h1{
+    font-size: 2.6rem;
+ }
+ .projects{
+    justify-items: center;
+ }
 }
 @media screen and (max-width:500px) {
   .hold-popup{
@@ -287,7 +311,6 @@
   
 }
 @media screen and (max-width: 520px) and (min-width: 470px){
-  
   .arrow{
     font-size: 1.5rem;
   }
@@ -339,6 +362,20 @@
     font-size: 0.95em;
     font-weight: 550;
   }
+  /* section 3 */
+   .text2{
+    padding: 30px 40px;
+  }
+  .text2 h1{
+    font-size: 2.35rem;
+ }
+ .projects{
+    justify-items: center;
+ }
+ .experience-item{
+  font-size: 13px;
+  font-weight: 550;
+ }
 }
 
 @media screen and (max-width: 470px) and (min-width: 400px){
@@ -358,7 +395,6 @@
     width: 280px;
     height: 280px;
   }
-
   .text {
     font-size: 2.2rem;
   }
@@ -408,7 +444,6 @@
     font-size: 0.9em;
     font-weight: 550;
   }
-  
 }
 @media  screen and (max-width: 400px){
 /* section 1 */
@@ -432,28 +467,23 @@
     width: 240px;
     height: 240px;
   }
-
   .text {
     font-size: 2.2rem;
   }
-
   .about-button-group {
     margin-top: 40px;
     align-items: center;
   }
-
   .about-btn {
     width: 95px; 
     padding: 10px 0px;
     font-size: 11px;
     gap: 10px;
   }
-
   .about-btn i {
     font-size: 12px;
     margin-left: 10px;
   }
-
   .about-btn span {
     font-size: 10px;
   }
@@ -474,7 +504,6 @@
     font-size: 0.9em;
     font-weight: 540;
   }
-
 }
 @media screen and (max-width: 380px) and (min-width:355px) {
   .arrow{
@@ -482,7 +511,6 @@
   }
   .arrow.left{
     left: 18px;
-  
   }
   .arrow.right{
     right: 18px;
@@ -492,28 +520,23 @@
     width: 230px;
     height: 230px;
   }
-
   .text {
     font-size: 1.95rem;
   }
-
   .about-button-group {
     margin-top: 40px;
     align-items: center;
   }
-
   .about-btn {
     width: 92px;
     padding: 10px 0px;
     font-size: 11px;
     gap: 10px;
   }
-
   .about-btn i {
     font-size: 12px;
     margin-left: 12px;
   }
-
   .about-btn span {
     font-size: 10px;
   }
@@ -529,7 +552,6 @@
   .text1 h1{
     font-size: 2.2rem;
   }
-  
   .skills span{
     font-size: 0.9em;
     font-weight: 540;
@@ -551,29 +573,24 @@
     width: 230px;
     height: 230px;
   }
-
   .text {
     font-size: 1.8rem;
   }
-
   .about-button-group {
     transform: scale(0.95);
     margin-top: 40px;
     align-items: center;
   }
-
   .about-btn {
     width: 90px;
     padding: 10px 0px;
     font-size: 11px;
     gap: 10px;
   }
-
   .about-btn i {
     font-size: 12px;
     margin-left: 10px;
   }
-
   .about-btn span {
     font-size: 10px;
   }
@@ -589,7 +606,6 @@
   .text1 h1{
     font-size: 2.15rem;
   }
-  
   .skills span{
     font-size: 0.8em;
     font-weight: 540;

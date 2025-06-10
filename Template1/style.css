@@ -305,7 +305,7 @@ body::-webkit-scrollbar-thumb:hover {
   background: #fef9ec;
   border-radius: 30px;
   box-shadow: 0 4px 6px rgba(238, 123, 47, 0.527);
-  padding: 12px 20px;
+  padding: 12px 15px;
   font-weight: bold;
   font-size: 14px;
   color: #444;
@@ -313,6 +313,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .year {
+  text-align: left;
   color: rgb(235, 153, 71);
   margin-right: 8px;
 }
