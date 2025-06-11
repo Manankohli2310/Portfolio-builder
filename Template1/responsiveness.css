@@ -368,14 +368,21 @@
   }
   .text2 h1{
     font-size: 2.35rem;
- }
- .projects{
+  }
+  .projects{
     justify-items: center;
- }
- .experience-item{
+  }
+  .experience-item{
   font-size: 13px;
   font-weight: 550;
- }
+  }
+  .project-box{
+    max-width: 340px;
+    height: 315px;
+  }
+  .project-img{
+    height: 170px;
+  }
 }
 
 @media screen and (max-width: 470px) and (min-width: 400px){
@@ -432,6 +439,28 @@
     font-size: 0.95em;
     font-weight: 550;
   }
+  /* section 3 */
+  .text2{
+    padding: 30px 35px;
+  }
+  .text2 h1{
+    font-size: 2.28rem;
+  }
+  .projects{
+    justify-items: center;
+  }
+  .experience-item{
+    font-size: 13.5px;
+    font-weight: 550;
+    padding: 9px 15px;
+  }
+  .project-box{
+    max-width: 330px;
+    height: 310px;
+  }
+  .project-img{
+    height: 160px;
+  }
 }
 @media screen and (max-width: 420px) and (min-width:400px) {
   /* section 2 */
@@ -444,11 +473,22 @@
     font-size: 0.9em;
     font-weight: 550;
   }
+  /* section 3 */
+  .text2 h1{
+    font-size: 2.23rem;
+  }
+  .project-box{
+    max-width: 320px;
+    height: 310px;
+  }
+  .project-img{
+    height: 160px;
+  }
 }
 @media  screen and (max-width: 400px){
-/* section 1 */
-.card{
-  padding: 40px 0px;
+  /* section 1 */
+  .card{
+    padding: 40px 0px;
   }
 } 
 @media screen and (max-width: 400px)  and (min-width:380px){
@@ -504,6 +544,32 @@
     font-size: 0.9em;
     font-weight: 540;
   }
+  /* section 3 */
+  .text2{
+    padding: 30px 35px;
+  }
+  .text2 h1{
+    font-size: 2.28rem;
+  }
+  .text2 h1:first-child{
+    font-size: 2.1rem;
+  }
+  .projects{
+    justify-items: center;
+  }
+  .experience-item{
+    font-size: 13.5px;
+    font-weight: 540;
+    padding: 9px 15px;
+  }
+  .project-box{
+    max-width: 320px;
+    height: 305px;
+  }
+  .project-img{
+    height: 150px;
+  }
+
 }
 @media screen and (max-width: 380px) and (min-width:355px) {
   .arrow{
