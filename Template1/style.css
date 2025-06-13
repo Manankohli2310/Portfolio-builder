@@ -16,7 +16,7 @@ body {
   background: #f1e7db;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
-  scrollbar-width: thin;
+  scrollbar-width: 5px;
   scrollbar-color: rgba(189, 82, 11, 0.3) transparent;
 }
 body::-webkit-scrollbar {
@@ -344,17 +344,6 @@ body::-webkit-scrollbar-thumb:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(238, 123, 47, 0.527);
 }
-/* .project-box {
-  position: relative;
-  background: #fef9ec;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(238, 123, 47, 0.527);
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-} */
 
 .project-box::after {
   content: '';
@@ -476,7 +465,7 @@ body::-webkit-scrollbar-thumb:hover {
   padding: 10px 15px;
   border: none;
   background-color: #444;
-  color: #f4a259;
+  color: #fef9ec;
   border-radius: 50px;
   text-decoration: none;
   transition: all 0.3s ease;
