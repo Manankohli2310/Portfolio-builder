@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
-
 @media screen and (min-width:1800px) {
   /* section 1 */
   .card {
@@ -113,17 +112,14 @@
   }
 }
 
-
 @media (max-width: 1050px) {
   /* section 1 */
   .card {
     padding: 60px 40px;
   }
-
   .text {
     font-size: 2.75rem;
   }
-
   .image img {
     width: 300px;
     height: 300px;
@@ -157,7 +153,6 @@
     margin-bottom: 0;
     order: 1;
   }
-
   .image img {
     width: 375px; 
     height: 375px;
@@ -167,7 +162,6 @@
     border: 6px solid #e2d3c2;
     box-shadow: 0 0 12px rgba(27, 27, 27, 0.26);
   }
-
   .text {
     font-size: 3.2rem;
     max-width: 100%;
@@ -187,22 +181,18 @@
     flex-direction: row;
     flex-wrap: wrap;
   }
-
   .about-btn {
     width: 100px;
     padding: 12px 16px;
     font-size: 13px;
     gap: 8px;
   }
-
   .about-btn i {
     font-size: 14px;
   }
-
   .about-btn span {
     font-size: 13px;
   }
-
   /* section 2 */
   .text1 h1{
     font-size: 3rem;
@@ -220,23 +210,19 @@
   }
 }
 
-
 @media screen and (max-width: 940px) and (max-height:1200px) and (min-height: 900px) {
   /* section 1 */
   .image img{
     margin-top: 50px;
   }
-
 }
 @media screen and (max-width: 800px) {
   .arrow.left{
     left: 40px;
-  
   }
   .arrow.right{
     right: 40px;
   }
-  
 }
 @media screen and (max-width: 750px) and (min-width: 700px) {
   /* section 1 */
@@ -384,7 +370,6 @@
   }
   .arrow.left{
     left: 30px;
-  
   }
   .arrow.right{
     right: 30px;
@@ -395,22 +380,18 @@
     width: 290px;
     height: 290px;
   }
-
   .text {
     font-size: 2.5rem;
   }
-
   .about-btn {
     width: 85px;
     padding: 8px 12px;
     font-size: 11px;
     gap: 8px;
   }
-
   .about-btn i {
     font-size: 12px;
   }
-
   .about-btn span {
     font-size: 12px;
   }
@@ -466,7 +447,6 @@
   }
   .arrow.left{
     left: 20px;
-  
   }
   .arrow.right{
     right: 20px;
@@ -489,12 +469,10 @@
     font-size: 11px;
     gap: 10px;
   }
-
   .about-btn i {
     font-size: 13px;
     margin-left: 10px;
   }
-
   .about-btn span {
     font-size: 12px;
   }
@@ -588,7 +566,6 @@
   }
   .arrow.left{
     left: 18px;
-  
   }
   .arrow.right{
     right: 18px;
@@ -630,7 +607,6 @@
   .text1 h1{
     font-size: 2.3rem;
   }
-  
   .skills span{
     font-size: 0.9em;
     font-weight: 540;
@@ -783,8 +759,24 @@
   .social-links{
     gap: 12px;
   }
+  .text3 h2 {
+    font-size: 1.165rem;
+    margin-top: 4px;
+  }
+  .social-links i{
+    font-size: 1.4rem;
+  }
+  .resume{
+    font-size: 0.9rem;
+  }
+  .resume-btn{
+    font-weight: 550;
+  }
 }
 @media screen and (max-width: 365px){
+  .hold-popup{
+    min-width: 150px;
+  }
   /* section 3 */
   .text2 h1{
     margin-left: -5px;
@@ -876,11 +868,31 @@
   .project-img{
     height: 140px;
   }
-.project-description h3{
+  .project-description h3{
     font-size: 1.2rem;
   }
   .project-description p{
     font-size: 0.81rem;
+  }
+  /* section 4 */
+  .text3{
+    padding: 30px 32px;
+  }
+  .text3 h1{
+    font-size: 2.15rem;
+  }
+  .text3 p{
+    font-size: 1rem;
+  }
+  .social-links{
+    gap: 9px;
+  }
+  .text3 h2 {
+    font-size: 1.165rem;
+    margin-top: 4px;
+  }
+  .social-links i{
+    font-size: 1.4rem;
   }
 }
 @media screen and (max-width:340px) {
