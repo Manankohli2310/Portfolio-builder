@@ -1,3 +1,22 @@
+:root{
+  --body-bg: #f1e7db;
+  --card-text-bg: #fef9ec;
+  --arrow-color: #888;
+  --text-bg-color: #444;
+  --text-paragraph-color: #666;
+  --skill-work-contact-bubble: #fae7d821;
+  --scrollbar: rgba(189, 82, 11, 0.3);
+  --scrollbar-hover: rgba(238, 123, 47, 0.5);
+  --box-shadow: rgba(238, 123, 47, 0.527);
+  --black-box-shadow: rgba(0, 0, 0, 0.2);
+  --img-box-shadow: rgba(27, 27, 27, 0.26);
+  --hover-resume-box-shadow: rgba(0, 0, 0, 0.25);
+  --typewritter-and-uniquetext: rgb(235, 153, 71);
+  --border: #e2d3c2;
+  --border-hover: #f4a259;
+  --about-resume-hover-bg: #333;
+}
+
 * {
   outline: 0;
   user-select: none;
@@ -13,11 +32,11 @@
 body {
   margin: 0;
   padding: 0;
-  background: #f1e7db;
+  background: var(--body-bg);
   font-family: Arial, sans-serif;
   overflow-x: hidden;
   scrollbar-width: 5px;
-  scrollbar-color: rgba(189, 82, 11, 0.3) transparent;
+  scrollbar-color: var(--scrollbar) transparent;
 }
 
 body::-webkit-scrollbar {
@@ -29,12 +48,12 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: rgba(189, 82, 11, 0.3);
+  background: var(--scrollbar);
   border-radius: 3px;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  background: rgba(238, 123, 47, 0.5);
+  background: var(--scrollbar-hover);
 }
 
 .carousel-container {
@@ -45,7 +64,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .carousel-wrapper {
-  box-shadow: 0 0px 20px rgba(238, 123, 47, 0.527);
+  box-shadow: 0 0px 20px var(--box-shadow);
   border-radius: 20px;
   overflow: hidden;
   width: 90vw;
@@ -61,7 +80,7 @@ body::-webkit-scrollbar-thumb:hover {
   background: none;
   border: none;
   font-size: 2rem;
-  color: #888;
+  color: var(--arrow-color);
   cursor: pointer;
   padding: 10px;
   position: absolute;
@@ -72,7 +91,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .arrow:hover {
-  color: #444;
+  color: var(--text-bg-color);
 }
 
 .arrow.left {
@@ -101,13 +120,13 @@ body::-webkit-scrollbar-thumb:hover {
   left: 50%;
   text-align: center;
   transform: translateX(-50%);
-  background: #444;
-  color: #fef9ec;
+  background: var(--text-bg-color);
+  color: var(--card-text-bg);
   padding: 10px 20px;
   border-radius: 25px;
   font-size: 1rem;
   font-weight: 600;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px var(--black-box-shadow);
   z-index: 999;
   animation: fadein 0.5s ease;
 }
@@ -120,7 +139,7 @@ body::-webkit-scrollbar-thumb:hover {
   justify-content: space-between;
   padding: 80px 60px;
   box-sizing: border-box;
-  background-color: #fef9ec;
+  background-color: var(--card-text-bg);
   border-radius: 20px;
 }
 
@@ -134,7 +153,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .text {
-  color: #444;
+  color: var(--text-bg-color);
   max-width: 600px;
   font-size: 3.2rem;
   font-weight: bold;
@@ -144,13 +163,13 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 #orange {
-  color: rgb(235, 153, 71);
+  color: var(--typewritter-and-uniquetext);
 
 }
 
 #typewriter {
   min-height: 1.3em;
-  color: rgb(235, 153, 71);
+  color: var(--typewritter-and-uniquetext);
   display: inline-block;
   white-space: nowrap;
   vertical-align: bottom;
@@ -169,20 +188,20 @@ body::-webkit-scrollbar-thumb:hover {
   gap: 12px;
   padding: 12px 20px;
   border-radius: 50px;
-  background-color: #444;
-  color: #fef9ec;
+  background-color: var(--text-bg-color);
+  color: var(--card-text-bg);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
   width: 100px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px var(--black-box-shadow);
 }
 
 .about-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-  background-color: #333;
+  box-shadow: 0 8px 16px var(--black-box-shadow);
+  background-color: var(--about-resume-hover-bg);
 }
 
 .about-btn i {
@@ -200,15 +219,15 @@ body::-webkit-scrollbar-thumb:hover {
   height: 325px;
   border-radius: 50%;
   object-fit: cover;
-  border: 8px solid #e2d3c2;
-  box-shadow: 0 0 12px rgba(27, 27, 27, 0.26);
+  border: 8px solid var(--border);
+  box-shadow: 0 0 12px var(--img-box-shadow);
 }
 
 
 /* section 2  */
 .card1 {
   min-width: 100%;
-  background-color: #fef9ec;
+  background-color: var(--card-text-bg);
   border-radius: 20px;
   height: 100%;
   overflow: hidden;
@@ -227,14 +246,14 @@ body::-webkit-scrollbar-thumb:hover {
 .text1 h1 {
   font-size: 2.8em;
   font-weight: bold;
-  color: #444;
+  color: var(--text-bg-color);
   margin: 0;
 }
 
 .text1 p {
   font-size: 1.1em;
   font-weight: 500;
-  color: #666;
+  color: var(--text-paragraph-color);
   margin-top: 12px;
 }
 
@@ -246,14 +265,14 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .skills span {
-  background: #fae7d821;
-  color: #444;
+  background: var(--skill-work-contact-bubble);
+  color: var(--text-bg-color);
   margin-top: 5px;
   padding: 8px 16px;
   border-radius: 30px;
   font-size: 1em;
   font-weight: 600;
-  box-shadow: 0 4px 6px rgba(238, 123, 47, 0.527);
+  box-shadow: 0 4px 6px var(--box-shadow);
   transition: transform 0.1s ease;
 }
 
@@ -265,7 +284,7 @@ body::-webkit-scrollbar-thumb:hover {
 .card2,
 .card-projects {
   min-width: 100%;
-  background-color: #fef9ec;
+  background-color: var(--card-text-bg);
   border-radius: 20px;
   height: 100%;
   overflow: hidden;
@@ -284,7 +303,7 @@ body::-webkit-scrollbar-thumb:hover {
 .text2 h1 {
   font-size: 2.8em;
   font-weight: bold;
-  color: #444;
+  color: var(--text-bg-color);
   margin-top: 0;
   margin-bottom: 0px;
 }
@@ -293,7 +312,7 @@ body::-webkit-scrollbar-thumb:hover {
 .text-projects p {
   font-size: 1.2em;
   font-weight: 600;
-  color: #666;
+  color: var(--text-paragraph-color);
   margin-top: 12px;
 }
 
@@ -306,20 +325,20 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .experience-item {
-  background: #fef9ec;
+  background: var(--skill-work-contact-bubble);
   border-radius: 30px;
-  box-shadow: 0 4px 6px rgba(238, 123, 47, 0.527);
+  box-shadow: 0 4px 6px var(--box-shadow);
   padding: 12px 15px;
   font-weight: bold;
   font-size: 14px;
-  color: #444;
+  color: var(--text-bg-color);
   text-align: center;
   white-space: wrap;
 }
 
 .year {
   text-align: left;
-  color: rgb(235, 153, 71);
+  color: var(--typewritter-and-uniquetext);
   margin-right: 8px;
 }
 
@@ -334,10 +353,10 @@ body::-webkit-scrollbar-thumb:hover {
 
 .project-box {
   position: relative;
-  background: #fef9ec;
+  background: var(--card-text-bg);
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(238, 123, 47, 0.527);
+  box-shadow: 0 4px 8px var(--box-shadow);
   height: 300px;
   display: flex;
   flex-direction: column;
@@ -346,7 +365,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .project-box:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(238, 123, 47, 0.527);
+  box-shadow: 0 8px 16px var(--box-shadow);
 }
 
 .project-box::after {
@@ -370,14 +389,14 @@ body::-webkit-scrollbar-thumb:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgb(235, 153, 71);
-  color: white;
+  background: var(--typewritter-and-uniquetext);
+  color: var(--card-text-bg);
   padding: 10px 16px;
   text-decoration: none;
   border-radius: 8px;
   font-size: 0.9rem;
   font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px var(--black-box-shadow);
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
   z-index: 2;
@@ -398,7 +417,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .project-description {
   padding: 12px;
-  color: rgb(235, 153, 71);
+  color: var(--typewritter-and-uniquetext);
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -408,14 +427,14 @@ body::-webkit-scrollbar-thumb:hover {
   margin: 0;
   font-size: 1.3rem;
   font-weight: bold;
-  color: rgb(235, 153, 71);
+  color: var(--typewritter-and-uniquetext);
   margin-bottom: 6px;
 }
 
 .project-description p {
   margin: 0;
   font-size: 0.85rem;
-  color: #444;
+  color: var(--text-bg-color);
   line-height: 1.3;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -424,7 +443,7 @@ body::-webkit-scrollbar-thumb:hover {
 /* section 4 */
 .card3 {
   min-width: 100%;
-  background-color: #fef9ec;
+  background-color: var(--card-text-bg);
   border-radius: 20px;
   height: 100%;
   overflow: hidden;
@@ -442,21 +461,21 @@ body::-webkit-scrollbar-thumb:hover {
 
 .card3 a {
   text-decoration: none;
-  color: rgb(235, 153, 71);
+  color: var(--typewritter-and-uniquetext);
   font-size: 1rem;
 }
 
 .text3 h1 {
   font-size: 2.8em;
   font-weight: bold;
-  color: #444;
+  color: var(--text-bg-color);
   margin: 0;
 }
 
 .text3 p {
   font-size: 1.1em;
   font-weight: 500;
-  color: #666;
+  color: var(--text-paragraph-color);
   margin-top: 12px;
 }
 
@@ -469,18 +488,18 @@ body::-webkit-scrollbar-thumb:hover {
   gap: 10px;
   padding: 10px 15px;
   border: none;
-  background-color: #444;
-  color: #fef9ec;
+  background-color: var(--text-bg-color);
+  color: var(--card-text-bg);
   border-radius: 50px;
   text-decoration: none;
   transition: all 0.3s ease;
   outline: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px var(--black-box-shadow);
 }
 
 .resume-btn:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25) !important;
-  background-color: #333;
+  box-shadow: 0 8px 16px var(--hover-resume-box-shadow) !important;
+  background-color: var(--about-resume-hover-bg);
 }
 
 .resume {
@@ -489,7 +508,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .card3 h2 {
-  color: #444;
+  color: var(--text-bg-color);
   margin: 0;
 }
 
@@ -503,7 +522,7 @@ body::-webkit-scrollbar-thumb:hover {
 .contact-form input,
 .contact-form textarea {
   padding: 12px;
-  border: 1px solid #e2d3c2;
+  border: 1px solid var(--border);
   border-radius: 8px;
   background-color: transparent;
   font-size: 1em;
@@ -512,8 +531,7 @@ body::-webkit-scrollbar-thumb:hover {
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  border: 1px solid #f4a259;
-  box-shadow: 0 0 0 3px rgba(244, 162, 89, 0.3);
+  border: 1px solid var(--border-hover);
 }
 
 .contact-form button {
@@ -527,13 +545,13 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .social-links a {
-  color: #444;
+  color: var(--text-bg-color);
   font-size: 1.5em;
   transition: color 0.3s;
 }
 
 .social-links a:hover {
-  color: rgb(235, 153, 71);
+  color: var(--typewritter-and-uniquetext);
 }
 
 .quick-contact {
@@ -547,9 +565,9 @@ body::-webkit-scrollbar-thumb:hover {
   align-items: center;
   gap: 8px;
   padding: 8px 15px;
-  background: #fae7d821;
+  background: var(--skill-work-contact-bubble);
   border-radius: 30px;
   text-decoration: none;
-  color: #444;
+  color: var(--text-bg-color);
   font-weight: 600;
 }
