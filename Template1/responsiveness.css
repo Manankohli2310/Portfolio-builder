@@ -373,7 +373,11 @@
 @media screen and (max-width:645px) {
 
   /* section 3 */
+  .projects{
+    margin-top: 5px;
+  }
   .project-box {
+    margin-top: 15px;
     max-width: 360px;
     height: 330px;
   }
