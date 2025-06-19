@@ -523,7 +523,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .resume {
-  color: var(--resume-btn);
+  color: var(--resume-btn) !important;
   margin-top: 5px;
   margin-bottom: 20px;
 }
