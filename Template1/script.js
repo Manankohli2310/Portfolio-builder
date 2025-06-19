@@ -1,3 +1,18 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("themeToggleBtn");
+
+  toggleBtn.addEventListener("click", () => {
+    const body = document.body;
+
+    if (body.classList.contains("dark")) {
+      body.classList.remove("dark");
+    } else {
+      body.classList.add("dark");
+    }
+  });
+});
+
+
 let index = 0;
 const carousel = document.getElementById("carousel");
 let autoScroll = null;

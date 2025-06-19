@@ -1,28 +1,9 @@
 :root{
-  --body-bg: #f1e7db;
-  --card-text-bg: #fef9ec;
-  --arrow-color: #888;
-  --text-bg-color: #444;
-  --text-paragraph-color: #666;
-  --skill-work-contact-bubble: #fae7d821;
-  --scrollbar: rgba(189, 82, 11, 0.3);
-  --scrollbar-hover: rgba(238, 123, 47, 0.5);
-  --box-shadow: rgba(238, 123, 47, 0.527);
-  --black-box-shadow: rgba(0, 0, 0, 0.2);
-  --img-box-shadow: rgba(27, 27, 27, 0.26);
-  --hover-resume-box-shadow: rgba(0, 0, 0, 0.25);
-  --typewritter-and-uniquetext: rgb(235, 153, 71);
-  --border: #e2d3c2;
-  --border-hover: #f4a259;
-  --resume-btn: rgb(235, 153, 71);
-  --about-resume-hover-bg: #333;
-}
-body.dark{
   --body-bg: #1a1612;
   --card-text-bg: #0f0f0e;
   --arrow-color: #dbbaa4cc;
-  --text-bg-color: #ebc5ade1;
-  --text-paragraph-color: #f5d4b9c5;
+  --text-bg-color: #e2bea8e1;
+  --text-paragraph-color: #f5d4b9e5;
   --skill-work-contact-bubble: #dbdad809;
   --scrollbar: rgba(214, 151, 109, 0.3);
   --scrollbar-hover: rgba(238, 123, 47, 0.308);
@@ -523,11 +504,10 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .resume {
-  color: var(--resume-btn);
+  color: var(--resume-btn) !important;
   margin-top: 5px;
   margin-bottom: 20px;
 }
-
 .card3 h2 {
   color: var(--text-bg-color);
   margin: 0;
