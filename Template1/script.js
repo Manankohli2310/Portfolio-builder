@@ -1,3 +1,29 @@
+// This script handles the avatar flip animation and mode toggle functionality
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Always start in static mode
+  document.body.setAttribute("data-mode", "static");
+
+  // Get the toggle dropdown
+  const toggle = document.getElementById("modeToggle");
+  if (!toggle) return;
+
+  // Set dropdown default to "static"
+  toggle.value = "static";
+
+  // Change mode on selection
+  toggle.addEventListener("change", () => {
+    const selectedMode = toggle.value;
+    document.body.setAttribute("data-mode", selectedMode);
+  });
+});
+
+
+
+
+
+
+// this is night theme toggle functionality
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("themeToggleBtn");
 
