@@ -47,6 +47,7 @@ body.dark{
   -webkit-tap-highlight-color: rgba(32, 110, 77, 0) !important;
   -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
   outline: none !important;
+
 }
 
 body {
@@ -245,76 +246,25 @@ body::-webkit-scrollbar-thumb:hover {
   font-weight: 600;
   text-align: left;
 }
-
-.image {
+.image{
   position: relative;
-  z-index: 100;
+  box-shadow: 0 0 12px var(--img-box-shadow);
+  border: 8px solid var(--border);
+  border-radius: 50%;
+  
 }
-
 .image img {
+  position: relative;
   width: 325px;
   height: 325px;
   border-radius: 50%;
   object-fit: cover;
+  display: block;
+   box-shadow: 0 0 12px var(--img-box-shadow);
   border: 8px solid var(--border);
-  box-shadow: 0 0 12px var(--img-box-shadow);
+ 
+  
 }
-
-
-[data-mode="dynamic"] .image {
-  position: relative;
-  display: inline-block;
-}
-
-[data-mode="dynamic"] .image::before {
-  content: '';
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
-  border-radius: 50%;
-  box-shadow: none;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    var(--img-box-shadow) 90deg,
-    transparent 180deg,
-    var(--img-box-shadow) 270deg,
-    transparent 360deg
-  );
-  animation: revolve 10s linear infinite;
-  z-index: -1;
-  filter: blur(15px);
-}
-
-/* Your existing .image img styles remain unchanged */
-
-@keyframes revolve {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@keyframes smoke-ring {
-  0% {
-    transform: scale(1) rotate(0deg);
-    opacity: 0.4;
-  }
-  50% {
-    transform: scale(1.05) rotate(1.5deg);
-    opacity: 0.4;
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 0.4;
-  }
-}
-
-
-
 
 
 /* section 2  */
