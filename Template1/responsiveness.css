@@ -573,10 +573,6 @@
     width: 280px;
     height: 280px;
   }
-  /* [data-mode="dynamic"] .image::before{
-    width: 280px;
-    height: 280px;
-  } */
 
   .text {
     font-size: 2.2rem;
