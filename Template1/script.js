@@ -20,9 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
-
 // this is night theme toggle functionality
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("themeToggleBtn");

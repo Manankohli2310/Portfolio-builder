@@ -10,6 +10,7 @@
   --box-shadow: rgba(238, 123, 47, 0.527);
   --black-box-shadow: rgba(0, 0, 0, 0.2);
   --img-box-shadow: rgba(27, 27, 27, 0.26);
+  --img-box-shadow-dynamic: rgba(238, 123, 47, 0.527);
   --hover-resume-box-shadow: rgba(0, 0, 0, 0.25);
   --typewritter-and-uniquetext: rgb(235, 153, 71);
   --border: #e2d3c2;
@@ -101,7 +102,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 [data-mode="dynamic"] .carousel-wrapper {
-  animation: breathing-shadow 4s ease-in-out infinite;
+  animation: breathing-shadow 5s ease-in-out infinite;
 }
 .carousel {
   height: 85vh;
@@ -197,7 +198,6 @@ body::-webkit-scrollbar-thumb:hover {
 
 #orange {
   color: var(--typewritter-and-uniquetext);
-
 }
 
 #typewriter {
@@ -257,18 +257,20 @@ body::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 0 12px var(--img-box-shadow);
   border: 8px solid var(--border);
 }
+
 @keyframes breathing-shadow-img {
-   0%, 100% {
-        box-shadow: 0 0 20px rgba(238, 123, 47, 0.658);
+    0%, 100% {
+        box-shadow: 0 0 12px var(--img-box-shadow);
       }
-      50% {
-        box-shadow: 0 0 30px var(--img-box-shadow);
-      }
+    50% {
+        box-shadow: 0 0 20px var(--img-box-shadow-dynamic);
+    }
 }
-/* Only when in dynamic mode */
+
 [data-mode="dynamic"] .image img{
-  animation: breathing-shadow-img 4s ease-in-out infinite;
+  animation: breathing-shadow-img 5s ease-in-out infinite;
 }
+
 /* section 2  */
 .card1 {
   min-width: 100%;
