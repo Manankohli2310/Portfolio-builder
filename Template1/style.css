@@ -91,18 +91,6 @@ body::-webkit-scrollbar-thumb:hover {
   width: 90vw;
 }
 
-@keyframes breathing-shadow {
-   0%, 100% {
-        box-shadow: 0 0 20px rgba(238, 123, 47, 0.2);
-      }
-      50% {
-        box-shadow: 0 0 30px rgba(238, 123, 47, 0.527);
-      }
-}
-
-[data-mode="dynamic"] .carousel-wrapper {
-  animation: breathing-shadow 4s ease-in-out infinite;
-}
 .carousel {
   height: 85vh;
   display: flex;
@@ -267,6 +255,91 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 
+<<<<<<< HEAD
+=======
+
+/* 🔁 Breathing animation for carousel-wrapper */
+@keyframes breathing-shadow {
+  0% {
+    box-shadow: 0 0 8px var(--box-shadow-color, rgba(238, 123, 47, 0.527)),
+                0 0 16px var(--box-shadow-color, rgba(238, 123, 47, 0.3)),
+                0 0 24px var(--box-shadow-color, rgba(238, 123, 47, 0.1));
+  }
+  50% {
+    box-shadow: 0 0 16px var(--box-shadow-color, rgba(238, 123, 47, 0.6)),
+                0 0 32px var(--box-shadow-color, rgba(238, 123, 47, 0.4)),
+                0 0 48px var(--box-shadow-color, rgba(238, 123, 47, 0.2));
+  }
+  100% {
+    box-shadow: 0 0 8px var(--box-shadow-color, rgba(238, 123, 47, 0.527)),
+                0 0 16px var(--box-shadow-color, rgba(238, 123, 47, 0.3)),
+                0 0 24px var(--box-shadow-color, rgba(238, 123, 47, 0.1));
+  }
+}
+
+
+
+/* Only apply in dynamic mode */
+[data-mode="dynamic"] .carousel-wrapper {
+  animation: breathing-shadow 3.5s ease-in-out infinite;
+}
+
+[data-mode="dynamic"] .image {
+  position: relative;
+  display: inline-block;
+}
+
+[data-mode="dynamic"] .image::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--box-shadow) 90deg,
+    transparent 180deg,
+    var(--box-shadow) 270deg,
+    transparent 360deg
+  );
+  animation: revolve 3.5s linear infinite;
+  z-index: -1;
+  filter: blur(20px);
+}
+
+/* Your existing .image img styles remain unchanged */
+
+@keyframes revolve {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes smoke-ring {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.07) rotate(1.5deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.4;
+  }
+}
+
+
+
+
+
+>>>>>>> parent of 1710495 (Update style.css)
 /* section 2  */
 .card1 {
   min-width: 100%;
