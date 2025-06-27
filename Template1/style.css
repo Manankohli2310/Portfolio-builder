@@ -10,7 +10,7 @@
   --box-shadow: rgba(238, 123, 47, 0.527);
   --black-box-shadow: rgba(0, 0, 0, 0.2);
   --img-box-shadow: rgba(27, 27, 27, 0.26);
-  --img-box-shadow-dynamic: rgba(238, 123, 47, 0.527);
+  --img-box-shadow-dynamic: rgba(238, 123, 47, 0.418);
   --hover-resume-box-shadow: rgba(0, 0, 0, 0.25);
   --typewritter-and-uniquetext: rgb(235, 153, 71);
   --border: #e2d3c2;
@@ -30,6 +30,7 @@ body.dark{
   --box-shadow: rgba(238, 123, 47, 0.644);
   --black-box-shadow: rgba(0, 0, 0, 0.2);
   --img-box-shadow: rgba(233, 136, 46, 0.356);
+  --img-box-shadow-dynamic: rgba(238, 123, 47, 0.527);
   --hover-resume-box-shadow: rgba(0, 0, 0, 0.25);
   --typewritter-and-uniquetext: rgb(223, 150, 78);
   --border: #4d3b2f;
@@ -257,6 +258,7 @@ body::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 0 12px var(--img-box-shadow);
   border: 8px solid var(--border);
 }
+
 
 @keyframes breathing-shadow-img {
     0%, 100% {

@@ -18,8 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-
 // this is night theme toggle functionality
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("themeToggleBtn");
@@ -194,3 +192,4 @@ document.querySelectorAll('.nav-btn').forEach(button => {
     }, 500); // Wait for the carousel animation to complete
   });
 });
+

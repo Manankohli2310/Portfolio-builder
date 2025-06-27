@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe | Web Developer</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Your Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="#hero" class="logo">John Doe</a>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>Hi, I'm John Doe</h1>
+                    <p class="subtitle">A Creative Web Developer focused on building beautiful and functional websites.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                        <a href="assets/your-resume.pdf" class="btn btn-secondary" download>Download Resume <i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="profile.jpg" alt="Profile photo of John Doe">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <p>Hello! I'm a passionate web developer with a love for clean code and user-centric design. I specialize in front-end development, creating responsive and interactive web applications. My goal is to combine technical skills with a keen eye for design to deliver outstanding digital experiences.</p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <div class="container">
+                <h2 class="section-title">My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item"><i class="fab fa-html5"></i> HTML5</div>
+                    <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+                    <div class="skill-item"><i class="fab fa-js-square"></i> JavaScript</div>
+                    <div class="skill-item"><i class="fab fa-react"></i> React</div>
+                    <div class="skill-item"><i class="fab fa-node-js"></i> Node.js</div>
+                    <div class="skill-item"><i class="fab fa-figma"></i> Figma</div>
+                    <div class="skill-item"><i class="fas fa-database"></i> SQL</div>
+                    <div class="skill-item"><i class="fab fa-git-alt"></i> Git</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section id="experience" class="experience-section">
+            <div class="container">
+                <h2 class="section-title">Work Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Front-End Developer</h3>
+                            <p class="company">Tech Solutions Inc. | 2021 - Present</p>
+                            <ul>
+                                <li>Developed and maintained responsive websites using React and modern CSS.</li>
+                                <li>Collaborated with UI/UX designers to translate wireframes into high-quality code.</li>
+                                <li>Improved website performance, achieving a 20% reduction in load times.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Junior Web Developer</h3>
+                            <p class="company">Creative Agency | 2019 - 2021</p>
+                            <ul>
+                                <li>Assisted in building websites for various clients using HTML, CSS, and jQuery.</li>
+                                <li>Performed browser testing and debugging to ensure cross-browser compatibility.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <h2 class="section-title">My Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="project1.jpg" alt="Project 1 Screenshot">
+                        <h3>Project One</h3>
+                        <p>A short description of the project, its purpose, and the technologies used.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank">Live Demo</a>
+                            <a href="#" target="_blank">Source Code</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="project2.jpg" alt="Project 2 Screenshot">
+                        <h3>Project Two</h3>
+                        <p>A short description of the project, its purpose, and the technologies used.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank">Live Demo</a>
+                            <a href="#" target="_blank">Source Code</a>
+                        </div>
+                    </div>
+                     <div class="project-card">
+                        <img src="project3.jpg" alt="Project 3 Screenshot">
+                        <h3>Project Three</h3>
+                        <p>A short description of the project, its purpose, and the technologies used.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank">Live Demo</a>
+                            <a href="#" target="_blank">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p>I'm currently open to new opportunities. If you have a project in mind or just want to say hi, feel free to reach out!</p>
+                <a href="mailto:your.email@example.com" class="btn btn-primary">Say Hello</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2023 John Doe. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Your JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>

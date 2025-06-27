@@ -1,0 +1,405 @@
+/* --- General Setup & Variables --- */
+:root {
+    --primary-color: #71b688; /* A nice, friendly blue */
+    --secondary-color: #f5faf7;
+    --text-dark: #333;
+    --text-light: #777;
+    --bg-color: #ebfff4e3;
+    --border-color: #e0e0e0;
+    --font-family: 'Poppins', sans-serif;
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    line-height: 1.6;
+    /* The subtle dot pattern */
+    background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* --- Utility Classes --- */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #2ba079;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+    position: relative;
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+/* --- Header & Navigation --- */
+.header {
+    background-color: var(--bg-color);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary-color);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+/* --- Section Styling --- */
+section {
+    padding: 2rem 0;
+}
+
+/* Hero Section */
+.hero {
+    padding-top: 60px; /* Account for fixed header */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.hero-text h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.hero-text .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin: 1rem 0 2rem;
+}
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+.hero-image img {
+    max-width: 300px;
+    border-radius: 50%;
+    border: 5px solid var(--secondary-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* About Section */
+.about-section p {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* Skills Section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.skill-item {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.2rem;
+    text-align: center;
+    font-weight: 500;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.skill-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+.skill-item i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: var(--primary-color);
+}
+
+/* Experience Section (Timeline) */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background: var(--border-color);
+    top: 0;
+    bottom: 0;
+    left: 20px;
+}
+.timeline-item {
+    padding: 1rem 0 2rem 50px;
+    position: relative;
+}
+.timeline-dot {
+    position: absolute;
+    left: 13px;
+    top: 15px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: 3px solid var(--bg-color);
+    z-index: 1;
+}
+.timeline-content h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+.timeline-content .company {
+    font-style: italic;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+.timeline-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+/* Projects Section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.project-card {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+}
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.project-card h3 {
+    font-size: 1.3rem;
+    padding: 1.5rem 1.5rem 0.5rem;
+}
+.project-card p {
+    padding: 0 1.5rem;
+    color: var(--text-light);
+}
+.project-links {
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+.project-links a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Contact Section */
+.contact-section {
+    text-align: center;
+    background-color: var(--secondary-color);
+}
+.contact-section p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    font-size: 1.1rem;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--bg-color);
+    color: #3a3a3a;
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+/* --- Fade-in Animation --- */
+section > .container {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+section > .container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--bg-color);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
+        gap: 2rem;
+    }
+    .nav-links.active {
+        transform: translateY(0);
+    }
+    .nav-links li {
+        margin-left: 0;
+    }
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero-content {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .hero-text h1 {
+        font-size: 2.8rem;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
+    .hero-image img {
+        max-width: 250px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .timeline::after {
+        left: 10px;
+    }
+    .timeline-item {
+        padding-left: 40px;
+    }
+    .timeline-dot {
+        left: 3px;
+    }
+}
