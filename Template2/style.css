@@ -1,12 +1,14 @@
 /* --- General Setup & Variables --- */
 :root {
-    --primary-color: #71b688; /* A nice, friendly blue */
+    --primary-color: #71b688; 
     --secondary-color: #f5faf7;
     --text-dark: #333;
     --text-light: #777;
     --bg-color: #ebfff4e3;
     --border-color: #e0e0e0;
     --font-family: 'Poppins', sans-serif;
+    --scrollbar : #71b68875;
+    --scrollbar-hover: #71b688;
 }
 
 /* Basic Reset */
@@ -14,6 +16,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-tap-highlight-color: rgba(32, 110, 77, 0) !important;
+    -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
+    outline: none !important;
 }
 
 html {
@@ -29,9 +39,24 @@ body {
     background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
     background-size: 20px 20px;
 }
+body::-webkit-scrollbar {
+  width: 5px;
+}
 
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--scrollbar);
+  border-radius: 3px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-hover);
+}
 .container {
-    max-width: 1100px;
+    /* max-width: 1100px; */
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -155,14 +180,17 @@ body {
 }
 
 /* --- Section Styling --- */
-section {
+
+/* section {
     padding: 2rem 0;
 }
-
+section .about-section{
+    padding: 0rem 0;
+} */
 /* Hero Section */
 .hero {
-    padding-top: 60px; /* Account for fixed header */
-    min-height: 100vh;
+    padding-top: 100px; /* Account for fixed header */
+    min-height: 85vh;
     display: flex;
     align-items: center;
 }
@@ -171,6 +199,8 @@ section {
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
 }
 .hero-text h1 {
     font-size: 3.5rem;
@@ -228,6 +258,9 @@ section {
     display: block;
     color: var(--primary-color);
 }
+.skills-section{
+    padding-top: 2rem;
+}
 
 /* Experience Section (Timeline) */
 .timeline {
@@ -273,6 +306,9 @@ section {
     list-style-type: disc;
     padding-left: 20px;
 }
+.experience-section{
+    padding-top: 2rem;
+}
 
 /* Projects Section */
 .projects-grid {
@@ -315,11 +351,16 @@ section {
     color: var(--primary-color);
     font-weight: 600;
 }
+.projects-section{
+    padding-top: 2rem;
+}
 
 /* Contact Section */
 .contact-section {
     text-align: center;
-    background-color: var(--secondary-color);
+    /* background-color: var(--secondary-color); */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 .contact-section p {
     max-width: 600px;
@@ -329,8 +370,8 @@ section {
 
 /* Footer */
 .footer {
-    background-color: var(--bg-color);
-    color: #3a3a3a;
+    background-color: var(--secondary-color);
+    color: var(--text-dark);
     text-align: center;
     padding: 1.5rem 0;
 }
@@ -354,7 +395,7 @@ section > .container.visible {
         left: 0;
         width: 100%;
         height: calc(100vh - 70px);
-        background-color: var(--bg-color);
+        /* background-color: var(--bg-color); */
         flex-direction: column;
         align-items: center;
         justify-content: center;
