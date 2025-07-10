@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>John Doe | Web Developer</title>
-    
-    <!-- Google Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome (for icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Your Stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsiveness.css">
 </head>
+
 <body>
 
     <header class="header">
@@ -28,9 +30,19 @@
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="mobile-menu" id="mobileMenu">
+                    <ul>
+                        <li id="onclick"><a href="#about" onclick="closeMenu()">About</a></li>
+                        <li id="onclick"><a href="#experience" onclick="closeMenu()">Experience</a></li>
+                        <li id="onclick"><a href="#projects" onclick="closeMenu()">Projects</a></li>
+                        <li id="onclick"><a href="#contact" onclick="closeMenu()">Contact</a></li>
+                    </ul>
+                </div>
             </nav>
         </div>
     </header>
@@ -40,11 +52,13 @@
         <section id="hero" class="hero">
             <div class="container hero-content">
                 <div class="hero-text">
-                    <h1>Hi, I'm John Doe</h1>
-                    <p class="subtitle">A Creative Web Developer focused on building beautiful and functional websites.</p>
+                    <h1>Hi, I'm Manan Kohli</h1>
+                    <p class="subtitle">A Creative Web Developer focused on building beautiful and functional websites.
+                    </p>
                     <div class="hero-buttons">
                         <a href="#contact" class="btn btn-primary">Get in Touch</a>
-                        <a href="assets/your-resume.pdf" class="btn btn-secondary" download>Download Resume <i class="fas fa-download"></i></a>
+                        <a href="your-resume.pdf" class="btn btn-secondary" download>Download Resume <i
+                                class="fas fa-download"></i></a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -52,15 +66,20 @@
                 </div>
             </div>
         </section>
-<hr id="about">
+
+        <hr id="about">
         <!-- About Section -->
         <section id="about1" class="about-section">
             <div class="container">
                 <h2 class="section-title about">About Me</h2>
-                <p>Hello! I'm a passionate web developer with a love for clean code and user-centric design. I specialize in front-end development, creating responsive and interactive web applications. My goal is to combine technical skills with a keen eye for design to deliver outstanding digital experiences.</p>
+                <p>Hello! I'm a passionate web developer with a love for clean code m ipsum dolor sit, g osam totam
+                    asperiores ad ab perspiciatis iste, rerum, officiis debitis deserunt sed nemo pariatur!design. I
+                    specialize in front-end development, creating responsive and interactive web applications. My goal
+                    is to combine technical skills with a keen eye for design to deliver outstanding digital
+                    experiences.</p>
             </div>
         </section>
-<!-- <hr id="skills"> -->
+
         <!-- Skills Section -->
         <section id="skills" class="skills-section">
             <div class="container">
@@ -77,7 +96,8 @@
                 </div>
             </div>
         </section>
-<hr id="experience">
+
+        <hr id="experience">
         <!-- Work Experience Section -->
         <section id="experience1" class="experience-section">
             <div class="container">
@@ -90,7 +110,8 @@
                             <p class="company">Tech Solutions Inc. | 2021 - Present</p>
                             <ul>
                                 <li>Developed and maintained responsive websites using React and modern CSS.</li>
-                                <li>Collaborated with UI/UX designers to translate wireframes into high-quality code.</li>
+                                <li>Collaborated with UI/UX designers to translate wireframes into high-quality code.
+                                </li>
                                 <li>Improved website performance, achieving a 20% reduction in load times.</li>
                             </ul>
                         </div>
@@ -153,7 +174,8 @@
                 </div>
             </div>
         </section>
-<hr id="projects">        
+
+        <hr id="projects">
         <!-- Projects Section -->
         <section id="projects1" class="projects-section">
             <div class="container">
@@ -164,8 +186,7 @@
                         <h3>Project One</h3>
                         <p>A short description of the project, its purpose, and the technologies used.</p>
                         <div class="project-links">
-                            <a href="#" target="_blank">More</a>
-                            <!-- <a href="#" target="_blank">Source Code</a> -->
+                            <a href="#" target="_blank">View</a>
                         </div>
                     </div>
                     <div class="project-card">
@@ -173,8 +194,7 @@
                         <h3>Project Two</h3>
                         <p>A short description of the project, its purpose, and the technologies used.</p>
                         <div class="project-links">
-                            <a href="#" target="_blank">Live Demo</a>
-                            <a href="#" target="_blank">Source Code</a>
+                            <a href="#" target="_blank">View</a>
                         </div>
                     </div>
                     <div class="project-card">
@@ -182,8 +202,7 @@
                         <h3>Project Two</h3>
                         <p>A short description of the project, its purpose, and the technologies used.</p>
                         <div class="project-links">
-                            <a href="#" target="_blank">Live Demo</a>
-                            <a href="#" target="_blank">Source Code</a>
+                            <a href="#" target="_blank">View</a>
                         </div>
                     </div>
                     <div class="project-card">
@@ -191,8 +210,7 @@
                         <h3>Project Two</h3>
                         <p>A short description of the project, its purpose, and the technologies used.</p>
                         <div class="project-links">
-                            <a href="#" target="_blank">Live Demo</a>
-                            <a href="#" target="_blank">Source Code</a>
+                            <a href="#" target="_blank">View</a>
                         </div>
                     </div>
                     <div class="project-card">
@@ -200,28 +218,39 @@
                         <h3>Project Two</h3>
                         <p>A short description of the project, its purpose, and the technologies used.</p>
                         <div class="project-links">
-                            <a href="#" target="_blank">Live Demo</a>
-                            <a href="#" target="_blank">Source Code</a>
+                            <a href="#" target="_blank">View</a>
                         </div>
                     </div>
-                     <div class="project-card">
+                    <div class="project-card">
                         <img src="project3.jpg" alt="Project 3 Screenshot">
                         <h3>Project Three</h3>
                         <p>A short description of the project, its purpose, and the technologies used.</p>
                         <div class="project-links">
-                            <a href="#" target="_blank">Live Demo</a>
-                            <a href="#" target="_blank">Source Code</a>
+                            <a href="#" target="_blank">View</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-<hr id="contact">
+
+        <hr id="contact">
         <!-- Contact Section -->
         <section id="contact1" class="contact-section">
             <div class="container">
                 <h2 class="section-title">Get In Touch</h2>
-                <p>I'm currently open to new opportunities. If you have a project in mind or just want to say hi, feel free to reach out!</p>
+                <p>I'm currently open to new opportunities. If you have a project in mind or just want to say hi, feel
+                    free to reach out!</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:you@example.com">you@example.com</a></p>
+                    <p><i class="fas fa-phone"></i> Phone: <a href="tel:+911234567890">+91 12345 67890</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> Location: New Delhi, India</p>
+                </div>
+                <div class="social-links">
+                    <h2>Connect With Me</h2>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/yourprofile" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
                 <a href="mailto:your.email@example.com" class="btn btn-primary">Say Hello</a>
             </div>
         </section>
@@ -233,8 +262,8 @@
         </div>
     </footer>
 
-    <!-- Your JavaScript -->
     <script src="script.js"></script>
 
 </body>
+
 </html>
