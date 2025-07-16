@@ -93,18 +93,6 @@ body::-webkit-scrollbar-thumb:hover {
   width: 90vw;
 }
 
-@keyframes breathing-shadow {
-   0%, 100% {
-        box-shadow: 0 0 20px rgba(238, 123, 47, 0.2);
-      }
-      50% {
-        box-shadow: 0 0 30px rgba(238, 123, 47, 0.527);
-      }
-}
-
-[data-mode="dynamic"] .carousel-wrapper {
-  animation: breathing-shadow 5s ease-in-out infinite;
-}
 .carousel {
   height: 85vh;
   display: flex;
@@ -269,7 +257,7 @@ body::-webkit-scrollbar-thumb:hover {
     }
 }
 
-[data-mode="dynamic"] .image img{
+.image img{
   animation: breathing-shadow-img 5s ease-in-out infinite;
 }
 
