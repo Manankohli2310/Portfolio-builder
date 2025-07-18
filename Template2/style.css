@@ -182,7 +182,7 @@ body h2 {
     display: none;
     position: absolute;
     top: 100%;
-    right: 0rem;
+    right: 1rem;
     width: 180px;
     background-color: #f0ebd8;
     box-shadow: 0 4px 15px rgba(28, 48, 73, 0.164);
