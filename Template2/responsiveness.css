@@ -137,7 +137,9 @@
     }
 
     
-
+    .hero-text .subtitle{
+        margin: 0.5rem 0rem 2rem 0rem;
+    }
     .hero-buttons {
         justify-content: center;
     }
@@ -189,7 +191,7 @@
 }
 @media (max-width: 560px) and (min-width: 520px) {
         .hero-image img {
-        max-width: 330px;
+        max-width: 320px;
         }
     .project-card{
         max-width: 400px;
@@ -206,7 +208,7 @@
 }
 @media (max-width:520px) and (min-width:500px) {
     .hero-image img {
-        max-width: 320px;
+        max-width: 310px;
         }
     .project-card{
         max-width: 370px;
@@ -229,7 +231,7 @@
 }
 @media (max-width:500px) and (min-width:430px){
     .hero-image img {
-        max-width: 295px;
+        max-width: 290px;
         }
     .project-card{
         max-width: 350px;
@@ -250,9 +252,9 @@
         padding: 0.8rem 1rem;
     }
 }
-@media (max-width:430px) {
+@media (max-width:430px) and (min-width:390px) {
 .hero-image img {
-        max-width: 285px;
+        max-width: 280px;
         }
     .project-card{
         max-width: 330px;
@@ -264,7 +266,7 @@
         padding: 0 2rem;
     }
         .hero-text h1 {
-        font-size: 2.8rem;
+        font-size: 2.7rem;
     }
     .hero{
         padding-top: 120px;
@@ -272,14 +274,77 @@
     .hero-buttons{
         gap: 5rem;
     }
+    .hero-text .subtitle{
+        font-size: 1.1rem;
+    }
     .btn{
         font-size: 0.9rem;
-        padding: 0.8rem 1rem;
+        padding: 0.5rem 1rem;
         /* font-weight: 600; */
         margin-left: -2rem;
         margin-right: -2rem; 
     }
     .hero-content{
         gap: 2rem;
+    }
+    .about-section p{
+        font-size: 1rem;
+    }
+    .section-title{
+        font-size: 2.2rem;
+    }
+    .skill-item{
+    padding: 1rem;
+    }
+}
+
+@media (max-width:390px) {
+.hero-image img {
+        max-width: 270px;
+        }
+    .project-card{
+        max-width: 330px;
+    }
+    .project-card img {
+        height: 160px;
+    }
+    .container{
+        padding: 0 2rem;
+    }
+        .hero-text h1 {
+        font-size: 2.6rem;
+    }
+    .hero{
+        padding-top: 120px;
+    }
+    .hero-buttons{
+        gap: 5rem;
+    }
+    .hero-text .subtitle{
+        font-size: 1.05rem;
+    }
+    .btn{
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        margin-left: -2rem;
+        margin-right: -2rem; 
+    }
+    .hero-content{
+        gap: 2rem;
+    }
+    .about-section p{
+        font-size: 1rem;
+    }
+    .section-title{
+        font-size: 2.2rem;
+    }
+    .skill-item{
+    padding: 1rem;
+    }
+    .skills-grid{
+        gap: 1.1rem;
+    }
+    .contact-section p {
+        font-size: 1.05rem;
     }
 }
