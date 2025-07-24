@@ -87,7 +87,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .carousel-wrapper {
-  box-shadow: 0 0px 20px var(--box-shadow);
+  box-shadow: 0 0px 10px var(--box-shadow);
   border-radius: 20px;
   overflow: hidden;
   width: 90vw;
@@ -239,21 +239,21 @@ body::-webkit-scrollbar-thumb:hover {
 .image img {
   position: relative;
   width: 325px;
-  height: 325px;
+  height: 340px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
-  box-shadow: 0 0 12px var(--img-box-shadow);
-  border: 8px solid var(--border);
+  box-shadow: 0 0 8px var(--img-box-shadow);
+  border: 5px solid var(--border);
 }
 
 
 @keyframes breathing-shadow-img {
     0%, 100% {
-        box-shadow: 0 0 12px var(--img-box-shadow);
+        box-shadow: 0 0 8px var(--img-box-shadow);
       }
     50% {
-        box-shadow: 0 0 20px var(--img-box-shadow-dynamic);
+        box-shadow: 0 0 10px var(--img-box-shadow-dynamic);
     }
 }
 
