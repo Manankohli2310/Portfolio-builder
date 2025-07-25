@@ -1,22 +1,22 @@
 :root{
-    --primary-bg: #f0ebd8;
-    --secondary-bg: #f5f1e1ec;
-    --primary-color:  #0d1321;
-    --secondary-color: #3e5c76;
-    --scrollbar: #5c7796b7;
-    --scrollbar-hover: #3e5c76;
-    --primary-border: #b3b5b66e;
-    --dot: #b3b5b66e;
+    --primary-bg: #161614;
+    --secondary-bg: #202222ce;
+    --primary-color:  #d8e7f0;
+    --secondary-color: #6899c4;
+    --scrollbar: #4f6c75b7;
+    --scrollbar-hover: #445a6d;
+    --primary-border: #eeeeee42;
+    --dot: #b3b5b627;
     --mobile-menu-shadow: rgba(28, 48, 73, 0.164);
-    --mobile-menu-border: rgba(13, 19, 33, 0.1);
-    --hero-text-subtitle: #1d2d44;
-    --hero-img-border: #3e5c7634;
-    --hero-img-shadow: rgba(28, 48, 73, 0.164);
-    --skill-shadow: rgba(0, 0, 0, 0.08);
-    --timeline-project-color: #1d2d44;
+    --mobile-menu-border: rgba(13, 19, 33, 0.274);
+    --hero-text-subtitle: #e1f4f5ec;
+    --hero-img-border: #6d778086;
+    --hero-img-shadow: rgba(87, 92, 97, 0.377);
+    --skill-shadow: rgba(109, 108, 108, 0.158);
+    --timeline-project-color: #a3b4cc;
     --social-links-color: #2f4457;
-    --project-card-shadow: rgba(0, 0, 0, 0.05);
-    --project-card-shadow-hover: rgba(0, 0, 0, 0.1);
+    --project-card-shadow: rgba(63, 63, 63, 0.281);
+    --project-card-shadow-hover: rgba(78, 78, 78, 0.288);
 
 }
 * {
