@@ -19,6 +19,26 @@
     --project-card-shadow-hover: rgba(0, 0, 0, 0.1);
 
 }
+body.dark{
+    --primary-bg: #161614;
+    --secondary-bg: #141414e1;
+    --primary-color:  #cacfd3;
+    --secondary-color: #6899c4;
+    --scrollbar: #5e5e5eb7;
+    --scrollbar-hover: #596068;
+    --primary-border: #a3a3a342;
+    --dot: #b3b5b61e;
+    --mobile-menu-shadow: rgba(84, 93, 105, 0.164);
+    --mobile-menu-border: rgba(93, 99, 114, 0.274);
+    --hero-text-subtitle: #d5dee2ec;
+    --hero-img-border: #6d778086;
+    --hero-img-shadow: rgba(87, 88, 90, 0.123);
+    --skill-shadow: rgba(61, 61, 61, 0.158);
+    --timeline-project-color: #a3b4cc;
+    --social-links-color: #51718f;
+    --project-card-shadow: rgba(41, 41, 41, 0.281);
+    --project-card-shadow-hover: rgba(66, 66, 66, 0.253);
+}
 * {
     margin: 0;
     padding: 0;

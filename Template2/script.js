@@ -52,14 +52,18 @@ document.addEventListener('click', function (event) {
     }
 });
 
-// Close menu on window resize if screen becomes larger
-window.addEventListener('resize', function () {
-    if (window.innerWidth > 768) {
-        const hamburger = document.querySelector('.hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
 
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('active');
+// night theme toggle
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("themeToggleBtn");
+
+  toggleBtn.addEventListener("click", () => {
+    const body = document.body;
+
+    if (body.classList.contains("dark")) {
+      body.classList.remove("dark");
+    } else {
+      body.classList.add("dark");
     }
+  });
 });
-

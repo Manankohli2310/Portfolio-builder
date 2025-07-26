@@ -113,10 +113,6 @@
     .hero-image img {
         max-width: 310px;
     }
-
-    .hero-text h1 {
-        color: #0d1321ea;
-    }
 }
 
 @media (min-height: 900px) and (min-width: 900px) {

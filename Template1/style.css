@@ -1,4 +1,4 @@
-:root{
+:root {
   --body-bg: #f1e7db;
   --card-text-bg: #fef9ec;
   --arrow-color: #888;
@@ -7,7 +7,7 @@
   --skill-work-contact-bubble: #fae7d821;
   --scrollbar: rgba(189, 82, 11, 0.3);
   --scrollbar-hover: rgba(238, 123, 47, 0.5);
-  --box-shadow: rgba(238, 123, 47, 0.527);
+  --box-shadow: rgba(238, 123, 47, 0.315);
   --black-box-shadow: rgba(0, 0, 0, 0.2);
   --img-box-shadow: rgba(27, 27, 27, 0.26);
   --img-box-shadow-dynamic: rgba(238, 123, 47, 0.418);
@@ -18,7 +18,8 @@
   --resume-btn: rgb(235, 153, 71);
   --about-resume-hover-bg: #333;
 }
-body.dark{
+
+body.dark {
   --body-bg: #1a1612;
   --card-text-bg: #0f0f0e;
   --arrow-color: #dbbaa4cc;
@@ -27,8 +28,8 @@ body.dark{
   --skill-work-contact-bubble: #dbdad809;
   --scrollbar: rgba(214, 151, 109, 0.3);
   --scrollbar-hover: rgba(238, 123, 47, 0.308);
-  --box-shadow: rgba(238, 123, 47, 0.644);
-  --black-box-shadow: rgba(0, 0, 0, 0.2);
+  --box-shadow: rgba(238, 123, 47, 0.192);
+  --black-box-shadow: rgba(102, 80, 62, 0.397);
   --img-box-shadow: rgba(233, 136, 46, 0.356);
   --img-box-shadow-dynamic: rgba(238, 123, 47, 0.527);
   --hover-resume-box-shadow: rgba(0, 0, 0, 0.25);
@@ -249,15 +250,18 @@ body::-webkit-scrollbar-thumb:hover {
 
 
 @keyframes breathing-shadow-img {
-    0%, 100% {
-        box-shadow: 0 0 8px var(--img-box-shadow);
-      }
-    50% {
-        box-shadow: 0 0 10px var(--img-box-shadow-dynamic);
-    }
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px var(--img-box-shadow);
+  }
+
+  50% {
+    box-shadow: 0 0 10px var(--img-box-shadow-dynamic);
+  }
 }
 
-.image img{
+.image img {
   animation: breathing-shadow-img 5s ease-in-out infinite;
 }
 
@@ -608,6 +612,3 @@ body::-webkit-scrollbar-thumb:hover {
   color: var(--text-bg-color);
   font-weight: 600;
 }
-
-
-
