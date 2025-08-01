@@ -366,7 +366,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .experience-item {
   background: var(--skill-work-contact-bubble);
-  border-radius: 30px;
+  border-radius: 15px;
   box-shadow: 0 4px 6px var(--box-shadow);
   padding: 12px 15px;
   font-weight: bold;
