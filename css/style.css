@@ -19,13 +19,13 @@ body, html {
 }
 
 .page-container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* --- User Header Styles --- */
-.user-header {
+/* --- Dynamic Header Styles --- */
+.main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,17 +34,27 @@ body, html {
     border-bottom: 1px solid var(--border-color);
 }
 
-.welcome-message {
-    font-weight: 500;
+.site-title {
+    font-size: 1.5rem;
+    font-weight: 800;
 }
+.site-title span { color: var(--accent-color); }
 
-#user-name {
-    font-weight: 700;
-    color: var(--accent-color);
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
+.profile-picture {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border-color);
+}
+.welcome-message { font-weight: 500; }
+#user-name { font-weight: 700; }
 
-.logout-button {
-    background: none;
+.logout-button, .login-button {
     border: 1px solid var(--text-secondary);
     color: var(--text-secondary);
     padding: 8px 16px;
@@ -52,148 +62,59 @@ body, html {
     cursor: pointer;
     font-weight: 500;
     transition: all 0.2s ease;
+    text-decoration: none;
 }
-
-.logout-button:hover {
-    background-color: var(--text-secondary);
-    color: white;
-}
+.logout-button:hover, .login-button:hover { background-color: var(--text-secondary); color: white; }
+.login-button { background-color: var(--accent-color); border-color: var(--accent-color); color: white; }
 
 /* --- Page Header Styles --- */
 .page-header {
     text-align: center;
     margin: 40px 0;
 }
+.page-header h1 { font-size: 2.5rem; font-weight: 800; margin: 0; }
+.page-header p { font-size: 1.1rem; color: var(--text-secondary); margin-top: 10px; }
 
-.page-header h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin: 0;
-}
-
-.page-header p {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-top: 10px;
-}
-
-/* --- Template Grid Styles --- */
-.template-grid {
+/* --- Tool Selection Grid --- */
+.tool-selection-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 30px;
+    margin-top: 20px;
 }
 
-.template-card {
+.tool-card {
     background-color: var(--card-bg);
     border-radius: 16px;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow);
-    overflow: hidden;
+    padding: 30px;
     text-decoration: none;
     color: inherit;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 25px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.template-card:hover {
+.tool-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-hover);
+    border-color: var(--accent-color);
 }
 
-.template-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    border-bottom: 1px solid var(--border-color);
+.tool-icon {
+    flex-shrink: 0;
+    color: var(--accent-color);
 }
 
-.template-info {
-    padding: 20px 25px;
-}
-
-.template-info h3 {
+.tool-info h3 {
     margin: 0 0 10px 0;
     font-size: 1.5rem;
 }
 
-.template-info p {
+.tool-info p {
     margin: 0;
     color: var(--text-secondary);
     line-height: 1.6;
-}
-/* --- Updated Header Styles --- */
-.main-header { /* Renamed from .user-header for clarity */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background-color: var(--card-bg);
-    border-bottom: 1px solid var(--border-color);
-}
-
-/* Style for the site title (guest view) */
-.site-title {
-    font-size: 1.5rem;
-    font-weight: 800;
-}
-
-.site-title span {
-    color: var(--accent-color);
-}
-
-/* Style for the logged-in user's info */
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.profile-picture {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--border-color);
-}
-
-.welcome-message {
-    font-weight: 500;
-}
-
-#user-name {
-    font-weight: 700;
-}
-
-.logout-button {
-    background: none;
-    border: 1px solid var(--text-secondary);
-    color: var(--text-secondary);
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-.logout-button:hover {
-    background-color: var(--text-secondary);
-    color: white;
-}
-
-/* --- Style for the new Login button in the header --- */
-.login-button {
-    background-color: var(--accent-color);
-    color: white;
-    padding: 8px 20px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
-}
-
-.login-button:hover {
-    background-color: var(--accent-hover);
 }

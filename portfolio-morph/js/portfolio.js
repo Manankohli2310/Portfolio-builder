@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const userStatus = localStorage.getItem('userStatus');
     const header = document.querySelector('.main-header');
 
+    // All paths in this script now use '../' to go up one directory level.
+    const loginPageUrl = '../login.html';
+    const defaultAvatarUrl = '../assets/images/default-avatar.png';
+
     if (userStatus === 'loggedIn') {
         // --- LOGGED-IN USER VIEW ---
         const userName = localStorage.getItem('userName');
@@ -10,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         header.innerHTML = `
             <div class="user-info">
-                <img src="${userPicture || 'assets/images/default-avatar.png'}" alt="Profile Picture" class="profile-picture">
+                <img src="${userPicture || defaultAvatarUrl}" alt="Profile Picture" class="profile-picture">
                 <div class="welcome-message">
                     Welcome, <span id="user-name">${userName || 'User'}</span>!
                 </div>
@@ -19,34 +23,27 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         document.getElementById('logout-btn').addEventListener('click', () => {
-            console.log("User clicked logout.");
             localStorage.clear(); 
-            window.location.href = 'login.html';
+            window.location.href = loginPageUrl; // Use variable for redirect
         });
 
     } else if (userStatus === 'skipped') {
         // --- GUEST (SKIPPED) USER VIEW ---
-        console.log("User has skipped login. Building guest header.");
-        
         header.innerHTML = `
             <div class="site-title">
-                Pixel<span>Morphus</span>
+                Portfolio<span>Morph</span>
             </div>
-            <a href="login.html" id="login-btn" class="login-button">Login</a>
+            <a href="${loginPageUrl}" id="login-btn" class="login-button">Login</a>
         `;
         
         document.getElementById('login-btn').addEventListener('click', (event) => {
             event.preventDefault();
-            console.log("Guest is going back to login.");
             localStorage.removeItem('userStatus');
-            // The stray 'C' character has been removed from the next line.
-            window.location.href = 'login.html';
+            window.location.href = loginPageUrl; // Use variable for redirect
         });
 
     } else {
-        // --- NO STATUS FOUND ---
-        // If someone tries to access this page without a session, send them back.
-        console.log("No user session found. Redirecting to login page.");
-        window.location.href = 'login.html';
+        // --- NO STATUS FOUND (PAGE PROTECTION) ---
+        window.location.href = loginPageUrl; // Use variable for redirect
     }
 });
