@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Builder</title>
+
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Builder-Specific Styles -->
+    <link rel="stylesheet" href="css/builder.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <!-- Dynamically populated header -->
+    </header>
+
+    <main class="builder-workspace">
+
+        <!-- Section 1: The Editing Pane -->
+        <section id="editing-pane">
+            <h2>Editing Pane</h2>
+            <p>Your form controls will appear here.</p>
+            <!-- We will build the dynamic form here in the next step -->
+        </section>
+
+        <!-- Section 2: The Preview Pane -->
+        <section id="preview-pane">
+            <div class="preview-controls">
+                <div class="toggle-group">
+                    <span>Device:</span>
+                    <button id="portrait-btn" class="control-btn active">Portrait</button>
+                    <button id="landscape-btn" class="control-btn">Landscape</button>
+                </div>
+                <div class="toggle-group">
+                    <span>Theme:</span>
+                    <button id="light-theme-btn" class="control-btn active">Light</button>
+                    <button id="dark-theme-btn" class="control-btn">Dark</button>
+                </div>
+            </div>
+            <div id="iframe-container" class="portrait-mode">
+                <iframe id="preview-frame" title="Live Portfolio Preview"></iframe>
+            </div>
+        </section>
+
+    </main>
+    
+    <script src="js/builder.js" defer></script>
+</body>
+</html>

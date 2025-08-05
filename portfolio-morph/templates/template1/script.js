@@ -18,20 +18,39 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// this is night theme toggle functionality
-document.addEventListener("DOMContentLoaded", () => {
-  const toggleBtn = document.getElementById("themeToggleBtn");
+// // this is night theme toggle functionality
+// document.addEventListener("DOMContentLoaded", () => {
+//   const toggleBtn = document.getElementById("themeToggleBtn");
 
-  toggleBtn.addEventListener("click", () => {
-    const body = document.body;
+//   toggleBtn.addEventListener("click", () => {
+//     const body = document.body;
 
-    if (body.classList.contains("dark")) {
-      body.classList.remove("dark");
-    } else {
-      body.classList.add("dark");
+//     if (body.classList.contains("dark")) {
+//       body.classList.remove("dark");
+//     } else {
+//       body.classList.add("dark");
+//     }
+//   });
+// });
+  // The function to change the theme
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
     }
-  });
-});
+
+    // Listen for messages from the parent window (builder.html)
+    window.addEventListener('message', (event) => {
+        const message = event.data;
+
+        if (message.type === 'themeChange') {
+            applyTheme(message.theme);
+        }
+
+        // We will add more message types later, like 'updateName', 'addSkill', etc.
+    });
 
 
 let index = 0;
