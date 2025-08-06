@@ -1,54 +1,230 @@
-/* --- Builder Workspace Layout --- */
-.builder-workspace {
-    display: flex;
-    height: calc(100vh - 71px); /* Full viewport height minus the header height */
-    overflow: hidden;
+/* --- GLOBAL LAYOUT --- */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    /* overflow: hidden; */
 }
 
-#editing-pane {
-    width: 400px;
-    flex-shrink: 0;
-    background-color: #f7f7f8;
-    padding: 25px;
-    overflow-y: auto; /* Allow scrolling if form is long */
-    border-right: 1px solid var(--border-color);
-}
-
-#preview-pane {
-    flex-grow: 1;
+body {
     display: flex;
     flex-direction: column;
-    padding: 30px;
-    background-color: #e9ecef; /* A neutral background to highlight the preview box */
+    background-color: #f0f2f5;
 }
 
-/* --- Preview Controls --- */
-.preview-controls {
+/* --- HEADER (Corrected Positioning) --- */
+.builder-header {
+    flex-shrink: 0;
+    position: relative;
+    /* Use relative positioning */
+    z-index: 100;
+    /* Give it a high z-index to ensure it's on top */
+    background-color: #fff;
+    /* Ensure it has a solid background */
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* --- MAIN PREVIEW (Corrected) --- */
+.main-preview-container {
+    flex-grow: 1;
+    /* Remove absolute positioning. It will now naturally flow below the header. */
+    padding: 20px;
+}
+
+#main-preview-frame {
+    width: 100%;
+    min-height: 600px;
+    height: 100%;
+    border: none;
+    background-color: white;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* --- FLOATING ACTION BUTTON (FAB) GROUP --- */
+.fab-group {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+    z-index: 998;
+}
+
+.theme-toggle-fab {
+    display: flex;
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fab-fade-in 0.5s 0.2s forwards;
+}
+
+@keyframes fab-fade-in {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fab-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
-    gap: 30px;
-    margin-bottom: 20px;
-    background-color: var(--card-bg);
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
+.fab-btn:hover {
+    background-color: #e9ecef;
+}
+
+.fab-btn.active {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+#edit-panel-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    width: 120px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#edit-panel-btn:hover {
+    transform: scale(1.05);
+}
+
+/* --- POLISHED SLIDE-IN EDITING PANEL --- */
+#editing-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 450px;
+    height: 100%;
+    background: linear-gradient(to bottom, #ffffff, #f9fafb);
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+#editing-panel.visible {
+    transform: translateX(0);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.panel-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+#close-panel-btn {
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    line-height: 1;
+}
+
+.panel-content {
+    padding: 30px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.panel-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin: 0 0 15px 0;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+/* --- MINI PREVIEW (FINAL, WORKING VERSION) --- */
+.mini-preview-wrapper { 
+    margin-bottom: 30px; 
+}
+
+#mini-preview-container {
+    width: 100%;
+    /* The container's height is determined by its aspect ratio */
+    aspect-ratio: 1400 / 800; 
+    
+    position: relative;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f0f2f5;
+}
+
+#mini-preview-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    /* Set the iframe's size to its real dimensions */
+    width: 1400px;
+    height: 800px;
+    
+    border: none;
+    transform-origin: top left;
+
+    /* 
+       THE KEY FIX: 
+       We use the same reliable scale calculation from a few steps ago.
+       This directly calculates the scale factor based on known pixel values.
+    */
+    transform: scale(calc(375 / 1400));
+    
+    pointer-events: auto;
+}
+/* --- THEME CONTROLS & FORM --- */
 .toggle-group {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.toggle-group span {
-    font-weight: 500;
-    color: var(--text-secondary);
-}
-
 .control-btn {
     padding: 8px 16px;
     border: 1px solid var(--border-color);
-    background-color: transparent;
+    background-color: #fff;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 500;
@@ -61,30 +237,32 @@
     border-color: var(--accent-color);
 }
 
-/* --- Iframe Container Styling --- */
-#iframe-container {
-    flex-grow: 1;
-    margin: 0 auto;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-    padding: 15px;
-    transition: all 0.4s ease-in-out;
+.form-placeholder {
+    height: 200px;
+    border: 2px dashed #dce2e9;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-secondary);
+    background-color: #f7f9fc;
 }
 
-#iframe-container.portrait-mode {
-    width: 414px; /* Common iPhone width */
-    max-height: 896px; /* Common iPhone height */
-}
-
-#iframe-container.landscape-mode {
-    width: 896px;
-    max-height: 414px;
-}
-
-#preview-frame {
+/* --- BACKDROP --- */
+#panel-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+#panel-backdrop.visible {
+    opacity: 1;
+    visibility: visible;
 }

@@ -10,7 +10,8 @@
     --shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
@@ -77,10 +78,11 @@ body, html {
     margin-top: 10px;
 }
 
-/* --- Template Grid Styles --- */
+/* --- Template Grid Styles (Updated for Live Previews) --- */
 .template-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    /* Slightly wider for better scaling */
     gap: 30px;
 }
 
@@ -92,26 +94,61 @@ body, html {
     overflow: hidden;
     text-decoration: none;
     color: inherit;
-    display: block;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    /* Keep Flexbox for layout control */
+    display: flex;
+    flex-direction: column;
 }
+
+
+
+/* --- THIS SECTION REPLACES THE OLD .template-card img --- */
+.card-preview-container {
+    width: 100%;
+    /* Create a 16:9 aspect ratio box */
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    position: relative;
+    background-color: #f0f2f5;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-preview-frame {
+    /* The "real" size of the content we are showing */
+    --iframe-real-width: 1400;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: calc(var(--iframe-real-width) * 1px);
+    height: calc(var(--iframe-real-width) * (9 / 16) * 1px);
+    /* Maintain 16:9 ratio */
+
+    border: none;
+    transform-origin: top left;
+
+    /* 
+       The scaling calculation. We use the grid's min-width (340px) for a reliable scale.
+    */
+    transform: scale(calc(377 / var(--iframe-real-width)));
+
+    /* This prevents the user from accidentally interacting with the iframe */
+    /* pointer-events: none; */
+}
+
+/* --- END OF REPLACEMENT SECTION --- */
 
 .template-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-hover);
 }
 
-.template-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    border-bottom: 1px solid var(--border-color);
-}
-
 .template-info {
     padding: 20px 25px;
+    /* This allows the info box to grow if needed, but not shrink */
+    flex-grow: 1;
 }
 
 .template-info h3 {
@@ -124,8 +161,10 @@ body, html {
     color: var(--text-secondary);
     line-height: 1.6;
 }
+
 /* --- Updated Header Styles --- */
-.main-header { /* Renamed from .user-header for clarity */
+.main-header {
+    /* Renamed from .user-header for clarity */
     display: flex;
     justify-content: space-between;
     align-items: center;

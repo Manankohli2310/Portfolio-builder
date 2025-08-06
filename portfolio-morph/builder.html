@@ -4,52 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Builder</title>
-
-    <!-- Shared Styles -->
     <link rel="stylesheet" href="../css/style.css">
-    <!-- Builder-Specific Styles -->
     <link rel="stylesheet" href="css/builder.css">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="main-header">
-        <!-- Dynamically populated header -->
+    <header class="main-header builder-header">
+        <!-- Header now only contains user info and logout -->
     </header>
 
-    <main class="builder-workspace">
-
-        <!-- Section 1: The Editing Pane -->
-        <section id="editing-pane">
-            <h2>Editing Pane</h2>
-            <p>Your form controls will appear here.</p>
-            <!-- We will build the dynamic form here in the next step -->
-        </section>
-
-        <!-- Section 2: The Preview Pane -->
-        <section id="preview-pane">
-            <div class="preview-controls">
-                <div class="toggle-group">
-                    <span>Device:</span>
-                    <button id="portrait-btn" class="control-btn active">Portrait</button>
-                    <button id="landscape-btn" class="control-btn">Landscape</button>
-                </div>
-                <div class="toggle-group">
-                    <span>Theme:</span>
-                    <button id="light-theme-btn" class="control-btn active">Light</button>
-                    <button id="dark-theme-btn" class="control-btn">Dark</button>
-                </div>
-            </div>
-            <div id="iframe-container" class="portrait-mode">
-                <iframe id="preview-frame" title="Live Portfolio Preview"></iframe>
-            </div>
-        </section>
-
+    <main class="main-preview-container">
+        <iframe id="main-preview-frame" title="Live Portfolio Preview"></iframe>
     </main>
+
+    <!-- NEW: Floating Action Button (FAB) Group -->
+       <!-- NEW: Floating Action Button (FAB) Group -->
+    <div class="fab-group">
+
+        <!-- Theme Toggle is now here -->
+        <div class="theme-toggle-fab" id="header-theme-controls">
+            <button class="control-btn fab-btn" data-theme="light" title="Light Theme">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+            <button class="control-btn fab-btn" data-theme="dark" title="Dark Theme">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </div>
+
+        <!-- Edit Button -->
+        <button id="edit-panel-btn" title="Open Editor">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            <span>Edit</span>
+        </button>
+
+    </div>
+
+    <aside id="editing-panel">
+        <!-- Editing panel structure remains the same -->
+        <div class="panel-header">
+            <h3>Editor</h3>
+            <button id="close-panel-btn" title="Close Editor">&times;</button>
+        </div>
+        <div class="panel-content">
+            <div class="mini-preview-wrapper">
+                <p class="panel-label">Overview</p>
+                <div id="mini-preview-container">
+                    <iframe id="mini-preview-frame" title="Mini Portfolio Preview"></iframe>
+                </div>
+            </div>
+            <div class="preview-controls">
+                <p class="panel-label">Theme Control</p>
+                <div class="toggle-group" id="panel-theme-controls">
+                    <button class="control-btn" data-theme="light">Light</button>
+                    <button class="control-btn" data-theme="dark">Dark</button>
+                </div>
+            </div>
+            <div id="form-controls">
+                <p class="panel-label">Portfolio Details</p>
+                <div class="form-placeholder">Your form will appear here.</div>
+            </div>
+        </div>
+    </aside>
     
+    <div id="panel-backdrop"></div>
+
     <script src="js/builder.js" defer></script>
 </body>
 </html>

@@ -1,20 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // This script is ONLY for the template selection page (portfolio-morph.html)
 
     const userStatus = localStorage.getItem('userStatus');
     const header = document.querySelector('.main-header');
 
-    // All paths in this script now use '../' to go up one directory level.
-    const loginPageUrl = '../login.html';
-    const defaultAvatarUrl = '../assets/images/default-avatar.png';
+    // Make sure the header element exists before trying to use it
+    if (!header) {
+        console.error("Header element not found on this page!");
+        return;
+    }
+
+    const loginPageUrl = '../login.html'; // Correct path to go up and then to login.html
 
     if (userStatus === 'loggedIn') {
-        // --- LOGGED-IN USER VIEW ---
         const userName = localStorage.getItem('userName');
         const userPicture = localStorage.getItem('userPicture');
         
         header.innerHTML = `
             <div class="user-info">
-                <img src="${userPicture || defaultAvatarUrl}" alt="Profile Picture" class="profile-picture">
+                <img src="${userPicture || '../assets/images/default-avatar.png'}" alt="Profile Picture" class="profile-picture">
                 <div class="welcome-message">
                     Welcome, <span id="user-name">${userName || 'User'}</span>!
                 </div>
@@ -24,11 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('logout-btn').addEventListener('click', () => {
             localStorage.clear(); 
-            window.location.href = loginPageUrl; // Use variable for redirect
+            window.location.href = loginPageUrl;
         });
 
     } else if (userStatus === 'skipped') {
-        // --- GUEST (SKIPPED) USER VIEW ---
         header.innerHTML = `
             <div class="site-title">
                 Portfolio<span>Morph</span>
@@ -39,11 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('login-btn').addEventListener('click', (event) => {
             event.preventDefault();
             localStorage.removeItem('userStatus');
-            window.location.href = loginPageUrl; // Use variable for redirect
+            window.location.href = loginPageUrl;
         });
 
     } else {
-        // --- NO STATUS FOUND (PAGE PROTECTION) ---
-        window.location.href = loginPageUrl; // Use variable for redirect
+        // If no status, protect the page
+        window.location.href = loginPageUrl;
     }
 });

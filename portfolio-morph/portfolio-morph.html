@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Morph - Select Template</title>
 
-    <!-- The path is now '../' to go up one level to the root css folder -->
+    <!-- FIX #1: The path must go UP one level to find the css folder -->
     <link rel="stylesheet" href="css/style.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
 <body>
 
     <header class="main-header">
-        <!-- This header is now populated by portfolio.js -->
+        <!-- This header will be correctly populated by portfolio.js -->
     </header>
 
     <main class="page-container">
@@ -24,26 +24,37 @@
             <p>Select a style to begin building your perfect portfolio.</p>
         </div>
 
-        <div class="template-grid">
-            <!-- Template 1: Image path updated to '../' -->
+                <div class="template-grid">
+            <!-- Template 1 -->
             <a href="builder.html?template=template1" class="template-card">
-                <img src="../assets/images/template1-preview.png" alt="Template 1 Preview">
+                <!-- NEW: Iframe preview structure -->
+                <div class="card-preview-container">
+                   <iframe src="templates/template1/index.html" class="card-preview-frame" title="Template 1 Preview"></iframe>
+                </div>
                 <div class="template-info">
                     <h3>Modern Minimalist</h3>
                     <p>A clean, elegant, and straightforward design focusing on your projects and skills.</p>
                 </div>
             </a>
-            <!-- Template 2: Image path updated to '../' -->
+
+            <!-- Template 2 -->
             <a href="builder.html?template=template2" class="template-card">
-                <img src="../assets/images/template2-preview.png" alt="Template 2 Preview">
+                <!-- NEW: Iframe preview structure -->
+                <div class="card-preview-container">
+                    <iframe src="templates/template2/index.html" class="card-preview-frame" title="Template 2 Preview"></iframe>
+                </div>
                 <div class="template-info">
                     <h3>Creative Bold</h3>
                     <p>A vibrant and visually striking layout perfect for designers and creative professionals.</p>
                 </div>
             </a>
-            <!-- Template 3: Image path updated to '../' -->
+
+            <!-- Template 3 -->
             <a href="builder.html?template=template3" class="template-card">
-                <img src="../assets/images/template3-preview.png" alt="Template 3 Preview">
+                <!-- NEW: Iframe preview structure -->
+                <div class="card-preview-container">
+                    <iframe src="templates/template3/index.html" class="card-preview-frame" title="Template 3 Preview"></iframe>
+                </div>
                 <div class="template-info">
                     <h3>Classic Professional</h3>
                     <p>A timeless and corporate-friendly design that inspires trust and confidence.</p>
@@ -52,7 +63,7 @@
         </div>
     </main>
     
-    <!-- The script source now points to its new, local JS file -->
+    <!-- FIX #3: The script path is correct, linking to its own JS file -->
     <script src="js/portfolio.js" defer></script>
 </body>
 </html>
