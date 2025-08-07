@@ -149,6 +149,9 @@ html {
     padding: 20px 25px;
     /* This allows the info box to grow if needed, but not shrink */
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes button to bottom */
 }
 
 .template-info h3 {
@@ -162,6 +165,24 @@ html {
     line-height: 1.6;
 }
 
+/* --- Add these styles at the end of the template grid section --- */
+.select-template-btn {
+    display: block;
+    margin-top: 20px;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 10px 0px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.select-template-btn:hover {
+    background-color: grey;
+    transform: scale(1.03);
+}
 /* --- Updated Header Styles --- */
 .main-header {
     /* Renamed from .user-header for clarity */

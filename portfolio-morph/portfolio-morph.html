@@ -24,42 +24,44 @@
             <p>Select a style to begin building your perfect portfolio.</p>
         </div>
 
-                <div class="template-grid">
+                      <div class="template-grid">
             <!-- Template 1 -->
-            <a href="builder.html?template=template1" class="template-card">
-                <!-- NEW: Iframe preview structure -->
+            <!-- FIX: Changed from <a> to <div> -->
+            <div class="template-card">
                 <div class="card-preview-container">
-                   <iframe src="templates/template1/index.html" class="card-preview-frame" title="Template 1 Preview"></iframe>
+                    <iframe src="templates/template1/index.html" class="card-preview-frame" title="Template 1 Preview"></iframe>
                 </div>
                 <div class="template-info">
                     <h3>Modern Minimalist</h3>
                     <p>A clean, elegant, and straightforward design focusing on your projects and skills.</p>
+                    <!-- FIX: Added a dedicated button that links to the builder -->
+                    <a href="builder.html?template=template1" class="select-template-btn">Customize</a>
                 </div>
-            </a>
+            </div>
 
             <!-- Template 2 -->
-            <a href="builder.html?template=template2" class="template-card">
-                <!-- NEW: Iframe preview structure -->
+            <div class="template-card">
                 <div class="card-preview-container">
                     <iframe src="templates/template2/index.html" class="card-preview-frame" title="Template 2 Preview"></iframe>
                 </div>
                 <div class="template-info">
                     <h3>Creative Bold</h3>
                     <p>A vibrant and visually striking layout perfect for designers and creative professionals.</p>
+                    <a href="builder.html?template=template2" class="select-template-btn">Customize</a>
                 </div>
-            </a>
+            </div>
 
             <!-- Template 3 -->
-            <a href="builder.html?template=template3" class="template-card">
-                <!-- NEW: Iframe preview structure -->
+            <div class="template-card">
                 <div class="card-preview-container">
                     <iframe src="templates/template3/index.html" class="card-preview-frame" title="Template 3 Preview"></iframe>
                 </div>
                 <div class="template-info">
                     <h3>Classic Professional</h3>
                     <p>A timeless and corporate-friendly design that inspires trust and confidence.</p>
+                    <a href="builder.html?template=template3" class="select-template-btn">Customize</a>
                 </div>
-            </a>
+            </div>
         </div>
     </main>
     
