@@ -257,3 +257,31 @@ html {
 .login-button:hover {
     background-color: var(--accent-hover);
 }
+
+/* --- NEW STYLES for Global Theme Selector --- */
+.theme-selector-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.theme-selector-container .toggle-group {
+    background-color: var(--card-bg);
+    padding: 8px;
+    border-radius: 50px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border: 1px solid var(--border-color);
+}
+
+.theme-selector-container .control-btn {
+    padding: 8px 24px;
+    border: none;
+    border-radius: 50px;
+}
+
+.theme-selector-container .control-btn.active {
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 50px;
+    box-shadow: 0 2px 8px rgba(0, 113, 227, 0.3);
+}

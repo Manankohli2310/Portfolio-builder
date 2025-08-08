@@ -1,5 +1,9 @@
+// This script runs inside the template1 iframe
+
+// --- PART 1: ORIGINAL TEMPLATE FUNCTIONALITY ---
+
 document.addEventListener('DOMContentLoaded', function () {
-    // --- Fade-in on Scroll Animation ---
+    // Fade-in on Scroll Animation
     const sections = document.querySelectorAll('section');
 
     const observerOptions = {
@@ -23,66 +27,141 @@ document.addEventListener('DOMContentLoaded', function () {
     sections.forEach(section => {
         observer.observe(section);
     });
-
 });
+
+// Mobile Menu Toggle
 function toggleMenu() {
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
-
     hamburger.classList.toggle('active');
     mobileMenu.classList.toggle('active');
 }
 
+// Mobile Menu Close
 function closeMenu() {
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
-
     hamburger.classList.remove('active');
     mobileMenu.classList.remove('active');
 }
 
-// Close menu when clicking outside
+// Close mobile menu when clicking outside
 document.addEventListener('click', function (event) {
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
-
-    if (!hamburger.contains(event.target) && !mobileMenu.contains(event.target)) {
+    if (hamburger && mobileMenu && !hamburger.contains(event.target) && !mobileMenu.contains(event.target)) {
         hamburger.classList.remove('active');
         mobileMenu.classList.remove('active');
     }
 });
 
 
-// // night theme toggle
-// document.addEventListener("DOMContentLoaded", () => {
-//   const toggleBtn = document.getElementById("themeToggleBtn");
+// --- PART 2: PORTFOLIO BUILDER COMMUNICATION LOGIC ---
 
-//   toggleBtn.addEventListener("click", () => {
-//     const body = document.body;
+// --- UTILITY FUNCTIONS ---
+function setText(selector, text) {
+    const element = document.querySelector(selector);
+    if (element && text != null) element.textContent = text;
+}
 
-//     if (body.classList.contains("dark")) {
-//       body.classList.remove("dark");
-//     } else {
-//       body.classList.add("dark");
-//     }
-//   });
-// });
-  // The function to change the theme
-    function applyTheme(theme) {
-        if (theme === 'dark') {
-            document.body.classList.add('dark');
-        } else {
-            document.body.classList.remove('dark');
+function setLink(selector, url) {
+    const element = document.querySelector(selector);
+    if (element && url != null) element.href = url;
+}
+
+function setImage(selector, url) {
+    const element = document.querySelector(selector);
+    if (element && url != null) element.src = url;
+}
+
+// NEW: Helper to toggle the visibility of a whole section
+function setSectionVisibility(sectionId, isEnabled) {
+    const sectionElement = document.getElementById(sectionId);
+    if (sectionElement) {
+        // Use an empty string '' to revert to the default display value from the CSS
+        sectionElement.style.display = isEnabled ? '' : 'none';
+    }
+    // Also hide the <hr> separator that comes before the section
+    // The ID of the hr matches the section ID without the '1' at the end (e.g., about1 -> about)
+    const hrElement = document.getElementById(sectionId.replace('1', ''));
+    if (hrElement && hrElement.tagName === 'HR') {
+        hrElement.style.display = isEnabled ? '' : 'none';
+    }
+}
+
+// --- MAIN UPDATE FUNCTION ---
+function updatePage(data) {
+    // Navigation (not removable)
+    if (data.navigation) setText('.logo', data.navigation.logoText);
+
+    // Hero Section (not removable)
+    if (data.hero) {
+        setText('.hero-text h1', data.hero.name);
+        setText('.hero-text .subtitle', data.hero.subtitle);
+        setText('.hero-buttons .btn-primary', data.hero.primaryButtonText);
+        setLink('.hero-buttons .btn-secondary', data.hero.resumeUrl);
+        setImage('.hero-image img', data.hero.profileImageUrl);
+    }
+
+    // About Section (now checks the 'enabled' property)
+    if (data.about) {
+        setSectionVisibility('about1', data.about.enabled);
+        if (data.about.enabled) {
+            setText('.about-section p', data.about.description);
+        }
+    }
+    
+    // Contact Section (will also be removable)
+    if (data.contact) {
+        setSectionVisibility('contact1', data.contact.enabled);
+        if (data.contact.enabled) {
+            const emailLink = document.querySelector('.contact-info a[href^="mailto:"]');
+            if(emailLink && data.contact.email != null) {
+                emailLink.href = `mailto:${data.contact.email}`;
+                emailLink.textContent = data.contact.email;
+            }
+            const phoneLink = document.querySelector('.contact-info a[href^="tel:"]');
+            if(phoneLink && data.contact.phone != null) {
+                phoneLink.href = `tel:${data.contact.phone}`;
+                phoneLink.textContent = data.contact.phone;
+            }
+            setText('.contact-info p:last-of-type', data.contact.location);
+            if (data.contact.social) {
+                setLink('.social-links a[href*="linkedin"]', data.contact.social.linkedin);
+                setLink('.social-links a[href*="github"]', data.contact.social.github);
+                setLink('.social-links a[href*="twitter"]', data.contact.social.twitter);
+            }
+        }
+    }
+    
+    // Footer (will also be removable)
+    if (data.footer) {
+        // The footer is a <footer class="footer"> not an ID, so we handle it differently
+        const footerElement = document.querySelector('.footer');
+        if (footerElement) {
+            footerElement.style.display = data.footer.enabled ? '' : 'none';
+            if (data.footer.enabled) {
+                setText('.footer p', data.footer.copyright);
+            }
         }
     }
 
-    // Listen for messages from the parent window (builder.html)
-    window.addEventListener('message', (event) => {
-        const message = event.data;
+    // --- We will add dynamic updates for Skills, Experience, and Projects here later ---
+}
 
-        if (message.type === 'themeChange') {
-            applyTheme(message.theme);
-        }
+// --- THEME & MESSAGE LISTENER ---
+function applyTheme(theme) {
+    document.body.classList.toggle('dark', theme === 'dark');
+}
 
-        // We will add more message types later, like 'updateName', 'addSkill', etc.
-    });
+window.addEventListener('message', (event) => {
+    const message = event.data;
+
+    if (message.type === 'themeChange') {
+        applyTheme(message.theme);
+    }
+    
+    if (message.type === 'fullUpdate') {
+        updatePage(message.data);
+    }
+});
