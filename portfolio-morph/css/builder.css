@@ -10,6 +10,16 @@ body {
     flex-direction: column;
     background-color: #f0f2f5;
 }
+body::-webkit-scrollbar {
+width: 5px;
+}
+body::-webkit-scrollbar-track {
+    background: transparent; /* Make the track invisible */
+}
+body::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #7070703f; /* Make the track invisible */
+}
 
 /* --- HEADER (Corrected Positioning) --- */
 .builder-header {
@@ -116,6 +126,7 @@ body {
     transform: translateX(-100%);
     transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
+
 
 #editing-panel.visible {
     transform: translateX(0);
@@ -268,6 +279,36 @@ body {
     font-size: 1rem;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
+/* --- NEW: Hide Scrollbar by Default and Show on Hover --- */
+
+/* For Webkit browsers (Chrome, Safari, Edge) */
+.form-group textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+.form-group textarea::-webkit-scrollbar-track {
+    background: transparent; /* Make the track invisible */
+}
+
+.form-group textarea::-webkit-scrollbar-thumb {
+    background: #cccccc00;
+    border-radius: 4px;
+    /* Hide the thumb by default */
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+
+/* On hover, make the scrollbar thumb visible */
+.form-group textarea:hover::-webkit-scrollbar-thumb {
+    background: #88888800;
+}
+
+/* For Firefox */
+.form-group textarea {
+    scrollbar-width: thin; /* Make the scrollbar thinner */
+    scrollbar-color: #88888800 transparent; /* thumb color track color */
+}
+
 
 .form-group input[type="text"]:focus,
 .form-group textarea:focus {

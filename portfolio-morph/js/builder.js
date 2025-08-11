@@ -40,15 +40,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return str.trim().split(/\s+/).filter(word => word.length > 0).length;
     }
 
-    function createInputField(label, propertyPath, placeholder = '', type = 'text', wordLimit = 0) {
+    // UPDATED: createInputField now accepts an 'options' object
+    function createInputField(label, propertyPath, placeholder = '', type = 'text', options = {}) {
+        const { wordLimit = 0, minHeight = 'auto' } = options;
         const wrapper = document.createElement('div');
         wrapper.className = 'form-group';
         wrapper.innerHTML = `<label>${label}</label>`;
         const isTextarea = type === 'textarea';
         const inputElement = document.createElement(isTextarea ? 'textarea' : 'input');
-        if (!isTextarea) inputElement.type = 'text';
-        if (isTextarea) inputElement.rows = 4;
+        
+        if (!isTextarea) {
+            inputElement.type = 'text';
+        } else {
+            inputElement.rows = 4; // A fallback
+            if (minHeight !== 'auto') {
+                inputElement.style.minHeight = `${minHeight}px`;
+            }
+        }
+        
         inputElement.value = placeholder;
+        
         let warningElement;
         if (wordLimit > 0) {
             warningElement = document.createElement('p');
@@ -57,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             warningElement.textContent = `${initialWordCount} / ${wordLimit} words`;
             if (initialWordCount > wordLimit) warningElement.classList.add('visible');
         }
+
         inputElement.addEventListener('input', (e) => {
             const currentText = e.target.value;
             if (wordLimit > 0) {
@@ -67,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setObjectValue(portfolioData, propertyPath, currentText);
             sendFullUpdate();
         });
+        
         wrapper.appendChild(inputElement);
         if (warningElement) wrapper.appendChild(warningElement);
         return wrapper;
@@ -77,73 +90,41 @@ document.addEventListener('DOMContentLoaded', () => {
         const wrapper = document.createElement('div');
         wrapper.className = 'form-group';
         wrapper.innerHTML = `<label>${label}</label>`;
-        
         const inputElement = document.createElement('input');
         inputElement.type = 'file';
         inputElement.accept = accept;
-        
         const warningElement = document.createElement('p');
         warningElement.className = 'file-limit-warning';
-        
         inputElement.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (!file) {
                 warningElement.classList.remove('visible');
                 return;
             }
-
             const reader = new FileReader();
             reader.onload = (event) => {
                 const fileUrl = event.target.result;
-
-                // This is the new, corrected code block
-if (file.type.startsWith('image/') && (minHeight > 0 || maxWidth > 0 || aspectRatio > 0)) {
-    const img = new Image();
-    img.onload = () => {
-        const errors = [];
-        const actualRatio = img.naturalWidth / img.naturalHeight;
-        const lowerBound = aspectRatio - ratioTolerance;
-        const upperBound = aspectRatio + ratioTolerance;
-        
-        // Check #1: Does it violate the absolute dimension rules?
-        const heightViolation = minHeight > 0 && img.naturalHeight < minHeight;
-        const widthViolation = maxWidth > 0 && img.naturalWidth > maxWidth;
-
-        // Check #2: Does it violate the aspect ratio rule?
-        const ratioViolation = aspectRatio > 0 && (actualRatio < lowerBound || actualRatio > upperBound);
-
-        // THE CORE LOGIC:
-        // If it violates the dimensions AND the aspect ratio is also wrong, then it's a definite error.
-        if ((heightViolation || widthViolation) && ratioViolation) {
-            if (heightViolation) errors.push(`height must be at least ${minHeight}px`);
-            if (widthViolation) errors.push(`width must be at most ${maxWidth}px`);
-            errors.push(`and image shape should be nearly square`);
-        } 
-        // Else, if it only violates one of the dimension rules but the shape is OK, it might still be a problem.
-        else if (heightViolation) {
-            errors.push(`height must be at least ${minHeight}px`);
-        } 
-        else if (widthViolation) {
-            errors.push(`width must be at most ${maxWidth}px`);
-        }
-        // Else, if dimensions are fine but the shape is wrong, that's also an error.
-        else if (ratioViolation) {
-            errors.push(`image size is wrong (should be nearly square)`);
-        }
-
-        if (errors.length > 0) {
-            warningElement.textContent = `Image invalid: ${errors.join(', ')}.`;
-            warningElement.classList.add('visible');
-            e.target.value = '';
-        } else {
-            // If there are no errors, the image is valid.
-            warningElement.classList.remove('visible');
-            setObjectValue(portfolioData, propertyPath, fileUrl);
-            sendFullUpdate();
-        }
-    };
-    img.src = fileUrl;
-} else {
+                if (file.type.startsWith('image/') && (minHeight > 0 || maxWidth > 0 || aspectRatio > 0)) {
+                    const img = new Image();
+                    img.onload = () => {
+                        const meetsDimensionRules = (img.naturalHeight >= minHeight && img.naturalWidth <= maxWidth);
+                        const actualRatio = img.naturalWidth / img.naturalHeight;
+                        const lowerBound = aspectRatio - ratioTolerance;
+                        const upperBound = aspectRatio + ratioTolerance;
+                        const meetsAspectRatioRule = (actualRatio >= lowerBound && actualRatio <= upperBound);
+                        const isImageValid = meetsDimensionRules || meetsAspectRatioRule;
+                        if (!isImageValid) {
+                            warningElement.textContent = `Image size is wrong (should be nearly square).`;
+                            warningElement.classList.add('visible');
+                            e.target.value = '';
+                        } else {
+                            warningElement.classList.remove('visible');
+                            setObjectValue(portfolioData, propertyPath, fileUrl);
+                            sendFullUpdate();
+                        }
+                    };
+                    img.src = fileUrl;
+                } else {
                     warningElement.classList.remove('visible');
                     setObjectValue(portfolioData, propertyPath, fileUrl);
                     sendFullUpdate();
@@ -151,7 +132,6 @@ if (file.type.startsWith('image/') && (minHeight > 0 || maxWidth > 0 || aspectRa
             };
             reader.readAsDataURL(file);
         });
-        
         wrapper.appendChild(inputElement);
         wrapper.appendChild(warningElement);
         return wrapper;
@@ -181,6 +161,7 @@ if (file.type.startsWith('image/') && (minHeight > 0 || maxWidth > 0 || aspectRa
         }
     }
 
+    // CORRECTED: buildTemplate1Form with proper options object
     function buildTemplate1Form() {
         const formFragment = document.createDocumentFragment();
         const iframeDoc = mainPreviewFrame.contentDocument;
@@ -188,8 +169,10 @@ if (file.type.startsWith('image/') && (minHeight > 0 || maxWidth > 0 || aspectRa
         const heroSection = createFormSection('Hero Section', 'hero', false);
         const defaultName = iframeDoc.querySelector('.hero-text h1')?.textContent || '';
         const defaultSubtitle = iframeDoc.querySelector('.hero-text .subtitle')?.textContent || '';
-        heroSection.appendChild(createInputField('Name / Main Heading', 'hero.name', defaultName, 'text', 8));
-        heroSection.appendChild(createInputField('Subtitle', 'hero.subtitle', defaultSubtitle, 'textarea', 15));
+        
+        // Correctly pass options as an object
+        heroSection.appendChild(createInputField('Name / Main Heading', 'hero.name', defaultName, 'text', { wordLimit: 8 }));
+        heroSection.appendChild(createInputField('Subtitle', 'hero.subtitle', defaultSubtitle, 'textarea', { wordLimit: 15 }));
         
         const imageValidation = { 
             minHeight: 550, 
@@ -205,7 +188,11 @@ if (file.type.startsWith('image/') && (minHeight > 0 || maxWidth > 0 || aspectRa
         if (portfolioData.about.enabled) {
             const aboutSection = createFormSection('About Section', 'about', true);
             const defaultAbout = iframeDoc.querySelector('.about-section p')?.textContent || '';
-            aboutSection.appendChild(createInputField('About Me Paragraph', 'about.description', defaultAbout, 'textarea', 200));
+            
+            // Correctly pass options for the "About Me" textarea
+            const aboutOptions = { wordLimit: 200, minHeight: 220 };
+            aboutSection.appendChild(createInputField('About Me Paragraph', 'about.description', defaultAbout, 'textarea', aboutOptions));
+            
             formFragment.appendChild(aboutSection);
         }
 
