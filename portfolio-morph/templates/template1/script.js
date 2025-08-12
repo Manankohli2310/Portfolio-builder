@@ -133,7 +133,32 @@ function updatePage(data) {
             }
         }
     }
-    
+        // --- DYNAMIC SKILLS RENDERING (with Icons and isDirty logic removed) ---
+    if (data.skills) {
+        setSectionVisibility('skills', data.skills.enabled);
+        const skillsGrid = document.querySelector('.skills-grid');
+        if (skillsGrid) {
+            skillsGrid.innerHTML = ''; // Always clear the list
+            
+            data.skills.list.forEach(skill => {
+                if (skill.name) {
+                    const skillElement = document.createElement('div');
+                    skillElement.className = 'skill-item';
+                    
+                    // If icons are enabled and an icon class exists for this skill...
+                    if (data.skills.iconsEnabled && skill.iconClass) {
+                        const iconElement = document.createElement('i');
+                        iconElement.className = skill.iconClass;
+                        skillElement.appendChild(iconElement);
+                    }
+                    
+                    const textNode = document.createTextNode(` ${skill.name}`);
+                    skillElement.appendChild(textNode);
+                    skillsGrid.appendChild(skillElement);
+                }
+            });
+        }
+    }
     // Footer (will also be removable)
     if (data.footer) {
         // The footer is a <footer class="footer"> not an ID, so we handle it differently
