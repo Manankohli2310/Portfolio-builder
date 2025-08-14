@@ -134,21 +134,30 @@ function updatePage(data) {
         }
     }
         // --- DYNAMIC SKILLS RENDERING (with Icons and isDirty logic removed) ---
-    if (data.skills) {
+     if (data.skills) {
         setSectionVisibility('skills', data.skills.enabled);
         const skillsGrid = document.querySelector('.skills-grid');
         if (skillsGrid) {
-            skillsGrid.innerHTML = ''; // Always clear the list
+            skillsGrid.innerHTML = '';
             
             data.skills.list.forEach(skill => {
                 if (skill.name) {
                     const skillElement = document.createElement('div');
                     skillElement.className = 'skill-item';
                     
-                    // If icons are enabled and an icon class exists for this skill...
-                    if (data.skills.iconsEnabled && skill.iconClass) {
-                        const iconElement = document.createElement('i');
-                        iconElement.className = skill.iconClass;
+                    const finalIcon = data.skills.globalIconOverride || skill.iconClass;
+
+                    if (data.skills.iconsEnabled && finalIcon) {
+                        let iconElement;
+                        if (finalIcon.startsWith('data:image')) {
+                            iconElement = document.createElement('img');
+                            iconElement.src = finalIcon;
+                            // THE KEY FIX: Add a class for specific styling
+                            iconElement.className = 'custom-skill-icon';
+                        } else {
+                            iconElement = document.createElement('i');
+                            iconElement.className = finalIcon;
+                        }
                         skillElement.appendChild(iconElement);
                     }
                     

@@ -574,3 +574,15 @@ section>.container.visible {
     opacity: 1;
     transform: translateY(0);
 }
+
+
+
+/* In template1/style.css */
+.skill-item .custom-skill-icon {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    /* margin-bottom: 0.5rem; */
+    object-fit: contain;
+}

@@ -1,15 +1,14 @@
 /* --- GLOBAL LAYOUT --- */
-html,
-body {
+html, body {
     height: 100%;
     margin: 0;
 }
-
 body {
     display: flex;
     flex-direction: column;
     background-color: #f0f2f5;
 }
+
 body::-webkit-scrollbar {
 width: 5px;
 }
@@ -20,8 +19,7 @@ body::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background: #7070703f; /* Make the track invisible */
 }
-
-/* --- HEADER (Corrected Positioning) --- */
+/* --- HEADER --- */
 .builder-header {
     flex-shrink: 0;
     position: relative;
@@ -30,15 +28,15 @@ body::-webkit-scrollbar-thumb {
     border-bottom: 1px solid var(--border-color);
 }
 
-/* --- MAIN PREVIEW (Corrected) --- */
+/* --- MAIN PREVIEW --- */
 .main-preview-container {
     flex-grow: 1;
     padding: 20px;
+    min-height: 700px;
+    box-sizing: border-box;
 }
-
 #main-preview-frame {
     width: 100%;
-    min-height: 600px;
     height: 100%;
     border: none;
     background-color: white;
@@ -57,38 +55,6 @@ body::-webkit-scrollbar-thumb {
     gap: 15px;
     z-index: 998;
 }
-
-
-@keyframes fab-fade-in {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fab-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    background-color: transparent;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.fab-btn:hover {
-    background-color: #e9ecef;
-}
-
-.fab-btn.active {
-    background-color: var(--accent-color);
-    color: white;
-}
-
 #edit-panel-btn {
     background-color: var(--accent-color);
     color: white;
@@ -106,12 +72,11 @@ body::-webkit-scrollbar-thumb {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-
 #edit-panel-btn:hover {
     transform: scale(1.05);
 }
 
-/* --- POLISHED SLIDE-IN EDITING PANEL --- */
+/* --- SLIDE-IN EDITING PANEL --- */
 #editing-panel {
     position: fixed;
     top: 0;
@@ -126,12 +91,9 @@ body::-webkit-scrollbar-thumb {
     transform: translateX(-100%);
     transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-
-
 #editing-panel.visible {
     transform: translateX(0);
 }
-
 .panel-header {
     display: flex;
     justify-content: space-between;
@@ -140,12 +102,10 @@ body::-webkit-scrollbar-thumb {
     border-bottom: 1px solid var(--border-color);
     flex-shrink: 0;
 }
-
 .panel-header h3 {
     margin: 0;
     font-size: 1.2rem;
 }
-
 #close-panel-btn {
     font-size: 2rem;
     background: none;
@@ -154,35 +114,21 @@ body::-webkit-scrollbar-thumb {
     color: var(--text-secondary);
     line-height: 1;
 }
-
 .panel-content {
     padding: 30px;
     overflow-y: auto;
     flex-grow: 1;
 }
 
-.panel-label {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    margin: 0 0 15px 0;
-    letter-spacing: 0.5px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 8px;
-}
 
-/* --- MINI PREVIEW (FINAL, WORKING VERSION) --- */
-/* --- MINI PREVIEW (Universal 1400x800) --- */
+/* --- MINI-PREVIEW WRAPPER STYLES --- */
 .mini-preview-wrapper { 
     margin-bottom: 30px; 
 }
 
 #mini-preview-container {
     width: 100%;
-    /* This creates a perfect 1400x800 aspect ratio container */
-    aspect-ratio: 1400 / 800; 
-    
+    aspect-ratio: 1400 / 800;
     position: relative;
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -194,512 +140,7 @@ body::-webkit-scrollbar-thumb {
     position: absolute;
     top: 0;
     left: 0;
-    
-    /* Dimensions and scaling are now set by builder.js */
-    
     border: none;
-    transform-origin: top left; /* This is important */
+    transform-origin: top left;
     pointer-events: auto;
-}
-/* --- THEME CONTROLS & FORM --- */
-.toggle-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-.control-btn {
-    padding: 8px 16px;
-    border: 1px solid var(--border-color);
-    background-color: #fff;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-.control-btn.active {
-    background-color: var(--accent-color);
-    color: white;
-    border-color: var(--accent-color);
-}
-
-.form-placeholder {
-    height: 200px;
-    border: 2px dashed #dce2e9;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-secondary);
-    background-color: #f7f9fc;
-}
-
-/* --- DYNAMIC FORM STYLES --- */
-.form-section {
-    margin-bottom: 25px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 25px;
-}
-.form-section:last-of-type {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-.form-section h4 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: var(--accent-color);
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-.form-group {
-    margin-bottom: 18px;
-}
-
-.form-group label {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-    color: #333;
-}
-
-/* Styling for text inputs and textareas */
-.form-group input[type="text"],
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-sizing: border-box; /* Important! */
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-/* --- NEW: Hide Scrollbar by Default and Show on Hover --- */
-
-/* For Webkit browsers (Chrome, Safari, Edge) */
-.form-group textarea::-webkit-scrollbar {
-    width: 8px;
-}
-
-.form-group textarea::-webkit-scrollbar-track {
-    background: transparent; /* Make the track invisible */
-}
-
-.form-group textarea::-webkit-scrollbar-thumb {
-    background: #cccccc00;
-    border-radius: 4px;
-    /* Hide the thumb by default */
-    border: 3px solid transparent;
-    background-clip: content-box;
-}
-
-/* On hover, make the scrollbar thumb visible */
-.form-group textarea:hover::-webkit-scrollbar-thumb {
-    background: #88888800;
-}
-
-/* For Firefox */
-.form-group textarea {
-    scrollbar-width: thin; /* Make the scrollbar thinner */
-    scrollbar-color: #88888800 transparent; /* thumb color track color */
-}
-
-
-.form-group input[type="text"]:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.2);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-/* Custom styling for file inputs */
-.form-group input[type="file"] {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-}
-
-.form-group input[type="file"]::file-selector-button {
-    margin-right: 15px;
-    border: 1px solid var(--border-color);
-    background-color: #fff;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.form-group input[type="file"]::file-selector-button:hover {
-    background-color: #f0f2f5;
-}
-/* --- NEW STYLES for Form Sections and Validation --- */
-
-.form-section h4 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.delete-section-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--text-secondary);
-    cursor: pointer;
-    padding: 0 5px;
-    line-height: 1;
-    transition: color 0.2s ease;
-}
-
-.delete-section-btn:hover {
-    color: #e53e3e; /* A  color for deletion */
-}
-
-.word-limit-warning {
-    display: none; /* Hidden by default */
-    font-size: 0.8rem;
-    color: #e53e3e;
-    margin-top: 5px;
-    text-align: right;
-}
-
-.word-limit-warning.visible {
-    display: block; /* Show the warning */
-}
-
-/* --- NEW STYLE for File Validation Warning --- */
-.file-limit-warning {
-    display: none; /* Hidden by default */
-    font-size: 0.8rem;
-    color: #e53e3e; /* Red for warnings */
-    margin-top: 8px;
-}
-
-.file-limit-warning.visible {
-    display: block; /* Show the warning */
-}
-
-/* --- NEW STYLES for Dynamic List Forms (Skills) --- */
-.skill-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.skill-item-form {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.skill-item-form input {
-    flex-grow: 1; /* Make the input take up most of the space */
-}
-
-.delete-item-btn {
-    background: #f1f1f1;
-    border: 1px solid #ddd;
-    color: #888;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    line-height: 1;
-    flex-shrink: 0;
-    transition: all 0.2s ease;
-}
-
-.delete-item-btn:hover {
-    background-color: #e53e3e;
-    color: white;
-    border-color: #e53e3e;
-}
-
-.add-item-btn {
-    display: block;
-    width: 100%;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #e9ecef;
-    border: 1px dashed #ccc;
-    border-radius: 8px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.add-item-btn:hover {
-    background-color: #dfe6ef;
-    border-color: var(--accent-color);
-}
-/* --- NEW STYLES for Skills Form & Icon Modal --- */
-
-/* Polished Skill Item Form */
-.skill-item-form {
-    background-color: #f7f9fc;
-    border: 1px solid #e1e4e8;
-    border-radius: 8px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.skill-item-form .predicted-icon {
-    /* No change needed here, but ensure it exists */
-    flex-shrink: 0;
-}
-
-.skill-item-form input {
-    /* Remove default input styles to blend in */
-    border: none;
-    background: transparent;
-    padding: 8px;
-    padding-left: 0; /* No extra padding needed */
-    flex-grow: 1;
-}
-.skill-item-form input:focus {
-    outline: none;
-    box-shadow: none; /* Remove focus shadow */
-}
-
-/* Manage Icon Button */
-/* UPDATED: Manage Icon Button */
-.manage-icon-btn {
-    background-color: #f0f2f5;
-    border: 1px solid #d1d5db;
-    padding: 6px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    color: var(--text-secondary);
-    transition: all 0.2s ease;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-weight: 500;
-    font-size: 0.8rem;
-}
-.manage-icon-btn:hover {
-    background-color: #e2e8f0;
-    color: var(--accent-color);
-    border-color: var(--accent-color);
-}
-.manage-icon-btn svg {
-    display: block;
-    width: 18px;
-    height: 18px;
-}
-/* Hide text on smaller panel widths */
-.manage-icon-btn span {
-    display: none;
-}
-@media (min-width: 400px) {
-    .manage-icon-btn span {
-        display: inline;
-    }
-}
-/* Icon Management Modal */
-.icon-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1001; /* Above the side panel */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease;
-}
-.icon-modal-overlay.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-.icon-modal-content {
-    background-color: #fff;
-    width: 90%;
-    max-width: 600px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-    max-height: 80vh;
-}
-.icon-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 25px;
-    border-bottom: 1px solid var(--border-color);
-}
-.icon-modal-header h5 { margin: 0; font-size: 1.1rem; }
-.icon-modal-header #close-icon-modal-btn { font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--text-secondary); }
-
-.icon-modal-body {
-    padding: 25px;
-    overflow-y: auto;
-}
-/* --- NEW STYLES for Inline Icon Dialog & Master Toggle --- */
-
-/* Master Toggle Switch */
-.section-controls {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 15px;
-    gap: 10px;
-}
-.section-controls label {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-}
-/* Simple checkbox styled as a toggle */
-.section-controls input[type="checkbox"] {
-    width: 36px;
-    height: 20px;
-    appearance: none;
-    background-color: #ccc;
-    border-radius: 10px;
-    position: relative;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-}
-.section-controls input[type="checkbox"]::before {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: white;
-    top: 2px;
-    left: 2px;
-    transition: transform 0.2s ease-in-out;
-}
-.section-controls input[type="checkbox"]:checked {
-    background-color: var(--accent-color);
-}
-.section-controls input[type="checkbox"]:checked::before {
-    transform: translateX(16px);
-}
-
-
-/* Inline Icon Dialog Box */
-.icon-dialog {
-    display: none; /* Hidden by default */
-    position: absolute;
-    top: calc(100% + 10px); /* Position below the skill item */
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    z-index: 10;
-    padding: 15px;
-    box-sizing: border-box;
-}
-.icon-dialog.visible {
-    display: block;
-}
-
-/* Make sure the container can position the dialog */
-.skill-item-form {
-    position: relative;
-}
-/* --- NEW: Icon Dialog Tab Styles --- */
-.icon-dialog-nav {
-    display: flex;
-    border-bottom: 1px solid var(--border-color);
-    padding: 0 15px;
-}
-
-.icon-dialog-nav button {
-    flex: 1;
-    padding: 12px 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    border-bottom: 3px solid transparent;
-    transition: all 0.2s ease;
-    margin-bottom: -1px; /* Overlap border */
-}
-
-.icon-dialog-nav button:hover {
-    color: var(--accent-color);
-}
-
-.icon-dialog-nav button.active {
-    color: var(--accent-color);
-    border-bottom-color: var(--accent-color);
-}
-
-.icon-dialog-tab-content {
-    display: none; /* Hide all tabs by default */
-    padding: 20px 15px;
-    min-height: 150px;
-}
-
-.icon-dialog-tab-content.active {
-    display: block; /* Show only the active one */
-}
-
-/* Styles for the suggestion grid */
-.icon-suggestion-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
-    gap: 10px;
-}
-
-.icon-suggestion-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.icon-suggestion-item:hover, .icon-suggestion-item.selected {
-    border-color: var(--accent-color);
-    background-color: #f0f7ff;
-}
-
-.icon-suggestion-item i {
-    font-size: 1.8rem;
-    color: var(--text-primary);
-}
-
-.icon-suggestion-item span {
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 100%;
 }
