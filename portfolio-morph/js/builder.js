@@ -43,11 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
         template2: { realWidth: 1400, realHeight: 800, scaleNumerator: 390 },
         template3: { realWidth: 1400, realHeight: 800, scaleNumerator: 390 }
     };
-    
+
     // --- 3. GLOBAL DATA SETUP ---
     const urlParams = new URLSearchParams(window.location.search);
     const selectedTemplate = urlParams.get('template');
-    
+
     // Make portfolioData a global variable
     window.portfolioData = {
         template: selectedTemplate,
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             buildTemplate1SkillsForm(formControlsContainer, window.portfolioData, iframeDoc, buildForm);
         }
     }
-    
+
     // --- 5. THEME, HEADER, PANEL LOGIC ---
     function buildHeader(userStatus) {
         const loginPageUrl = '../login.html';
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('login-btn').addEventListener('click', (event) => { event.preventDefault(); localStorage.removeItem('userStatus'); window.location.href = loginPageUrl; });
         }
     }
-    
+
     const openPanel = () => { editingPanel.classList.add('visible'); panelBackdrop.classList.add('visible'); };
     const closePanel = () => { editingPanel.classList.remove('visible'); panelBackdrop.classList.remove('visible'); };
     editPanelBtn.addEventListener('click', openPanel);
@@ -114,11 +114,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.control-btn[data-theme]').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.theme === theme);
         });
-        
+
         // THE KEY FIX: Send the correct message type for theme changes
-        postMessageToPreviews({ 
-            type: 'themeChange', 
-            theme: window.portfolioData.theme 
+        postMessageToPreviews({
+            type: 'themeChange',
+            theme: window.portfolioData.theme
         });
     }
 
@@ -131,12 +131,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 6. INITIALIZATION & EVENT LISTENERS ---
     const userStatus = localStorage.getItem('userStatus');
     if (!userStatus) {
-        window.location.href = '../login.html'; 
+        window.location.href = '../login.html';
         return;
     }
-    
+
     buildHeader(userStatus);
     setupThemeButtonListeners();
+
+    // ======================== NEW CODE BLOCK STARTS HERE ========================
+    /**
+     * Listens for messages coming back from the preview iframes.
+     * This is used to receive the dynamic theme color for the icons.
+     */
+    window.addEventListener('message', (event) => {
+        // We only care about messages providing a theme color update.
+        if (event.data && event.data.type === 'themeColorUpdate') {
+            const newIconColor = event.data.color;
+
+            // Set a CSS variable on the main builder page's root element (the <html> tag).
+            // The skills.css file will use this variable to color the icons.
+            if (newIconColor) {
+                document.documentElement.style.setProperty('--builder-icon-color', newIconColor);
+            }
+        }
+    });
+    // ========================= NEW CODE BLOCK ENDS HERE =========================
 
     formControlsContainer.addEventListener('click', (event) => {
         if (event.target.classList.contains('delete-section-btn')) {
@@ -164,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.innerHTML = '<h2>Error: No template selected. Please go back.</h2>';
         return;
     }
-    
+
     mainPreviewFrame.onload = () => {
         console.log(`Main preview for ${selectedTemplate} loaded.`);
         const config = templateConfig[selectedTemplate] || templateConfig.template1;
@@ -175,8 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
         miniPreviewFrame.style.height = `${config.realHeight}px`;
         const scaleFactor = config.scaleNumerator / config.realWidth;
         miniPreviewFrame.style.transform = `scale(${scaleFactor})`;
-        
-        buildForm(); 
+
+        buildForm();
         setTheme(window.portfolioData.theme);
     };
 });

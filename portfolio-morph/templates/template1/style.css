@@ -3,6 +3,7 @@
     --secondary-bg: #f5f1e1ec;
     --primary-color:  #0d1321;
     --secondary-color: #3e5c76;
+    --icon-color: var(--secondary-color);
     --scrollbar: #5c7796b7;
     --scrollbar-hover: #3e5c76;
     --primary-border: #b3b5b66e;
@@ -24,6 +25,7 @@ body.dark{
     --secondary-bg: #141414e1;
     --primary-color:  #cacfd3;
     --secondary-color: #6899c4;
+    --icon-color: var(--secondary-color);
     --scrollbar: #5e5e5eb7;
     --scrollbar-hover: #596068;
     --primary-border: #a3a3a342;
@@ -375,7 +377,9 @@ body h2 {
     border: 1px solid var(--primary-border);
     border-radius: 8px;
     padding: 1.2rem;
-    text-align: center;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
     font-weight: 500;
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -388,7 +392,6 @@ body h2 {
 .skill-item i {
     font-size: 2rem;
     margin-bottom: 0.5rem;
-    display: block;
     color: var(--secondary-color);
 }
 
@@ -583,6 +586,6 @@ section>.container.visible {
     width: 2rem;
     height: 2rem;
     align-items: center;
-    /* margin-bottom: 0.5rem; */
+    margin-bottom: 0.5rem;
     object-fit: contain;
 }

@@ -1,20 +1,18 @@
-/* --- SKILLS-SPECIFIC STYLES --- */
+/* --- SKILLS-SPECIFIC STYLES (Final Version) --- */
 
 /* Master Toggle Switch */
 .section-controls {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     gap: 10px;
 }
-
 .section-controls label {
     font-size: 0.85rem;
     font-weight: 500;
     color: var(--text-secondary);
 }
-
 .section-controls input[type="checkbox"] {
     width: 36px;
     height: 20px;
@@ -25,7 +23,6 @@
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
-
 .section-controls input[type="checkbox"]::before {
     content: '';
     position: absolute;
@@ -37,11 +34,9 @@
     left: 2px;
     transition: transform 0.2s ease-in-out;
 }
-
 .section-controls input[type="checkbox"]:checked {
     background-color: var(--accent-color);
 }
-
 .section-controls input[type="checkbox"]:checked::before {
     transform: translateX(16px);
 }
@@ -50,53 +45,81 @@
 .skill-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
-
 .skill-item-form {
-    background-color: #f7f9fc;
+    background-color: #fff;
     border: 1px solid #e1e4e8;
-    border-radius: 8px;
-    padding: 10px;
+    border-radius: 10px;
+    padding: 8px 8px 8px 15px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     position: relative;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
+.skill-item-form:focus-within {
+    box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.2);
+    border-color: var(--accent-color);
+}
+/* --- FINAL & FORCEFUL CSS FIX --- */
 
-.skill-item-form .predicted-icon {
+.predicted-icon {
+    /* Set the container size and use flexbox for centering */
     flex-shrink: 0;
     width: 24px;
     height: 24px;
-    display: inline-flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
-    color: var(--text-secondary);
 }
 
-.skill-item-form .predicted-icon img {
+/* This is the most important new part */
+.predicted-icon .fa,
+.predicted-icon .fas,
+.predicted-icon .fab {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    
+    /* Set the font-size and color directly on the icon */
+    font-size: 20px;
+    color: var(--builder-icon-color, #555);
+    /* Let Font Awesome's own CSS handle the font-family */
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands";
+}
+
+.predicted-icon .fas {
+    font-weight: 900;
+}
+
+.predicted-icon .fab {
+    font-weight: 400;
+}
+
+.predicted-icon img {
     width: 24px;
     height: 24px;
     object-fit: contain;
 }
-
 .skill-item-form input {
     border: none;
     background: transparent;
     padding: 8px 0;
     flex-grow: 1;
     font-size: 1rem;
-    width: 0;
-    min-width: 50px;
     font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    font-weight: 500;
+    min-width: 50px;
 }
-
 .skill-item-form input:focus {
     outline: none;
-    box-shadow: none;
 }
 
+/* Manage and Delete Buttons */
 .manage-icon-btn {
     background-color: #f0f2f5;
     border: 1px solid #d1d5db;
@@ -112,35 +135,30 @@
     font-weight: 500;
     font-size: 0.85rem;
 }
-
 .manage-icon-btn:hover {
     background-color: #e2e8f0;
     color: var(--accent-color);
     border-color: var(--accent-color);
 }
-
 .manage-icon-btn svg {
     display: block;
     width: 18px;
     height: 18px;
 }
-
 .manage-icon-btn span {
     display: none;
 }
-
 @media (min-width: 420px) {
     .manage-icon-btn span {
         display: inline;
     }
 }
-
 .delete-item-btn {
     background: #f1f1f1;
-    border: 1px solid #ddd;
+    border: 1px solid transparent;
     color: #888;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 1.2rem;
@@ -148,55 +166,49 @@
     flex-shrink: 0;
     transition: all 0.2s ease;
 }
-
 .delete-item-btn:hover {
     background-color: #e53e3e;
     color: white;
-    border-color: #e53e3e;
 }
 
+/* Add Skill Button */
 .add-item-btn {
     display: block;
     width: 100%;
     margin-top: 15px;
-    padding: 10px;
-    background-color: #e9ecef;
-    border: 1px dashed #ccc;
+    padding: 12px;
+    background-color: #f6f8fa;
+    border: 1px dashed #d0d7de;
     border-radius: 8px;
     font-weight: 500;
+    font-size: 0.9rem;
     color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.2s ease;
 }
-
 .add-item-btn:hover {
-    background-color: #dfe6ef;
+    background-color: #f0f7ff;
     border-color: var(--accent-color);
+    color: var(--accent-color);
 }
 
-/* Inline Icon Dialog Box (Corrected for Overflow) */
+/* Inline Icon Dialog Box */
 .icon-dialog {
     display: none;
     position: absolute;
     top: calc(100% + 10px);
-    
-    /* THE KEY FIX: Stretch from left to right edge of the parent */
     left: 0;
-    right: 0; 
-    
+    right: 0;
     background-color: #fff;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     z-index: 10;
-    padding: 15px;
-    box-sizing: border-box; /* Ensures padding is included in the width */
+    box-sizing: border-box;
 }
-
 .icon-dialog.visible {
     display: block;
 }
-
 .current-icon-preview {
     display: flex;
     justify-content: center;
@@ -207,7 +219,6 @@
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
-
 .current-icon-preview .icon-display {
     font-size: 2.5rem;
     color: var(--accent-color);
@@ -217,19 +228,16 @@
     justify-content: center;
     align-items: center;
 }
-
 .current-icon-preview .icon-display img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
-
 .icon-dialog-nav {
     display: flex;
     border-bottom: 1px solid var(--border-color);
     padding: 0 15px;
 }
-
 .icon-dialog-nav button {
     flex: 1;
     padding: 12px 10px;
@@ -243,32 +251,26 @@
     transition: all 0.2s ease;
     margin-bottom: -1px;
 }
-
 .icon-dialog-nav button:hover {
     color: var(--accent-color);
 }
-
 .icon-dialog-nav button.active {
     color: var(--accent-color);
     border-bottom-color: var(--accent-color);
 }
-
 .icon-dialog-tab-content {
     display: none;
     padding: 20px 15px;
     min-height: 150px;
 }
-
 .icon-dialog-tab-content.active {
     display: block;
 }
-
 .icon-suggestion-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     gap: 10px;
 }
-
 .icon-suggestion-item {
     display: flex;
     flex-direction: column;
@@ -282,38 +284,32 @@
     transition: all 0.2s ease;
     height: 80px;
 }
-
 .icon-suggestion-item:hover,
 .icon-suggestion-item.selected {
     border-color: var(--accent-color);
     background-color: #f0f7ff;
 }
-
 .icon-suggestion-item i {
     font-size: 2rem;
     color: var(--text-primary);
     height: 32px;
     line-height: 32px;
 }
-
 .icon-suggestion-item span {
     font-size: 0.8rem;
     color: var(--text-secondary);
     text-align: center;
 }
-
 .icon-library {
     margin-top: 25px;
     padding-top: 20px;
     border-top: 1px solid var(--border-color);
 }
-
 .category-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
-
 .category-btn {
     display: inline-flex;
     align-items: center;
@@ -328,19 +324,16 @@
     color: var(--text-primary);
     transition: all 0.2s ease;
 }
-
 .category-btn:hover {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
     color: white;
 }
-
 .category-btn.clear-btn {
     background-color: #e53e3e;
     border-color: #e53e3e;
     color: white;
 }
-
 .category-btn.clear-btn:hover {
     background-color: #c53030;
     border-color: #c53030;

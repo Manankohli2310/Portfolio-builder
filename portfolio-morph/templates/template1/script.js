@@ -199,3 +199,33 @@ window.addEventListener('message', (event) => {
         updatePage(message.data);
     }
 });
+
+/**
+         * This script allows the template (iframe) to communicate with the builder (parent).
+         */
+        window.addEventListener('message', function(event) {
+            // Security: Ignore messages that are not from the parent window.
+            if (event.source !== parent) {
+                return;
+            }
+
+            // Listen for theme change commands from the builder.
+            if (event.data && event.data.type === 'themeChange') {
+                // 1. Apply the new theme to this document's body.
+                document.body.className = event.data.theme || 'light';
+
+                // 2. Wait for the browser to apply the new styles.
+                requestAnimationFrame(() => {
+                    // 3. Get the newly computed value of the --icon-color variable.
+                    const newIconColor = getComputedStyle(document.documentElement)
+                                            .getPropertyValue('--icon-color')
+                                            .trim();
+
+                    // 4. Report this new color back up to the builder.
+                    parent.postMessage({
+                        type: 'themeColorUpdate',
+                        color: newIconColor
+                    }, '*'); // Use a specific origin for production security
+                });
+            }
+        });
