@@ -2,6 +2,7 @@
 
 // This module contains all logic specific to the Skills section form
 
+// --- SKILLS MODULE: CONFIGURATION & DATA ---
 const skillIconMap = {
     'html': { class: 'fab fa-html5', name: 'HTML5' },
     'css': { class: 'fab fa-css3-alt', name: 'CSS3' },
@@ -50,15 +51,13 @@ function toggleIconDialog(skill, parentElement, data, buildFormCallback) {
 
     const dialog = document.createElement('div');
     dialog.className = 'icon-dialog';
+    dialog.dataset.skillId = skill.id;
     
     const currentIcon = data.skills.globalIconOverride || skill.iconClass;
     let currentIconDisplay = currentIcon && currentIcon.startsWith('data:image') ? `<img src="${currentIcon}" alt="Custom">` : `<i class="${currentIcon}"></i>`;
     
     dialog.innerHTML = `
-        <div class="current-icon-preview">
-            
-            <!-- Removed the <p> tag with the name -->
-        </div>
+        
         <div class="icon-dialog-nav">
             <button data-tab="suggestions" class="active">Suggestions & Library</button>
             <button data-tab="custom">Custom Upload</button>
@@ -107,16 +106,7 @@ function toggleIconDialog(skill, parentElement, data, buildFormCallback) {
         };
         categoryGrid.appendChild(btn);
     }
-    const clearBtn = document.createElement('button');
-    clearBtn.className = 'category-btn clear-btn';
-    clearBtn.textContent = 'Use Automatic';
-    clearBtn.onclick = () => {
-        data.skills.globalIconOverride = null;
-        sendFullUpdate();
-        buildFormCallback();
-        dialog.remove();
-    };
-    categoryGrid.appendChild(clearBtn);
+
 
     const customTab = dialog.querySelector('#tab-custom');
     const findSkillIndex = data.skills.list.findIndex(s => s.id === skill.id);
@@ -153,22 +143,27 @@ function toggleIconDialog(skill, parentElement, data, buildFormCallback) {
 function buildTemplate1SkillsForm(formContainer, data, previewDoc, buildFormCallback) {
     if (!data.skills.enabled) return;
 
+    // --- Create the main section container with accordion structure ---
     const skillsSection = document.createElement('div');
     skillsSection.className = 'form-section';
     skillsSection.dataset.sectionKey = 'skills';
 
+    // --- Create the clickable header ---
     const header = document.createElement('div');
     header.className = 'form-section-header';
     header.innerHTML = `
         <h4>Skills Section</h4>
         <div class="header-controls" style="display: flex; align-items: center;">
             <button class="delete-section-btn" title="Remove Skills Section">&times;</button>
-            <div class="arrow" style=" font-size: 28px;">&#129172;</div>    
-        </div>`;
+            <div class="arrow" style="font-size: 28px;">&#129172;</div>
+        </div>
+    `;
 
+    // --- Create the collapsible content area ---
     const content = document.createElement('div');
     content.className = 'form-section-content';
     
+    // --- Populate the content area with the skills form logic ---
     const masterToggleWrapper = document.createElement('div');
     masterToggleWrapper.className = 'section-controls';
     masterToggleWrapper.innerHTML = `<label for="enable-icons-toggle">Enable Icons</label><input type="checkbox" id="enable-icons-toggle">`;
@@ -271,6 +266,7 @@ function buildTemplate1SkillsForm(formContainer, data, previewDoc, buildFormCall
         content.appendChild(addBtn);
     }
     
+    // --- Assemble the final section ---
     skillsSection.appendChild(header);
     skillsSection.appendChild(content);
     formContainer.appendChild(skillsSection);

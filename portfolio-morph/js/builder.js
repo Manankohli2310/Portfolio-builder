@@ -59,27 +59,22 @@ document.addEventListener('DOMContentLoaded', () => {
         projects: [],
     };
 
-    // This now correctly serves as the default and the remembered state.
     let activeSectionKey = 'hero';
 
-    // --- 4. MASTER FORM BUILDER (DEFINITIVELY CORRECTED) ---
+    // --- 4. MASTER FORM BUILDER (with scroll/accordion fix) ---
     function buildForm() {
         let scrollPosition = 0;
-        // Use the globally stored activeSectionKey as the default key to restore.
-        let keyToRestore = activeSectionKey; 
+        let keyToRestore = activeSectionKey;
 
-        // Before clearing the form, check if a section is currently active in the DOM.
-        // If so, its state is the most current and should be prioritized.
         const activeSection = formControlsContainer.querySelector('.form-section.active');
         if (activeSection) {
-            keyToRestore = activeSection.dataset.sectionKey; // Prioritize the DOM's current state.
+            keyToRestore = activeSection.dataset.sectionKey;
             const activeScroller = activeSection.querySelector('.form-section-content');
             if (activeScroller) {
                 scrollPosition = activeScroller.scrollTop;
             }
         }
         
-        // Clear and rebuild the form.
         formControlsContainer.innerHTML = '';
         const iframeDoc = mainPreviewFrame.contentDocument;
 
@@ -90,12 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
             buildTemplate1ExperienceForm(formControlsContainer, window.portfolioData, iframeDoc, buildForm);
         }
 
-        // Restore the active section using the determined key.
         if (keyToRestore) {
             const sectionToReopen = formControlsContainer.querySelector(`[data-section-key="${keyToRestore}"]`);
             if (sectionToReopen) {
                 sectionToReopen.classList.add('active');
-                
                 const newlyActiveScroller = sectionToReopen.querySelector('.form-section-content');
                 if (newlyActiveScroller) {
                     requestAnimationFrame(() => {
@@ -166,8 +159,13 @@ document.addEventListener('DOMContentLoaded', () => {
     buildHeader(userStatus);
     setupThemeButtonListeners();
 
+    // ================== CORRECTED EVENT LISTENER ==================
+    // This listener now correctly distinguishes between clicks on different elements.
     formControlsContainer.addEventListener('click', (event) => {
-        const deleteBtn = event.target.closest('.delete-section-btn');
+        const target = event.target;
+
+        // CASE 1: Click was on a section's DELETE button
+        const deleteBtn = target.closest('.delete-section-btn');
         if (deleteBtn) {
             const sectionEl = deleteBtn.closest('.form-section');
             const sectionKey = sectionEl.dataset.sectionKey;
@@ -177,31 +175,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.sendFullUpdate();
                 buildForm();
             }
-            return;
+            return; // Stop processing this click
         }
 
-        const header = event.target.closest('.form-section-header');
+        // CASE 2: Click was on a section HEADER (for accordion)
+        const header = target.closest('.form-section-header');
         if (header) {
             const section = header.parentElement;
             const sectionKey = section.dataset.sectionKey;
-            const isActive = section.classList.contains('active');
+            const wasActive = section.classList.contains('active');
             
+            // Close all sections
             formControlsContainer.querySelectorAll('.form-section.active').forEach(sec => {
                 sec.classList.remove('active');
             });
 
-            if (!isActive) {
+            // If the clicked section wasn't active, open it and save its key.
+            if (!wasActive) {
                 section.classList.add('active');
                 activeSectionKey = sectionKey;
             } else {
+                // Otherwise, it's now closed, so no section is active.
                 activeSectionKey = null;
             }
+            return; // Stop processing this click
         }
-    });
 
+        // If the click was not on a delete button or a header (e.g., it was on "Manage Icon"),
+        // this listener will do nothing, allowing the button's own .onclick handler in skills.js to function correctly.
+    });
+    // ===============================================================
+
+    // This listener for closing the icon dialog is correct and separate.
     document.body.addEventListener('click', (event) => {
         const openDialog = document.querySelector('.icon-dialog');
-        if (openDialog && !openDialog.contains(event.target) && !openDialog.closest('.manage-icon-btn')) {
+        if (openDialog && !openDialog.contains(event.target) && !event.target.closest('.manage-icon-btn')) {
             openDialog.remove();
         }
     });
