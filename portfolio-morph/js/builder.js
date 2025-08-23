@@ -1,7 +1,6 @@
 // This is the main builder CONTROLLER. It orchestrates everything.
 
 // --- GLOBAL SHARED FUNCTIONS ---
-// These are attached to the 'window' object to be globally accessible by all scripts.
 window.sendFullUpdate = function() {
     const mainPreviewFrame = document.getElementById('main-preview-frame');
     const miniPreviewFrame = document.getElementById('mini-preview-frame');
@@ -39,38 +38,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 2. TEMPLATE CONFIG ---
     const templateConfig = {
-        template1: { realWidth: 1400, realHeight: 800, scaleNumerator: 375 },
+        template1: { realWidth: 1400, realHeight: 800, scaleNumerator: 380 },
         template2: { realWidth: 1400, realHeight: 800, scaleNumerator: 390 },
         template3: { realWidth: 1400, realHeight: 800, scaleNumerator: 390 }
     };
-
-    // --- 3. GLOBAL DATA SETUP ---
+    
+    // --- 3. GLOBAL DATA & STATE SETUP ---
     const urlParams = new URLSearchParams(window.location.search);
     const selectedTemplate = urlParams.get('template');
 
-    // Make portfolioData a global variable
     window.portfolioData = {
         template: selectedTemplate,
         theme: localStorage.getItem('selectedTheme') || 'light',
         hero: { name: null, subtitle: null, resumeUrl: null, profileImageUrl: null },
         about: { description: null, enabled: true },
         skills: { list: [], enabled: true, iconsEnabled: true, globalIconOverride: null },
+        experience: { list: [], enabled: true },
         contact: { email: null, phone: null, location: null, social: { linkedin: null, github: null, twitter: null }, enabled: true },
         footer: { copyright: null, enabled: true },
-        experience: [],
         projects: [],
     };
 
-    // --- 4. MASTER FORM BUILDER ---
+    // This now correctly serves as the default and the remembered state.
+    let activeSectionKey = 'hero';
+
+    // --- 4. MASTER FORM BUILDER (DEFINITIVELY CORRECTED) ---
     function buildForm() {
+        let scrollPosition = 0;
+        // Use the globally stored activeSectionKey as the default key to restore.
+        let keyToRestore = activeSectionKey; 
+
+        // Before clearing the form, check if a section is currently active in the DOM.
+        // If so, its state is the most current and should be prioritized.
+        const activeSection = formControlsContainer.querySelector('.form-section.active');
+        if (activeSection) {
+            keyToRestore = activeSection.dataset.sectionKey; // Prioritize the DOM's current state.
+            const activeScroller = activeSection.querySelector('.form-section-content');
+            if (activeScroller) {
+                scrollPosition = activeScroller.scrollTop;
+            }
+        }
+        
+        // Clear and rebuild the form.
         formControlsContainer.innerHTML = '';
         const iframeDoc = mainPreviewFrame.contentDocument;
 
         if (selectedTemplate === 'template1') {
-            // Call the globally available build functions from the other files
             buildTemplate1HeroForm(formControlsContainer, window.portfolioData, iframeDoc);
             buildTemplate1AboutForm(formControlsContainer, window.portfolioData, iframeDoc);
             buildTemplate1SkillsForm(formControlsContainer, window.portfolioData, iframeDoc, buildForm);
+            buildTemplate1ExperienceForm(formControlsContainer, window.portfolioData, iframeDoc, buildForm);
+        }
+
+        // Restore the active section using the determined key.
+        if (keyToRestore) {
+            const sectionToReopen = formControlsContainer.querySelector(`[data-section-key="${keyToRestore}"]`);
+            if (sectionToReopen) {
+                sectionToReopen.classList.add('active');
+                
+                const newlyActiveScroller = sectionToReopen.querySelector('.form-section-content');
+                if (newlyActiveScroller) {
+                    requestAnimationFrame(() => {
+                        newlyActiveScroller.scrollTop = scrollPosition;
+                    });
+                }
+            }
         }
     }
 
@@ -114,12 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.control-btn[data-theme]').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.theme === theme);
         });
-
-        // THE KEY FIX: Send the correct message type for theme changes
-        postMessageToPreviews({
-            type: 'themeChange',
-            theme: window.portfolioData.theme
-        });
+        editingPanel.classList.toggle('dark', theme === 'dark');
+        postMessageToPreviews({ type: 'themeChange', theme: window.portfolioData.theme });
     }
 
     function setupThemeButtonListeners() {
@@ -138,39 +166,42 @@ document.addEventListener('DOMContentLoaded', () => {
     buildHeader(userStatus);
     setupThemeButtonListeners();
 
-    // ======================== NEW CODE BLOCK STARTS HERE ========================
-    /**
-     * Listens for messages coming back from the preview iframes.
-     * This is used to receive the dynamic theme color for the icons.
-     */
-    window.addEventListener('message', (event) => {
-        // We only care about messages providing a theme color update.
-        if (event.data && event.data.type === 'themeColorUpdate') {
-            const newIconColor = event.data.color;
-
-            // Set a CSS variable on the main builder page's root element (the <html> tag).
-            // The skills.css file will use this variable to color the icons.
-            if (newIconColor) {
-                document.documentElement.style.setProperty('--builder-icon-color', newIconColor);
-            }
-        }
-    });
-    // ========================= NEW CODE BLOCK ENDS HERE =========================
-
     formControlsContainer.addEventListener('click', (event) => {
-        if (event.target.classList.contains('delete-section-btn')) {
-            const sectionKey = event.target.dataset.section;
+        const deleteBtn = event.target.closest('.delete-section-btn');
+        if (deleteBtn) {
+            const sectionEl = deleteBtn.closest('.form-section');
+            const sectionKey = sectionEl.dataset.sectionKey;
             if (sectionKey && window.portfolioData[sectionKey]) {
                 window.portfolioData[sectionKey].enabled = false;
+                activeSectionKey = null;
                 window.sendFullUpdate();
                 buildForm();
+            }
+            return;
+        }
+
+        const header = event.target.closest('.form-section-header');
+        if (header) {
+            const section = header.parentElement;
+            const sectionKey = section.dataset.sectionKey;
+            const isActive = section.classList.contains('active');
+            
+            formControlsContainer.querySelectorAll('.form-section.active').forEach(sec => {
+                sec.classList.remove('active');
+            });
+
+            if (!isActive) {
+                section.classList.add('active');
+                activeSectionKey = sectionKey;
+            } else {
+                activeSectionKey = null;
             }
         }
     });
 
     document.body.addEventListener('click', (event) => {
         const openDialog = document.querySelector('.icon-dialog');
-        if (openDialog && !openDialog.contains(event.target) && !event.target.closest('.manage-icon-btn')) {
+        if (openDialog && !openDialog.contains(event.target) && !openDialog.closest('.manage-icon-btn')) {
             openDialog.remove();
         }
     });
