@@ -61,12 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
             email: null,
             phone: null,
             location: null,
-            socialsEnabled: true, // The new master toggle
-            social: [], // The dynamic array
+            socialsEnabled: true,
+            social: [],
             buttonText: null,
-            isPopulated: false // Flag to get defaults once
+            isPopulated: false
         },
-        footer: { copyright: null, enabled: true },
+        footer: {
+            enabled: true,
+            year: null,
+            name: null,
+            customText: null
+        },
     };
 
     let activeSectionKey = 'hero';
@@ -95,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             buildTemplate1ExperienceForm(formControlsContainer, window.portfolioData, iframeDoc, buildForm);
             buildTemplate1ProjectsForm(formControlsContainer, window.portfolioData, iframeDoc, buildForm);
             buildTemplate1ContactForm(formControlsContainer, window.portfolioData, iframeDoc, buildForm);
+            buildTemplate1FooterForm(formControlsContainer, window.portfolioData, iframeDoc, buildForm);
         }
 
         if (keyToRestore) {
@@ -171,12 +177,11 @@ document.addEventListener('DOMContentLoaded', () => {
     buildHeader(userStatus);
     setupThemeButtonListeners();
 
-    // ================== CORRECTED EVENT LISTENER ==================
-    // This listener now correctly distinguishes between clicks on different elements.
+    // ================== DEFINITIVELY CORRECTED EVENT LISTENER ==================
     formControlsContainer.addEventListener('click', (event) => {
         const target = event.target;
 
-        // CASE 1: Click was on a section's DELETE button
+        // TARGET 1: A section's DELETE button
         const deleteBtn = target.closest('.delete-section-btn');
         if (deleteBtn) {
             const sectionEl = deleteBtn.closest('.form-section');
@@ -187,41 +192,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.sendFullUpdate();
                 buildForm();
             }
-            return; // Stop processing this click
+            return; 
         }
 
-        // CASE 2: Click was on a section HEADER (for accordion)
+        // TARGET 2: A section HEADER (for accordion functionality)
         const header = target.closest('.form-section-header');
         if (header) {
             const section = header.parentElement;
             const sectionKey = section.dataset.sectionKey;
             const wasActive = section.classList.contains('active');
             
-            // Close all sections
             formControlsContainer.querySelectorAll('.form-section.active').forEach(sec => {
                 sec.classList.remove('active');
             });
 
-            // If the clicked section wasn't active, open it and save its key.
             if (!wasActive) {
                 section.classList.add('active');
                 activeSectionKey = sectionKey;
             } else {
-                // Otherwise, it's now closed, so no section is active.
                 activeSectionKey = null;
             }
-            return; // Stop processing this click
+            // This listener's job is done, no 'return' is needed here.
         }
 
-        // If the click was not on a delete button or a header (e.g., it was on "Manage Icon"),
-        // this listener will do nothing, allowing the button's own .onclick handler in skills.js to function correctly.
-    });
-    // ===============================================================
+        // TARGET 3: A theme control button
+        const themeBtn = target.closest('.control-btn[data-theme]');
+        if (themeBtn) {
+            setTheme(themeBtn.dataset.theme);
+        }
 
-    // This listener for closing the icon dialog is correct and separate.
+        // Any other click inside the form (like "Manage Icon") will be ignored by this
+        // listener and handled by its own specific .onclick handler.
+    });
+    // =======================================================================
+
     document.body.addEventListener('click', (event) => {
         const openDialog = document.querySelector('.icon-dialog');
-        if (openDialog && !openDialog.contains(event.target) && !event.target.closest('.manage-icon-btn')) {
+        if (openDialog && !openDialog.contains(event.target) && !openDialog.closest('.manage-icon-btn')) {
             openDialog.remove();
         }
     });

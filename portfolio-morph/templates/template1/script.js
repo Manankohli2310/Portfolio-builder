@@ -288,6 +288,29 @@ function updatePage(data) {
             }
         }
     }
+
+        // --- DYNAMIC FOOTER RENDERING (Final Version) ---
+    if (data.footer) {
+        const footerElement = document.querySelector('.footer');
+        if (footerElement) {
+            // Footer is not removable, so we don't need to check the 'enabled' flag to hide it.
+            
+            let copyrightText = '';
+
+            // If the user has entered custom text, it takes priority.
+            if (data.footer.customText) {
+                copyrightText = data.footer.customText;
+            } else {
+                // Otherwise, build the standard text from the year and name.
+                const year = data.footer.year || new Date().getFullYear();
+                const name = data.footer.name || 'Your Name';
+                copyrightText = `© ${year} ${name}. All Rights Reserved.`;
+            }
+            
+            // Use the setText helper to update the footer paragraph.
+            setText('.footer p', copyrightText);
+        }
+    }
     // --- We will add dynamic updates for Skills, Experience, and Projects here later ---
 }
 
