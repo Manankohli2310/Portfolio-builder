@@ -84,7 +84,7 @@
 .form-section-header .arrow {
     font-size: 1rem;
     color: #858585;
-    margin-bottom: 8px;
+    margin-top: 2px;
     transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -97,6 +97,7 @@
 
 /* Active/Expanded State */
 .form-section.active .form-section-header .arrow {
+    margin-bottom: 4.5px;
     transform: rotate(90deg);
 }
 
@@ -228,4 +229,13 @@
 .form-group textarea {
     scrollbar-width: thin;
     scrollbar-color: #d1d5db transparent;
+}
+
+/* --- NEW STYLE for Input Guidance Text --- */
+.input-guidance {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    margin-bottom: 0;
+    text-align: left;
 }

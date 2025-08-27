@@ -54,9 +54,19 @@ document.addEventListener('DOMContentLoaded', () => {
         about: { description: null, enabled: true },
         skills: { list: [], enabled: true, iconsEnabled: true, globalIconOverride: null },
         experience: { list: [], enabled: true },
-        contact: { email: null, phone: null, location: null, social: { linkedin: null, github: null, twitter: null }, enabled: true },
+        projects: { list: [], enabled: true, imagesEnabled: true },
+        contact: {
+            enabled: true,
+            intro: null,
+            email: null,
+            phone: null,
+            location: null,
+            socialsEnabled: true, // The new master toggle
+            social: [], // The dynamic array
+            buttonText: null,
+            isPopulated: false // Flag to get defaults once
+        },
         footer: { copyright: null, enabled: true },
-        projects: [],
     };
 
     let activeSectionKey = 'hero';
@@ -83,6 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
             buildTemplate1AboutForm(formControlsContainer, window.portfolioData, iframeDoc);
             buildTemplate1SkillsForm(formControlsContainer, window.portfolioData, iframeDoc, buildForm);
             buildTemplate1ExperienceForm(formControlsContainer, window.portfolioData, iframeDoc, buildForm);
+            buildTemplate1ProjectsForm(formControlsContainer, window.portfolioData, iframeDoc, buildForm);
+            buildTemplate1ContactForm(formControlsContainer, window.portfolioData, iframeDoc, buildForm);
         }
 
         if (keyToRestore) {

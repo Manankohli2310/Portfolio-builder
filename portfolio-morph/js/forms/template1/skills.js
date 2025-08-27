@@ -148,17 +148,26 @@ function buildTemplate1SkillsForm(formContainer, data, previewDoc, buildFormCall
     skillsSection.className = 'form-section';
     skillsSection.dataset.sectionKey = 'skills';
 
-    // --- Create the clickable header ---
-    const header = document.createElement('div');
-    header.className = 'form-section-header';
-    header.innerHTML = `
-        <h4>Skills Section</h4>
-        <div class="header-controls" style="display: flex; align-items: center;">
-            <button class="delete-section-btn" title="Remove Skills Section">&times;</button>
-            <div class="arrow" style="font-size: 28px;">&#129172;</div>
+       const header = document.createElement('div');
+header.className = 'form-section-header';
+header.innerHTML = `
+    <h4>Skills</h4>
+    <div class="header-controls" style="display: flex; align-items: center;">
+        <button class="delete-section-btn" title="Remove Contact Section">&times;</button>
+        <div class="arrow">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2.75"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 width="20" height="20">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
         </div>
-    `;
-
+    </div>
+`;
     // --- Create the collapsible content area ---
     const content = document.createElement('div');
     content.className = 'form-section-content';

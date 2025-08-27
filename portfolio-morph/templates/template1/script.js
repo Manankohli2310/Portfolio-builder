@@ -207,6 +207,87 @@ function updatePage(data) {
             });
         }
     }
+
+    if (data.projects) {
+        setSectionVisibility('projects1', data.projects.enabled);
+        const projectsGrid = document.querySelector('.projects-grid');
+        if (projectsGrid) {
+            projectsGrid.innerHTML = ''; // Clear defaults
+            
+            data.projects.list.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+
+                let imageHTML = '';
+                // Only show the image if the master toggle is on and an image URL exists
+                if (data.projects.imagesEnabled && project.imageUrl) {
+                    imageHTML = `<img src="${project.imageUrl}" alt="${project.title} Screenshot">`;
+                }
+                
+                projectCard.innerHTML = `
+                    ${imageHTML}
+                    <h3>${project.title || ''}</h3>
+                    <p>${project.description || ''}</p>
+                    <div class="project-links">
+                        <a href="${project.link || '#'}" target="_blank">View</a>
+                    </div>
+                `;
+                projectsGrid.appendChild(projectCard);
+            });
+        }
+    }
+
+      if (data.contact) {
+        setSectionVisibility('contact1', data.contact.enabled);
+        if (data.contact.enabled) {
+            setText('.contact-section > .container > p', data.contact.intro);
+
+            const emailLink = document.querySelector('.contact-info a[href^="mailto:"]');
+            if (emailLink && data.contact.email != null) {
+                emailLink.href = `mailto:${data.contact.email}`;
+                emailLink.textContent = data.contact.email;
+            }
+
+            const phoneLink = document.querySelector('.contact-info a[href^="tel:"]');
+            if (phoneLink && data.contact.phone != null) {
+                phoneLink.href = `tel:${data.contact.phone}`;
+                phoneLink.textContent = data.contact.phone;
+            }
+            
+            const locationP = document.querySelector('.contact-info p:last-of-type');
+            if (locationP && data.contact.location != null) {
+                locationP.innerHTML = `<i class="fas fa-map-marker-alt"></i> Location: ${data.contact.location}`;
+            }
+            
+            const socialLinksContainer = document.querySelector('.social-links');
+            if (socialLinksContainer) {
+                // THE KEY FIX: Show or hide the entire social links container
+                // based on the master toggle.
+                socialLinksContainer.style.display = data.contact.socialsEnabled ? '' : 'none';
+                
+                if (data.contact.socialsEnabled && data.contact.social) {
+                    // Clear only the links, keeping the "Connect With Me" H2 title
+                    socialLinksContainer.querySelectorAll('a').forEach(link => link.remove());
+                    
+                    data.contact.social.forEach(social => {
+                        if (social.url) {
+                            const link = document.createElement('a');
+                            link.href = social.url;
+                            link.target = '_blank';
+                            link.innerHTML = `<i class="fab fa-${social.type}"></i>`;
+                            socialLinksContainer.appendChild(link);
+                        }
+                    });
+                }
+            }
+            
+            const sayHelloBtn = document.querySelector('.contact-section .btn-primary');
+            if (sayHelloBtn) {
+                setText('.contact-section .btn-primary', data.contact.buttonText);
+                setLink('.contact-section .btn-primary', `mailto:${data.contact.email}`);
+            }
+        }
+    }
     // --- We will add dynamic updates for Skills, Experience, and Projects here later ---
 }
 
