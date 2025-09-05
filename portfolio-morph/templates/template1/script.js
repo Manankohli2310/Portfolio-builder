@@ -74,85 +74,65 @@ function setImage(selector, url) {
     if (element && url != null) element.src = url;
 }
 
-// NEW: Helper to toggle the visibility of a whole section
+// Helper to toggle the visibility of a whole section AND its preceding <hr> tag
 function setSectionVisibility(sectionId, isEnabled) {
     const sectionElement = document.getElementById(sectionId);
     if (sectionElement) {
-        // Use an empty string '' to revert to the default display value from the CSS
         sectionElement.style.display = isEnabled ? '' : 'none';
-    }
-    // Also hide the <hr> separator that comes before the section
-    // The ID of the hr matches the section ID without the '1' at the end (e.g., about1 -> about)
-    const hrElement = document.getElementById(sectionId.replace('1', ''));
-    if (hrElement && hrElement.tagName === 'HR') {
-        hrElement.style.display = isEnabled ? '' : 'none';
+        // The corresponding <hr> tag has the ID of the section without the '1'
+        const hrId = sectionId.replace('1', '');
+        const hrElement = document.getElementById(hrId);
+        if (hrElement && hrElement.tagName === 'HR') {
+            hrElement.style.display = isEnabled ? '' : 'none';
+        }
     }
 }
 
-// --- MAIN UPDATE FUNCTION ---
+document.body.addEventListener('click', () => {
+    // Send a simple message to the parent window.
+    parent.postMessage({ type: 'iframeClick' }, '*');
+});
+// --- MAIN UPDATE FUNCTION (CORRECTED SELECTORS) ---
 function updatePage(data) {
-    // Navigation (not removable)
-    if (data.navigation) setText('.logo', data.navigation.logoText);
-
+    if (data.navigation && data.navigation.hasOwnProperty('logoText')) {
+        const newTitle = data.navigation.logoText || 'Portfolio';
+        document.title = `${newTitle} | Portfolio`;
+        setText('.logo', data.navigation.logoText);
+    }
     // Hero Section (not removable)
     if (data.hero) {
         setText('.hero-text h1', data.hero.name);
         setText('.hero-text .subtitle', data.hero.subtitle);
-        setText('.hero-buttons .btn-primary', data.hero.primaryButtonText);
         setLink('.hero-buttons .btn-secondary', data.hero.resumeUrl);
         setImage('.hero-image img', data.hero.profileImageUrl);
     }
 
-    // About Section (now checks the 'enabled' property)
+    // About Section
     if (data.about) {
         setSectionVisibility('about1', data.about.enabled);
         if (data.about.enabled) {
-            setText('.about-section p', data.about.description);
+            setText('#about1 p', data.about.description);
         }
     }
     
-    // Contact Section (will also be removable)
-    if (data.contact) {
-        setSectionVisibility('contact1', data.contact.enabled);
-        if (data.contact.enabled) {
-            const emailLink = document.querySelector('.contact-info a[href^="mailto:"]');
-            if(emailLink && data.contact.email != null) {
-                emailLink.href = `mailto:${data.contact.email}`;
-                emailLink.textContent = data.contact.email;
-            }
-            const phoneLink = document.querySelector('.contact-info a[href^="tel:"]');
-            if(phoneLink && data.contact.phone != null) {
-                phoneLink.href = `tel:${data.contact.phone}`;
-                phoneLink.textContent = data.contact.phone;
-            }
-            setText('.contact-info p:last-of-type', data.contact.location);
-            if (data.contact.social) {
-                setLink('.social-links a[href*="linkedin"]', data.contact.social.linkedin);
-                setLink('.social-links a[href*="github"]', data.contact.social.github);
-                setLink('.social-links a[href*="twitter"]', data.contact.social.twitter);
-            }
-        }
-    }
-        // --- DYNAMIC SKILLS RENDERING (with Icons and isDirty logic removed) ---
+    // Skills Section
      if (data.skills) {
-        setSectionVisibility('skills', data.skills.enabled);
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) skillsSection.style.display = data.skills.enabled ? '' : 'none';
+        
         const skillsGrid = document.querySelector('.skills-grid');
-        if (skillsGrid) {
+        if (skillsGrid && data.skills.enabled) {
             skillsGrid.innerHTML = '';
-            
             data.skills.list.forEach(skill => {
                 if (skill.name) {
                     const skillElement = document.createElement('div');
                     skillElement.className = 'skill-item';
-                    
                     const finalIcon = data.skills.globalIconOverride || skill.iconClass;
-
                     if (data.skills.iconsEnabled && finalIcon) {
                         let iconElement;
                         if (finalIcon.startsWith('data:image')) {
                             iconElement = document.createElement('img');
                             iconElement.src = finalIcon;
-                            // THE KEY FIX: Add a class for specific styling
                             iconElement.className = 'custom-skill-icon';
                         } else {
                             iconElement = document.createElement('i');
@@ -160,7 +140,6 @@ function updatePage(data) {
                         }
                         skillElement.appendChild(iconElement);
                     }
-                    
                     const textNode = document.createTextNode(` ${skill.name}`);
                     skillElement.appendChild(textNode);
                     skillsGrid.appendChild(skillElement);
@@ -168,107 +147,58 @@ function updatePage(data) {
             });
         }
     }
-    // Footer (will also be removable)
-    if (data.footer) {
-        // The footer is a <footer class="footer"> not an ID, so we handle it differently
-        const footerElement = document.querySelector('.footer');
-        if (footerElement) {
-            footerElement.style.display = data.footer.enabled ? '' : 'none';
-            if (data.footer.enabled) {
-                setText('.footer p', data.footer.copyright);
-            }
-        }
-    }
-// Inside the updatePage function in template1/script.js
+
+    // Experience Section
     if (data.experience) {
         setSectionVisibility('experience1', data.experience.enabled);
-        const timeline = document.querySelector('.timeline');
-        if (timeline) {
+        const timeline = document.querySelector('#experience1 .timeline');
+        if (timeline && data.experience.enabled) {
             timeline.innerHTML = '';
-            
             data.experience.list.forEach(item => {
                 const timelineItem = document.createElement('div');
                 timelineItem.className = 'timeline-item';
-                
-                // THE KEY FIX: Directly map the array to <li> elements
                 const pointsHTML = item.points.map(point => `<li>${point}</li>`).join('');
-                
-                timelineItem.innerHTML = `
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>${item.title || ''}</h3>
-                        <p class="company">${item.company || ''} | ${item.startYear || ''} - ${item.isPresent ? 'Present' : item.endYear || ''}</p>
-                        <ul>
-                            ${pointsHTML}
-                        </ul>
-                    </div>
-                `;
+                timelineItem.innerHTML = `<div class="timeline-dot"></div><div class="timeline-content"><h3>${item.title || ''}</h3><p class="company">${item.company || ''} | ${item.startYear || ''} - ${item.isPresent ? 'Present' : item.endYear || ''}</p><ul>${pointsHTML}</ul></div>`;
                 timeline.appendChild(timelineItem);
             });
         }
     }
 
+    // Projects Section
     if (data.projects) {
         setSectionVisibility('projects1', data.projects.enabled);
-        const projectsGrid = document.querySelector('.projects-grid');
-        if (projectsGrid) {
-            projectsGrid.innerHTML = ''; // Clear defaults
-            
+        const projectsGrid = document.querySelector('#projects1 .projects-grid');
+        if (projectsGrid && data.projects.enabled) {
+            projectsGrid.innerHTML = '';
             data.projects.list.forEach(project => {
                 const projectCard = document.createElement('div');
                 projectCard.className = 'project-card';
-
                 let imageHTML = '';
-                // Only show the image if the master toggle is on and an image URL exists
                 if (data.projects.imagesEnabled && project.imageUrl) {
-                    imageHTML = `<img src="${project.imageUrl}" alt="${project.title} Screenshot">`;
+                    imageHTML = `<img src="${project.imageUrl}" alt="${project.title || 'Project'} Screenshot">`;
                 }
-                
-                projectCard.innerHTML = `
-                    ${imageHTML}
-                    <h3>${project.title || ''}</h3>
-                    <p>${project.description || ''}</p>
-                    <div class="project-links">
-                        <a href="${project.link || '#'}" target="_blank">View</a>
-                    </div>
-                `;
+                projectCard.innerHTML = `${imageHTML}<h3>${project.title || ''}</h3><p>${project.description || ''}</p><div class="project-links"><a href="${project.link || '#'}" target="_blank">View</a></div>`;
                 projectsGrid.appendChild(projectCard);
             });
         }
     }
 
-      if (data.contact) {
+    // Contact Section
+    if (data.contact) {
         setSectionVisibility('contact1', data.contact.enabled);
         if (data.contact.enabled) {
-            setText('.contact-section > .container > p', data.contact.intro);
-
-            const emailLink = document.querySelector('.contact-info a[href^="mailto:"]');
-            if (emailLink && data.contact.email != null) {
-                emailLink.href = `mailto:${data.contact.email}`;
-                emailLink.textContent = data.contact.email;
-            }
-
-            const phoneLink = document.querySelector('.contact-info a[href^="tel:"]');
-            if (phoneLink && data.contact.phone != null) {
-                phoneLink.href = `tel:${data.contact.phone}`;
-                phoneLink.textContent = data.contact.phone;
-            }
-            
-            const locationP = document.querySelector('.contact-info p:last-of-type');
-            if (locationP && data.contact.location != null) {
-                locationP.innerHTML = `<i class="fas fa-map-marker-alt"></i> Location: ${data.contact.location}`;
-            }
-            
-            const socialLinksContainer = document.querySelector('.social-links');
+            setText('#contact1 .container > p', data.contact.intro);
+            const emailLink = document.querySelector('#contact1 .contact-info a[href^="mailto:"]');
+            if (emailLink) { emailLink.href = `mailto:${data.contact.email}`; emailLink.textContent = data.contact.email; }
+            const phoneLink = document.querySelector('#contact1 .contact-info a[href^="tel:"]');
+            if (phoneLink) { phoneLink.href = `tel:${data.contact.phone}`; phoneLink.textContent = data.contact.phone; }
+            const locationP = document.querySelector('#contact1 .contact-info p:last-of-type');
+            if (locationP) locationP.innerHTML = `<i class="fas fa-map-marker-alt"></i> Location: ${data.contact.location}`;
+            const socialLinksContainer = document.querySelector('#contact1 .social-links');
             if (socialLinksContainer) {
-                // THE KEY FIX: Show or hide the entire social links container
-                // based on the master toggle.
                 socialLinksContainer.style.display = data.contact.socialsEnabled ? '' : 'none';
-                
                 if (data.contact.socialsEnabled && data.contact.social) {
-                    // Clear only the links, keeping the "Connect With Me" H2 title
                     socialLinksContainer.querySelectorAll('a').forEach(link => link.remove());
-                    
                     data.contact.social.forEach(social => {
                         if (social.url) {
                             const link = document.createElement('a');
@@ -281,37 +211,30 @@ function updatePage(data) {
                 }
             }
             
-            const sayHelloBtn = document.querySelector('.contact-section .btn-primary');
+            // --- THIS IS THE DEFINITIVE FIX ---
+            // Create a specific selector string for the button.
+             const buttonSelector = '#contact1 .btn-primary';
+            const sayHelloBtn = document.querySelector(buttonSelector);
             if (sayHelloBtn) {
-                setText('.contact-section .btn-primary', data.contact.buttonText);
-                setLink('.contact-section .btn-primary', `mailto:${data.contact.email}`);
+                // The || 'Say Hello' provides a fallback if the user's text is empty.
+                const buttonText = data.contact.buttonText || 'Say Hello';
+                setText(buttonSelector, buttonText);
+                setLink(buttonSelector, `mailto:${data.contact.email}`);
             }
+            // --- END OF FIX ---
         }
     }
 
-        // --- DYNAMIC FOOTER RENDERING (Final Version) ---
+    // Footer Section
     if (data.footer) {
-        const footerElement = document.querySelector('.footer');
+        const footerElement = document.getElementById('footer');
         if (footerElement) {
-            // Footer is not removable, so we don't need to check the 'enabled' flag to hide it.
-            
-            let copyrightText = '';
-
-            // If the user has entered custom text, it takes priority.
-            if (data.footer.customText) {
-                copyrightText = data.footer.customText;
-            } else {
-                // Otherwise, build the standard text from the year and name.
-                const year = data.footer.year || new Date().getFullYear();
-                const name = data.footer.name || 'Your Name';
-                copyrightText = `© ${year} ${name}. All Rights Reserved.`;
-            }
-            
-            // Use the setText helper to update the footer paragraph.
-            setText('.footer p', copyrightText);
+            const year = data.footer.year || new Date().getFullYear();
+            const name = data.footer.name || 'Your Name';
+            const copyrightText = data.footer.customText || `© ${year} ${name}. All Rights Reserved.`;
+            setText('#footer p', copyrightText);
         }
     }
-    // --- We will add dynamic updates for Skills, Experience, and Projects here later ---
 }
 
 // --- THEME & MESSAGE LISTENER ---
@@ -321,13 +244,26 @@ function applyTheme(theme) {
 
 window.addEventListener('message', (event) => {
     const message = event.data;
+    if (!message) return;
 
-    if (message.type === 'themeChange') {
-        applyTheme(message.theme);
-    }
-    
-    if (message.type === 'fullUpdate') {
-        updatePage(message.data);
+    switch (message.type) {
+        case 'themeChange':
+            applyTheme(message.theme);
+            break;
+        
+        case 'fullUpdate':
+            if (message.data) {
+                updatePage(message.data);
+            }
+            break;
+        
+        case 'scrollToSection':
+            if (message.sectionId) {
+                const targetElement = document.getElementById(message.sectionId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+            break;
     }
 });
-

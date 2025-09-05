@@ -1,14 +1,13 @@
 // js/forms/utils.js
 
 // This file contains shared helper functions for all form modules.
-// These functions are attached to the window object to be globally accessible.
 
 window.countWords = function(str) {
     if (!str) return 0;
     return str.trim().split(/\s+/).filter(word => word.length > 0).length;
 }
 
-window.createInputField = function(label, propertyPath, placeholder = '', type = 'text', options = {}) {
+window.createInputField = function(label, propertyPath, currentValue = '', type = 'text', options = {}) {
     const { wordLimit = 0, minHeight = 'auto' } = options;
     const wrapper = document.createElement('div');
     wrapper.className = 'form-group';
@@ -20,25 +19,31 @@ window.createInputField = function(label, propertyPath, placeholder = '', type =
         inputElement.rows = 4;
         if (minHeight !== 'auto') inputElement.style.minHeight = `${minHeight}px`;
     }
-    inputElement.value = placeholder;
+    inputElement.value = currentValue; // Use a different variable name for clarity
     let warningElement;
     if (wordLimit > 0) {
         warningElement = document.createElement('p');
         warningElement.className = 'word-limit-warning';
-        const initialWordCount = countWords(placeholder);
+        const initialWordCount = countWords(currentValue);
         warningElement.textContent = `${initialWordCount} / ${wordLimit} words`;
         if (initialWordCount > wordLimit) warningElement.classList.add('visible');
     }
+    
+    // --- THIS IS THE DEFINITIVE FIX ---
     inputElement.addEventListener('input', (e) => {
-        const currentText = e.target.value;
+        const newText = e.target.value;
         if (wordLimit > 0) {
-            const wordCount = countWords(currentText);
+            const wordCount = countWords(newText);
             warningElement.textContent = `${wordCount} / ${wordLimit} words`;
             warningElement.classList.toggle('visible', wordCount > wordLimit);
         }
-        window.setObjectValue(window.portfolioData, propertyPath, currentText);
+        // Step 1: Update the global data object.
+        window.setObjectValue(window.portfolioData, propertyPath, newText);
+        // Step 2: ONLY send the update. Do NOT rebuild the entire form on every keystroke.
         window.sendFullUpdate();
     });
+    // --- END OF FIX ---
+
     wrapper.appendChild(inputElement);
     if (warningElement) wrapper.appendChild(warningElement);
     return wrapper;
@@ -103,19 +108,31 @@ window.createFileInput = function(label, onFileSelect, accept, validation = {}) 
     return wrapper;
 }
 
-window.createFormSection = function(title, sectionKey, isRemovable = false) {
-    const section = document.createElement('div');
-    section.className = 'form-section';
-    const titleElement = document.createElement('h4');
-    titleElement.textContent = title;
-    if (isRemovable) {
-        const deleteBtn = document.createElement('button');
-        deleteBtn.className = 'delete-section-btn';
-        deleteBtn.innerHTML = '&times;';
-        deleteBtn.title = `Remove ${title}`;
-        deleteBtn.dataset.section = sectionKey;
-        titleElement.appendChild(deleteBtn);
-    }
-    section.appendChild(titleElement);
-    return section;
+// ================== ADD THIS NEW, SIMPLE HELPER FUNCTION ==================
+/**
+ * Creates a "Preview Section" button.
+ * @param {string} sectionId - The ID of the element to scroll to in the main preview (e.g., 'about').
+ */
+window.createPreviewButton = function(sectionId) {
+    const button = document.createElement('button');
+    button.className = 'preview-section-btn';
+    button.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        <span>Preview This Section</span>
+    `;
+
+    button.onclick = () => {
+        const mainPreviewFrame = document.getElementById('main-preview-frame');
+        if (mainPreviewFrame && mainPreviewFrame.contentWindow) {
+            mainPreviewFrame.contentWindow.postMessage({ type: 'scrollToSection', sectionId: sectionId }, '*');
+        }
+
+        const editingPanel = document.getElementById('editing-panel');
+        const panelBackdrop = document.getElementById('panel-backdrop');
+        editingPanel.classList.remove('visible');
+        panelBackdrop.classList.remove('visible');
+    };
+    
+    return button;
 }
+// ========================================================================

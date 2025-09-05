@@ -2,7 +2,6 @@
 
 // This module contains all logic specific to the Skills section form
 
-// --- SKILLS MODULE: CONFIGURATION & DATA ---
 const skillIconMap = {
     'html': { class: 'fab fa-html5', name: 'HTML5' },
     'css': { class: 'fab fa-css3-alt', name: 'CSS3' },
@@ -51,13 +50,11 @@ function toggleIconDialog(skill, parentElement, data, buildFormCallback) {
 
     const dialog = document.createElement('div');
     dialog.className = 'icon-dialog';
-    dialog.dataset.skillId = skill.id;
     
     const currentIcon = data.skills.globalIconOverride || skill.iconClass;
     let currentIconDisplay = currentIcon && currentIcon.startsWith('data:image') ? `<img src="${currentIcon}" alt="Custom">` : `<i class="${currentIcon}"></i>`;
     
     dialog.innerHTML = `
-        
         <div class="icon-dialog-nav">
             <button data-tab="suggestions" class="active">Suggestions & Library</button>
             <button data-tab="custom">Custom Upload</button>
@@ -108,6 +105,7 @@ function toggleIconDialog(skill, parentElement, data, buildFormCallback) {
     }
 
 
+
     const customTab = dialog.querySelector('#tab-custom');
     const findSkillIndex = data.skills.list.findIndex(s => s.id === skill.id);
     if (findSkillIndex !== -1) {
@@ -143,36 +141,27 @@ function toggleIconDialog(skill, parentElement, data, buildFormCallback) {
 function buildTemplate1SkillsForm(formContainer, data, previewDoc, buildFormCallback) {
     if (!data.skills.enabled) return;
 
-    // --- Create the main section container with accordion structure ---
     const skillsSection = document.createElement('div');
     skillsSection.className = 'form-section';
     skillsSection.dataset.sectionKey = 'skills';
 
-       const header = document.createElement('div');
-header.className = 'form-section-header';
-header.innerHTML = `
-    <h4>Skills</h4>
-    <div class="header-controls" style="display: flex; align-items: center;">
-        <button class="delete-section-btn" title="Remove Contact Section">&times;</button>
-        <div class="arrow">
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="2.75"
-                 stroke-linecap="round"
-                 stroke-linejoin="round"
-                 width="20" height="20">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+    const header = document.createElement('div');
+    header.className = 'form-section-header';
+    header.innerHTML = `
+        <h4>Skills</h4>
+        <div class="header-controls">
+            <button class="delete-section-btn" title="Remove Skills Section">&times;</button>
+            <div class="arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
         </div>
-    </div>
-`;
-    // --- Create the collapsible content area ---
+    `;
+
     const content = document.createElement('div');
     content.className = 'form-section-content';
     
-    // --- Populate the content area with the skills form logic ---
     const masterToggleWrapper = document.createElement('div');
     masterToggleWrapper.className = 'section-controls';
     masterToggleWrapper.innerHTML = `<label for="enable-icons-toggle">Enable Icons</label><input type="checkbox" id="enable-icons-toggle">`;
@@ -202,17 +191,9 @@ header.innerHTML = `
         
         const iconPreview = document.createElement('div');
         iconPreview.className = 'predicted-icon';
-        
         const finalIcon = data.skills.globalIconOverride || skill.iconClass || predictIcons(skill.name)[0]?.class || 'fas fa-code';
-        if (finalIcon && finalIcon.startsWith('data:image')) {
-            iconPreview.innerHTML = `<img src="${finalIcon}" alt="Custom Icon">`;
-        } else {
-            iconPreview.innerHTML = `<i class="${finalIcon}"></i>`;
-        }
-
-        if (!data.skills.iconsEnabled) {
-            iconPreview.style.display = 'none';
-        }
+        iconPreview.innerHTML = finalIcon.startsWith('data:image') ? `<img src="${finalIcon}">` : `<i class="${finalIcon}"></i>`;
+        if (!data.skills.iconsEnabled) iconPreview.style.display = 'none';
         
         const input = document.createElement('input');
         input.type = 'text';
@@ -223,11 +204,7 @@ header.innerHTML = `
             if (!data.skills.globalIconOverride) {
                 skill.iconClass = predictIcons(skill.name)[0]?.class;
                 const updatedIcon = skill.iconClass;
-                 if (updatedIcon && updatedIcon.startsWith('data:image')) {
-                    iconPreview.innerHTML = `<img src="${updatedIcon}" alt="Custom Icon">`;
-                } else {
-                    iconPreview.innerHTML = `<i class="${updatedIcon}"></i>`;
-                }
+                iconPreview.innerHTML = updatedIcon.startsWith('data:image') ? `<img src="${updatedIcon}">` : `<i class="${updatedIcon}"></i>`;
             }
             sendFullUpdate();
         };
@@ -236,10 +213,14 @@ header.innerHTML = `
         manageBtn.className = 'manage-icon-btn';
         manageBtn.title = 'Manage Icon';
         manageBtn.innerHTML = `<svg viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg><span>Manage</span>`;
-        if (!data.skills.iconsEnabled) {
-            manageBtn.style.display = 'none';
-        }
-        manageBtn.onclick = () => { toggleIconDialog(skill, skillFormItem, data, buildFormCallback); };
+        if (!data.skills.iconsEnabled) manageBtn.style.display = 'none';
+        
+        // --- THIS IS THE KEY FIX ---
+        // Restore the simple onclick handler and stop the event from bubbling up.
+        manageBtn.onclick = (event) => {
+            event.stopPropagation(); // Prevents the accordion from closing
+            toggleIconDialog(skill, skillFormItem, data, buildFormCallback);
+        };
         
         const deleteBtn = document.createElement('button');
         deleteBtn.className = 'delete-item-btn';
@@ -274,8 +255,8 @@ header.innerHTML = `
         };
         content.appendChild(addBtn);
     }
-    
-    // --- Assemble the final section ---
+    content.appendChild(createPreviewButton('skills'));
+
     skillsSection.appendChild(header);
     skillsSection.appendChild(content);
     formContainer.appendChild(skillsSection);

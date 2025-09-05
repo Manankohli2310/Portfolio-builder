@@ -50,6 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.portfolioData = {
         template: selectedTemplate,
         theme: localStorage.getItem('selectedTheme') || 'light',
+        navigation: {
+            logoText: null
+        },
         hero: { name: null, subtitle: null, resumeUrl: null, profileImageUrl: null },
         about: { description: null, enabled: true },
         skills: { list: [], enabled: true, iconsEnabled: true, globalIconOverride: null },
@@ -143,12 +146,12 @@ document.addEventListener('DOMContentLoaded', () => {
     panelBackdrop.addEventListener('click', closePanel);
 
     function postMessageToPreviews(message) {
-        if (mainPreviewFrame?.contentWindow) {
-            mainPreviewFrame.contentWindow.postMessage(message, '*');
-        }
-        if (miniPreviewFrame?.contentWindow) {
-            miniPreviewFrame.contentWindow.postMessage(message, '*');
-        }
+        const allIframes = document.querySelectorAll('iframe');
+        allIframes.forEach(frame => {
+            if (frame.contentWindow) {
+                frame.contentWindow.postMessage(message, '*');
+            }
+        });
     }
 
     function setTheme(theme) {
@@ -162,8 +165,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function setupThemeButtonListeners() {
-        document.querySelectorAll('.control-btn[data-theme]').forEach(btn => {
-            btn.addEventListener('click', () => setTheme(btn.dataset.theme));
+        editingPanel.addEventListener('click', (event) => {
+            const themeBtn = event.target.closest('.control-btn[data-theme]');
+            if (themeBtn) {
+                setTheme(themeBtn.dataset.theme);
+            }
         });
     }
 
@@ -177,11 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
     buildHeader(userStatus);
     setupThemeButtonListeners();
 
-    // ================== DEFINITIVELY CORRECTED EVENT LISTENER ==================
     formControlsContainer.addEventListener('click', (event) => {
         const target = event.target;
 
-        // TARGET 1: A section's DELETE button
         const deleteBtn = target.closest('.delete-section-btn');
         if (deleteBtn) {
             const sectionEl = deleteBtn.closest('.form-section');
@@ -192,10 +196,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.sendFullUpdate();
                 buildForm();
             }
-            return; 
+            return;
         }
 
-        // TARGET 2: A section HEADER (for accordion functionality)
         const header = target.closest('.form-section-header');
         if (header) {
             const section = header.parentElement;
@@ -212,19 +215,35 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 activeSectionKey = null;
             }
-            // This listener's job is done, no 'return' is needed here.
         }
-
-        // TARGET 3: A theme control button
-        const themeBtn = target.closest('.control-btn[data-theme]');
-        if (themeBtn) {
-            setTheme(themeBtn.dataset.theme);
-        }
-
-        // Any other click inside the form (like "Manage Icon") will be ignored by this
-        // listener and handled by its own specific .onclick handler.
     });
-    // =======================================================================
+     document.addEventListener('click', (event) => {
+        // First, check if the panel is actually visible. If not, do nothing.
+        if (!editingPanel.classList.contains('visible')) {
+            return;
+        }
+
+        // Check if the click was INSIDE the panel or ON the button that opens it.
+        const isClickInsidePanel = editingPanel.contains(event.target);
+        const isClickOnOpenButton = editPanelBtn.contains(event.target);
+
+        if (isClickInsidePanel || isClickOnOpenButton) {
+            // If the click was inside or on the open button, do nothing.
+            return;
+        } else {
+            // Otherwise, the click was outside. Close the panel.
+            closePanel();
+        }
+    });
+     window.addEventListener('message', (event) => {
+        // We only care about messages of type 'iframeClick'.
+        if (event.data && event.data.type === 'iframeClick') {
+            // If the panel is open when we receive this message, close it.
+            if (editingPanel.classList.contains('visible')) {
+                closePanel();
+            }
+        }
+    });
 
     document.body.addEventListener('click', (event) => {
         const openDialog = document.querySelector('.icon-dialog');

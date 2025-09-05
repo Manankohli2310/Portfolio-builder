@@ -345,7 +345,7 @@ header.innerHTML = `
         };
         content.appendChild(addBtn);
     }
-    
+    content.appendChild(createPreviewButton('experience'));
     // --- Assemble the final section ---
     section.appendChild(header);
     section.appendChild(content);

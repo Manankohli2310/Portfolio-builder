@@ -149,7 +149,8 @@ header.innerHTML = `
     guidance.textContent = 'This button will link to your entered email address.';
     buttonGroup.appendChild(guidance);
     content.appendChild(buttonGroup);
-    
+
+    content.appendChild(createPreviewButton('contact'));
     // --- Assemble the final section ---
     section.appendChild(header);
     section.appendChild(content);

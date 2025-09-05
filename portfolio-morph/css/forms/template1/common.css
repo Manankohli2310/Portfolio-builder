@@ -239,3 +239,33 @@
     margin-bottom: 0;
     text-align: left;
 }
+
+/* --- ADD THESE NEW STYLES AT THE END --- */
+
+/* --- PREVIEW SECTION BUTTON STYLES --- */
+.preview-section-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 20px; /* Adds space above the button */
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    background-color: transparent;
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.preview-section-btn:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.preview-section-btn svg {
+    margin-top: -1px;
+}

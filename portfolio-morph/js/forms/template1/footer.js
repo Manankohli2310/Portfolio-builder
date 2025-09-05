@@ -61,7 +61,7 @@ header.innerHTML = `
     content.appendChild(
         createInputField('Custom Override Text (replaces the above)', 'footer.customText', data.footer.customText, 'textarea', customTextOptions)
     );
-    
+    content.appendChild(createPreviewButton('footer'));
     // Assemble the final section
     section.appendChild(header);
     section.appendChild(content);

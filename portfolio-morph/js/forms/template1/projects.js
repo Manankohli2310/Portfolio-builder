@@ -117,7 +117,7 @@ header.innerHTML = `
         };
         content.appendChild(addBtn);
     }
-    
+    content.appendChild(createPreviewButton('projects'));
     // --- Assemble the final section ---
     section.appendChild(header);
     section.appendChild(content);
