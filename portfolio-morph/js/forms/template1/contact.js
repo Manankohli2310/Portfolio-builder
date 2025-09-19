@@ -3,39 +3,23 @@
 function buildTemplate1ContactForm(formContainer, data, previewDoc, buildFormCallback) {
     if (!data.contact.enabled) return;
 
-    // --- Create the main section container with accordion structure ---
     const section = document.createElement('div');
     section.className = 'form-section';
     section.dataset.sectionKey = 'contact';
 
-    // --- Create the clickable header ---
     const header = document.createElement('div');
-header.className = 'form-section-header';
-header.innerHTML = `
-    <h4>Get In Touch</h4>
-    <div class="header-controls" style="display: flex; align-items: center;">
-        <button class="delete-section-btn" title="Remove Contact Section">&times;</button>
-        <div class="arrow">
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="2.75"
-                 stroke-linecap="round"
-                 stroke-linejoin="round"
-                 width="20" height="20">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+    header.className = 'form-section-header';
+    header.innerHTML = `
+        <h4>Get In Touch</h4>
+        <div class="header-controls">
+            <button class="delete-section-btn" title="Remove Contact Section">&times;</button>
+            <div class="arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
         </div>
-    </div>
-`;
+    `;
 
-
-    // --- Create the collapsible content area ---
     const content = document.createElement('div');
     content.className = 'form-section-content';
 
-    // --- Populate data with defaults from the template ONCE ---
     if (!data.contact.isPopulated) {
         const contactContainer = previewDoc.querySelector('#contact1 .container');
         if (contactContainer) {
@@ -53,13 +37,11 @@ header.innerHTML = `
         }
     }
     
-    // --- Build and append the form fields to the content div ---
     content.appendChild(createInputField('Intro Paragraph', 'contact.intro', data.contact.intro, 'textarea', { wordLimit: 30 }));
     content.appendChild(createInputField('Email Address', 'contact.email', data.contact.email));
     content.appendChild(createInputField('Phone Number', 'contact.phone', data.contact.phone));
     content.appendChild(createInputField('Location', 'contact.location', data.contact.location));
     
-    // --- DYNAMIC SOCIAL LINKS SECTION (Final Version) ---
     const socialSection = document.createElement('div');
     socialSection.className = 'form-group';
     socialSection.innerHTML = '<h5 style="margin-bottom: 15px; font-weight: 600;">Social Links</h5>';
@@ -70,6 +52,7 @@ header.innerHTML = `
     const enableToggle = masterToggleWrapper.querySelector('#enable-social-links-toggle');
     enableToggle.checked = data.contact.socialsEnabled;
     enableToggle.onchange = (e) => {
+        window.isFormDirty = true; // --- NEW ---
         data.contact.socialsEnabled = e.target.checked;
         sendFullUpdate();
         buildFormCallback();
@@ -95,6 +78,7 @@ header.innerHTML = `
                 select.appendChild(option);
             });
             select.onchange = (e) => {
+                window.isFormDirty = true; // --- NEW ---
                 link.type = e.target.value;
                 sendFullUpdate();
             };
@@ -113,9 +97,10 @@ header.innerHTML = `
             deleteLinkBtn.innerHTML = '&times;';
             deleteLinkBtn.title = 'Delete Link';
             deleteLinkBtn.onclick = () => {
+                window.isFormDirty = true; // --- NEW ---
                 data.contact.social.splice(index, 1);
                 sendFullUpdate();
-                buildFormCallback(); // Re-render the entire form
+                buildFormCallback();
             };
 
             linkItemForm.appendChild(select);
@@ -127,19 +112,19 @@ header.innerHTML = `
         socialSection.appendChild(socialListContainer);
         
         if (data.contact.social.length < 5) {
-        const addLinkBtn = document.createElement('button');
-        addLinkBtn.className = 'add-item-btn';
-        addLinkBtn.textContent = '+ Add Social Link';
-        addLinkBtn.onclick = () => {
-            // A final safety check inside the click handler
-            if (data.contact.social.length < 5) {
-                data.contact.social.push({ id: Date.now(), type: 'linkedin', url: '' });
-                sendFullUpdate();
-                buildFormCallback();
-            }
-        };
-        socialSection.appendChild(addLinkBtn);
-    }
+            const addLinkBtn = document.createElement('button');
+            addLinkBtn.className = 'add-item-btn';
+            addLinkBtn.textContent = '+ Add Social Link';
+            addLinkBtn.onclick = () => {
+                if (data.contact.social.length < 5) {
+                    window.isFormDirty = true; // --- NEW ---
+                    data.contact.social.push({ id: Date.now(), type: 'linkedin', url: '' });
+                    sendFullUpdate();
+                    buildFormCallback();
+                }
+            };
+            socialSection.appendChild(addLinkBtn);
+        }
     }
     content.appendChild(socialSection);
 
@@ -151,7 +136,7 @@ header.innerHTML = `
     content.appendChild(buttonGroup);
 
     content.appendChild(createPreviewButton('contact'));
-    // --- Assemble the final section ---
+    
     section.appendChild(header);
     section.appendChild(content);
     formContainer.appendChild(section);

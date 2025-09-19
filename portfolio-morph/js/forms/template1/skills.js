@@ -81,6 +81,7 @@ function toggleIconDialog(skill, parentElement, data, buildFormCallback) {
         }
         item.innerHTML = `<i class="${suggestion.class}"></i><span>${suggestion.name}</span>`;
         item.onclick = () => {
+            window.isFormDirty = true; // --- NEW ---
             data.skills.globalIconOverride = null;
             skill.iconClass = suggestion.class;
             sendFullUpdate();
@@ -96,6 +97,7 @@ function toggleIconDialog(skill, parentElement, data, buildFormCallback) {
         btn.className = 'category-btn';
         btn.innerHTML = `<i class="${categoryIcons[category]}"></i> ${category}`;
         btn.onclick = () => {
+            window.isFormDirty = true; // --- NEW ---
             data.skills.globalIconOverride = categoryIcons[category];
             sendFullUpdate();
             buildFormCallback();
@@ -103,8 +105,6 @@ function toggleIconDialog(skill, parentElement, data, buildFormCallback) {
         };
         categoryGrid.appendChild(btn);
     }
-
-
 
     const customTab = dialog.querySelector('#tab-custom');
     const findSkillIndex = data.skills.list.findIndex(s => s.id === skill.id);
@@ -137,7 +137,6 @@ function toggleIconDialog(skill, parentElement, data, buildFormCallback) {
     setTimeout(() => dialog.classList.add('visible'), 10);
 }
 
-// --- SKILLS MODULE: MAIN BUILD FUNCTION (DEFINITIVE VERSION WITH ACCORDION) ---
 function buildTemplate1SkillsForm(formContainer, data, previewDoc, buildFormCallback) {
     if (!data.skills.enabled) return;
 
@@ -151,11 +150,7 @@ function buildTemplate1SkillsForm(formContainer, data, previewDoc, buildFormCall
         <h4>Skills</h4>
         <div class="header-controls">
             <button class="delete-section-btn" title="Remove Skills Section">&times;</button>
-            <div class="arrow">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-            </div>
+            <div class="arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
         </div>
     `;
 
@@ -168,6 +163,7 @@ function buildTemplate1SkillsForm(formContainer, data, previewDoc, buildFormCall
     const enableToggle = masterToggleWrapper.querySelector('#enable-icons-toggle');
     enableToggle.checked = data.skills.iconsEnabled;
     enableToggle.onchange = (e) => {
+        window.isFormDirty = true; // --- NEW ---
         data.skills.iconsEnabled = e.target.checked;
         sendFullUpdate();
         buildFormCallback();
@@ -215,10 +211,8 @@ function buildTemplate1SkillsForm(formContainer, data, previewDoc, buildFormCall
         manageBtn.innerHTML = `<svg viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg><span>Manage</span>`;
         if (!data.skills.iconsEnabled) manageBtn.style.display = 'none';
         
-        // --- THIS IS THE KEY FIX ---
-        // Restore the simple onclick handler and stop the event from bubbling up.
         manageBtn.onclick = (event) => {
-            event.stopPropagation(); // Prevents the accordion from closing
+            event.stopPropagation();
             toggleIconDialog(skill, skillFormItem, data, buildFormCallback);
         };
         
@@ -227,6 +221,7 @@ function buildTemplate1SkillsForm(formContainer, data, previewDoc, buildFormCall
         deleteBtn.innerHTML = '&times;';
         deleteBtn.title = 'Delete Skill';
         deleteBtn.onclick = () => {
+            window.isFormDirty = true; // --- NEW ---
             data.skills.list = data.skills.list.filter(s => s.id !== skill.id);
             sendFullUpdate();
             buildFormCallback();
@@ -247,6 +242,7 @@ function buildTemplate1SkillsForm(formContainer, data, previewDoc, buildFormCall
         addBtn.textContent = '+ Add Skill';
         addBtn.onclick = () => {
             if (data.skills.list.length < 15) {
+                window.isFormDirty = true; // --- NEW ---
                 const newIcon = data.skills.globalIconOverride || predictIcons('')[0]?.class || 'fas fa-code';
                 data.skills.list.push({ id: Date.now(), name: '', iconClass: newIcon });
                 sendFullUpdate();

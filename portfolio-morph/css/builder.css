@@ -70,38 +70,6 @@ body::-webkit-scrollbar-thumb {
     border-radius: 8px;
 }
 
-/* --- FLOATING ACTION BUTTON (FAB) GROUP --- */
-.fab-group {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 15px;
-    z-index: 998;
-}
-#edit-panel-btn {
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    width: 120px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-#edit-panel-btn:hover {
-    transform: scale(1.05);
-}
-
 /* --- SLIDE-IN EDITING PANEL --- */
 #editing-panel {
     position: fixed;
@@ -169,4 +137,255 @@ body::-webkit-scrollbar-thumb {
     border: none;
     transform-origin: top left;
     pointer-events: auto;
+}
+
+/* --- DOWNLOAD FEATURE STYLES --- */
+
+/* Generic hidden class */
+.hidden {
+    display: none !important;
+}
+
+/* Updated FAB Group */
+.fab-group {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column; /* Stacks buttons vertically */
+    align-items: flex-end;
+    gap: 15px;
+    z-index: 998;
+}
+
+.fab-container {
+    position: relative;
+}
+
+.fab-main-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    min-width: 120px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    padding: 0 20px;
+}
+
+.fab-main-btn:hover {
+    transform: scale(1.05);
+}
+
+#download-btn {
+    background-color: #28a745; /* A distinct success color */
+}
+
+/* Dropdown Menu */
+.fab-dropdown {
+    position: absolute;
+    bottom: 60px; /* Position above the button */
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    width: 220px;
+    opacity: 0;
+    transform: translateY(10px);
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0.2s;
+}
+
+.fab-dropdown.visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0s;
+}
+
+.fab-dropdown a {
+    display: block;
+    padding: 12px 18px;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.fab-dropdown a:hover {
+    background-color: #f6f8fa;
+}
+
+.fab-dropdown a.disabled {
+    color: #aaa;
+    cursor: not-allowed;
+    background-color: #f9f9f9;
+}
+
+/* Submit Button in Panel */
+#submit-button-container {
+    padding: 25px 30px 20px 30px; /* Match panel padding */
+    margin: 20px -30px -30px -30px; /* Extend to panel edges */
+    border-top: 1px solid var(--border-color);
+    background-color: #f9fafb; /* Slightly different background */
+}
+#submit-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+#submit-btn:hover {
+    background-color: #0056b3;
+}
+
+
+/* Download Overlay and Popup */
+#download-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+}
+
+#download-overlay:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0s 0s;
+}
+
+#download-popup {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+#download-overlay:not(.hidden) #download-popup {
+    transform: scale(1);
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Loading State */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loading-messages {
+    position: relative;
+    height: 55px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+    overflow: hidden;
+    width: 100%; /* Ensure container has width for centering */
+}
+
+.loading-message {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    left: 0; /* Ensure it starts at the edge */
+    right: 0; /* Ensure it ends at the edge */
+    /* --- THIS IS THE FIX --- */
+    text-align: center; /* This will center the text and solve the jumble */
+}
+.loading-message.visible {
+    opacity: 1;
+}
+#close-popup-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+#close-popup-btn:hover {
+    color: #333;
+}
+/* Ready State */
+.success-icon svg {
+    width: 60px;
+    height: 60px;
+    color: #28a745;
+}
+
+#popup-ready-state h2 {
+    margin: 15px 0 5px 0;
+    font-size: 1.5rem;
+}
+#popup-ready-state p {
+    margin: 0 0 25px 0;
+    color: #666;
+}
+
+.final-download-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.4);
+}
+
+.final-download-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.5);
 }

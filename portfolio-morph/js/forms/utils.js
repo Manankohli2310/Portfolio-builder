@@ -19,7 +19,7 @@ window.createInputField = function(label, propertyPath, currentValue = '', type 
         inputElement.rows = 4;
         if (minHeight !== 'auto') inputElement.style.minHeight = `${minHeight}px`;
     }
-    inputElement.value = currentValue; // Use a different variable name for clarity
+    inputElement.value = currentValue;
     let warningElement;
     if (wordLimit > 0) {
         warningElement = document.createElement('p');
@@ -29,20 +29,19 @@ window.createInputField = function(label, propertyPath, currentValue = '', type 
         if (initialWordCount > wordLimit) warningElement.classList.add('visible');
     }
     
-    // --- THIS IS THE DEFINITIVE FIX ---
     inputElement.addEventListener('input', (e) => {
+        // --- UPDATED: Set the dirty flag on any input change ---
+        window.isFormDirty = true;
+        
         const newText = e.target.value;
         if (wordLimit > 0) {
             const wordCount = countWords(newText);
             warningElement.textContent = `${wordCount} / ${wordLimit} words`;
             warningElement.classList.toggle('visible', wordCount > wordLimit);
         }
-        // Step 1: Update the global data object.
         window.setObjectValue(window.portfolioData, propertyPath, newText);
-        // Step 2: ONLY send the update. Do NOT rebuild the entire form on every keystroke.
         window.sendFullUpdate();
     });
-    // --- END OF FIX ---
 
     wrapper.appendChild(inputElement);
     if (warningElement) wrapper.appendChild(warningElement);
@@ -59,11 +58,16 @@ window.createFileInput = function(label, onFileSelect, accept, validation = {}) 
     inputElement.accept = accept;
     const warningElement = document.createElement('p');
     warningElement.className = 'file-limit-warning';
+    
     inputElement.addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (!file) {
             warningElement.classList.remove('visible'); return;
         }
+
+        // --- UPDATED: Set the dirty flag on file selection ---
+        window.isFormDirty = true;
+
         const reader = new FileReader();
         reader.onload = (event) => {
             const fileUrl = event.target.result;
@@ -108,7 +112,6 @@ window.createFileInput = function(label, onFileSelect, accept, validation = {}) 
     return wrapper;
 }
 
-// ================== ADD THIS NEW, SIMPLE HELPER FUNCTION ==================
 /**
  * Creates a "Preview Section" button.
  * @param {string} sectionId - The ID of the element to scroll to in the main preview (e.g., 'about').
@@ -135,4 +138,3 @@ window.createPreviewButton = function(sectionId) {
     
     return button;
 }
-// ========================================================================

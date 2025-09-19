@@ -14,34 +14,37 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <!-- Add this line to builder.html to make icons work in the editing panel -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="main-header builder-header">
-        <!-- Header now only contains user info and logout -->
+        <!-- Header content here -->
     </header>
 
     <main class="main-preview-container">
         <iframe id="main-preview-frame" title="Live Portfolio Preview"></iframe>
     </main>
 
-       <!-- NEW: Floating Action Button (FAB) Group -->
     <div class="fab-group">
-
-        <!-- Edit Button -->
-        <button id="edit-panel-btn" title="Open Editor">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-            <span>Edit</span>
-        </button>
-
+        <!-- --- UPDATED: Simplified Download Button --- -->
+        <div id="download-fab-container" class="fab-container hidden">
+            <button id="download-code-btn" class="fab-main-btn" title="Download Code">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Download Code</span>
+            </button>
+        </div>
+        <div id="edit-fab-container" class="fab-container">
+            <button id="edit-panel-btn" class="fab-main-btn" title="Open Editor">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                <span>Edit</span>
+            </button>
+        </div>
     </div>
 
     <aside id="editing-panel">
-        <!-- Editing panel structure remains the same -->
         <div class="panel-header">
             <h3>Editor</h3>
             <button id="close-panel-btn" title="Close Editor">&times;</button>
@@ -61,16 +64,42 @@
                 </div>
             </div>
             <div id="form-controls">
-                <p class="panel-label">Portfolio Details</p>
                 <div class="form-placeholder">Your form will appear here.</div>
+            </div>
+            <div id="submit-button-container">
+                <button id="submit-btn">Done Editing</button>
             </div>
         </div>
     </aside>
     
     <div id="panel-backdrop"></div>
 
+    <div id="download-overlay" class="hidden">
+        <div id="download-popup">
+            <button id="close-popup-btn" title="Close">&times;</button>
+            <div class="popup-content" id="popup-loading-state">
+                <div class="spinner"></div>
+                <div id="loading-messages">
+                    <p class="loading-message">Implementing your changes...</p>
+                    <p class="loading-message">Building your custom HTML...</p>
+                    <p class="loading-message">Zipping up your files...</p>
+                    <p class="loading-message">Almost there!</p>
+                </div>
+            </div>
+            <div class="popup-content hidden" id="popup-ready-state">
+                <div class="success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+                </div>
+                <h2>Your Portfolio is Ready!</h2>
+                <p>Your personalized website has been generated successfully.</p>
+                <a href="#" id="final-download-link" class="final-download-btn" download="portfolio.zip">Download Now</a>
+            </div>
+        </div>
+    </div>
 
-     <script src="js/forms/template1/hero.js" defer></script>
+    <!-- Only the JSZip library is needed now -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="js/forms/template1/hero.js" defer></script>
     <script src="js/forms/template1/about.js" defer></script>
     <script src="js/forms/template1/skills.js" defer></script>
     <script src="js/forms/template1/experience.js" defer></script>
@@ -79,6 +108,5 @@
     <script src="js/forms/template1/footer.js" defer></script>
     <script src="js/forms/utils.js" defer></script>
     <script src="js/builder.js" defer></script>
-   
 </body>
 </html>
