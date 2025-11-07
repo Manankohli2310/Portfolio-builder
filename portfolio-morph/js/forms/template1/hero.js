@@ -1,3 +1,9 @@
+// /js/forms/template1/hero.js
+
+// Step 1: Import all necessary helper functions from utils.js
+import { createInputField, createFileInput, createPreviewButton } from '../utils.js';
+
+// The main function, which will be the default export.
 function buildTemplate1HeroForm(formContainer, data, previewDoc) {
     const heroSection = document.createElement('div');
     heroSection.className = 'form-section';
@@ -19,14 +25,12 @@ function buildTemplate1HeroForm(formContainer, data, previewDoc) {
     const content = document.createElement('div');
     content.className = 'form-section-content';
 
-    // --- DEFINITIVE FIX FOR DATA INITIALIZATION ---
-
-    // Step 1: Scrape all default values from the live preview.
+    // Scrape default values from the live preview iframe.
     const defaultLogoText = previewDoc.querySelector('.logo')?.textContent || 'John Doe';
     const defaultName = previewDoc.querySelector('.hero-text h1')?.textContent || 'Your Name';
     const defaultSubtitle = previewDoc.querySelector('.hero-text .subtitle')?.textContent || 'Your subtitle here';
 
-    // Step 2: If the data object is still null (on first run), immediately save the scraped values.
+    // Initialize the data object on the first run.
     if (data.navigation.logoText === null) {
         data.navigation.logoText = defaultLogoText;
     }
@@ -37,7 +41,7 @@ function buildTemplate1HeroForm(formContainer, data, previewDoc) {
         data.hero.subtitle = defaultSubtitle;
     }
 
-    // Step 3: Create the input fields using the reliable data object values.
+    // Create the input fields using the reliable data object.
     content.appendChild(
         createInputField('Website Name (Navbar & Title)', 'navigation.logoText', data.navigation.logoText, 'text', { wordLimit: 4 })
     );
@@ -50,20 +54,25 @@ function buildTemplate1HeroForm(formContainer, data, previewDoc) {
         createInputField('Subtitle', 'hero.subtitle', data.hero.subtitle, 'textarea', { wordLimit: 15 })
     );
     
-    // --- END OF FIX ---
-    
     const imageValidation = { minHeight: 550, maxWidth: 625, aspectRatio: 1, ratioTolerance: 0.2 };
     content.appendChild(createFileInput('Profile Image', (fileUrl) => {
-        window.setObjectValue(data, 'hero.profileImageUrl', fileUrl);
+        // No need to call setObjectValue from here, the file input handler does it.
+        // Let's call the global update function.
+        window.portfolioData.hero.profileImageUrl = fileUrl;
         window.sendFullUpdate();
     }, 'image/*', imageValidation));
 
     content.appendChild(createFileInput('Resume File', (fileUrl) => {
-        window.setObjectValue(data, 'hero.resumeUrl', fileUrl);
+        window.portfolioData.hero.resumeUrl = fileUrl;
         window.sendFullUpdate();
     }, '.pdf,.doc,.docx'));
+
     content.appendChild(createPreviewButton('navbar'));
+    
     heroSection.appendChild(header);
     heroSection.appendChild(content);
     formContainer.appendChild(heroSection);
 }
+
+// You already had this, which is perfect.
+export default buildTemplate1HeroForm;

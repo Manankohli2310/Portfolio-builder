@@ -1,4 +1,5 @@
-/* --- SHARED FORM STYLES (Final Corrected Version) --- */
+/* /css/forms/template2/common.css */
+/* --- COPIED FROM TEMPLATE 1 FOR VISUAL CONSISTENCY --- */
 
 .panel-label {
     font-size: 0.8rem;
@@ -11,7 +12,6 @@
     padding-bottom: 8px;
 }
 
-/* --- THEME CONTROL STYLES (Restored) --- */
 .preview-controls {
     margin-bottom: 30px;
 }
@@ -38,10 +38,6 @@
     border-color: var(--accent-color);
 }
 
-/* --- END OF THEME CONTROL STYLES --- */
-
-
-/* --- ACCORDION STYLES --- */
 .form-section {
     margin-bottom: 10px;
     border: 1px solid #e1e4e8;
@@ -95,10 +91,9 @@
     padding: 0 20px;
 }
 
-/* Active/Expanded State */
 .form-section.active .form-section-header .arrow {
     margin-bottom: 4.5px;
-    transform: rotate(90deg);
+    transform: rotate(180deg);
 }
 
 .form-section.active .form-section-content {
@@ -108,10 +103,6 @@
     border-top: 1px solid var(--border-color);
 }
 
-/* --- END OF ACCORDION STYLES --- */
-
-
-/* --- Individual Form Group Styles --- */
 .form-group {
     margin-bottom: 18px;
 }
@@ -200,9 +191,7 @@
 .file-limit-warning.visible {
     display: block;
 }
-/* --- POLISHED THIN SCROLLBARS --- */
 
-/* Target BOTH the accordion content AND the textareas for Webkit browsers */
 .form-section-content::-webkit-scrollbar,
 .form-group textarea::-webkit-scrollbar {
     width: 6px;
@@ -224,14 +213,12 @@
     background-color: #a0aec0;
 }
 
-/* Target BOTH for Firefox */
 .form-section-content,
 .form-group textarea {
     scrollbar-width: thin;
     scrollbar-color: #d1d5db transparent;
 }
 
-/* --- NEW STYLE for Input Guidance Text --- */
 .input-guidance {
     font-size: 0.8rem;
     color: var(--text-secondary);
@@ -240,16 +227,13 @@
     text-align: left;
 }
 
-/* --- ADD THESE NEW STYLES AT THE END --- */
-
-/* --- PREVIEW SECTION BUTTON STYLES --- */
 .preview-section-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     width: 100%;
-    margin-top: 20px; /* Adds space above the button */
+    margin-top: 20px;
     padding: 10px 15px;
     font-size: 0.9rem;
     font-weight: 600;
@@ -269,10 +253,9 @@
 .preview-section-btn svg {
     margin-top: -1px;
 }
-
 /* --- NEW CLASS FOR DELETING A SECTION --- */
 .form-section--removing {
-    transition: all 0.1s ease-out;
+    transition: all 0.35s ease-out;
     opacity: 0;
     max-height: 0 !important; /* Use !important to override inline styles */
     padding-top: 0;

@@ -225,14 +225,19 @@ function updatePage(data) {
         }
     }
 
-    // Footer Section
     if (data.footer) {
         const footerElement = document.getElementById('footer');
         if (footerElement) {
-            const year = data.footer.year || new Date().getFullYear();
-            const name = data.footer.name || 'Your Name';
-            const copyrightText = data.footer.customText || `© ${year} ${name}. All Rights Reserved.`;
-            setText('#footer p', copyrightText);
+            // Step 1: Control the visibility of the entire footer section
+            footerElement.style.display = data.footer.enabled ? '' : 'none';
+
+            // Step 2: If it's enabled, update its content
+            if (data.footer.enabled) {
+                const year = data.footer.year || new Date().getFullYear();
+                const name = data.footer.name || 'Your Name';
+                const copyrightText = data.footer.customText || `© ${year} ${name}. All Rights Reserved.`;
+                setText('#footer p', copyrightText);
+            }
         }
     }
 }

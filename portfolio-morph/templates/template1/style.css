@@ -515,7 +515,7 @@ body h2 {
 .contact-section {
     text-align: center;
     padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 
 .contact-section p {
@@ -565,9 +565,13 @@ body h2 {
     background-color: var(--secondary-bg);
     color: var(--primary-color);
     text-align: center;
-    padding: 1.5rem 0;
+    padding-top: 1.5rem;
+    min-height: 70px;
+    /* margin-top: 1.5rem; */
 }
-
+.footerpadding{
+    padding-top: 1.5rem;
+}
 /* --- Fade-in Animation (Parallax) --- */
 section>.container {
     opacity: 0;

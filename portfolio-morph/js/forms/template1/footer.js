@@ -1,6 +1,12 @@
-// js/forms/template1/footer.js
+// /js/forms/template1/footer.js
 
+// Step 1: Import the necessary helper functions from utils.js
+import { createInputField, createPreviewButton } from '../utils.js';
+
+// The main function, which will be the default export.
 function buildTemplate1FooterForm(formContainer, data, previewDoc) {
+    if (!data.footer.enabled) return;
+    
     // On the very first run, if 'year' and 'name' haven't been set, scrape them from the template.
     if (data.footer.year === null && data.footer.name === null && previewDoc.readyState === 'complete') {
         const footerP = previewDoc.querySelector('.footer p');
@@ -24,26 +30,26 @@ function buildTemplate1FooterForm(formContainer, data, previewDoc) {
     section.className = 'form-section';
     section.dataset.sectionKey = 'footer';
 
-         const header = document.createElement('div');
-header.className = 'form-section-header';
-header.innerHTML = `
-    <h4>Footer Section</h4>
-    <div class="header-controls" style="display: flex; align-items: center;">
-        <button class="delete-section-btn" title="Remove Contact Section">&times;</button>
-        <div class="arrow">
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="2.75"
-                 stroke-linecap="round"
-                 stroke-linejoin="round"
-                 width="20" height="20">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+    const header = document.createElement('div');
+    header.className = 'form-section-header';
+    header.innerHTML = `
+        <h4>Footer Section</h4>
+        <div class="header-controls" style="display: flex; align-items: center;">
+            <button class="delete-section-btn" title="Remove Footer Section">&times;</button>
+            <div class="arrow">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2.75"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     width="20" height="20">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
         </div>
-    </div>
-`;
+    `;
 
     // Create the collapsible content area
     const content = document.createElement('div');
@@ -62,8 +68,12 @@ header.innerHTML = `
         createInputField('Custom Override Text (replaces the above)', 'footer.customText', data.footer.customText, 'textarea', customTextOptions)
     );
     content.appendChild(createPreviewButton('footer'));
+    
     // Assemble the final section
     section.appendChild(header);
     section.appendChild(content);
     formContainer.appendChild(section);
 }
+
+// Step 2: Add the export default line at the end.
+export default buildTemplate1FooterForm;

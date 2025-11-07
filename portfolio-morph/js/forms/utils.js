@@ -1,13 +1,14 @@
-// js/forms/utils.js
+// /js/forms/utils.js
 
 // This file contains shared helper functions for all form modules.
+// We are now exporting functions so they can be imported into other modules.
 
-window.countWords = function(str) {
+export function countWords(str) {
     if (!str) return 0;
     return str.trim().split(/\s+/).filter(word => word.length > 0).length;
 }
 
-window.createInputField = function(label, propertyPath, currentValue = '', type = 'text', options = {}) {
+export function createInputField(label, propertyPath, currentValue = '', type = 'text', options = {}) {
     const { wordLimit = 0, minHeight = 'auto' } = options;
     const wrapper = document.createElement('div');
     wrapper.className = 'form-group';
@@ -30,9 +31,7 @@ window.createInputField = function(label, propertyPath, currentValue = '', type 
     }
     
     inputElement.addEventListener('input', (e) => {
-        // --- UPDATED: Set the dirty flag on any input change ---
         window.isFormDirty = true;
-        
         const newText = e.target.value;
         if (wordLimit > 0) {
             const wordCount = countWords(newText);
@@ -48,7 +47,7 @@ window.createInputField = function(label, propertyPath, currentValue = '', type 
     return wrapper;
 }
 
-window.createFileInput = function(label, onFileSelect, accept, validation = {}) {
+export function createFileInput(label, onFileSelect, accept, validation = {}) {
     const { minHeight = 0, maxWidth = 0, aspectRatio = 0, ratioTolerance = 0.1, resizeTo = 0 } = validation;
     const wrapper = document.createElement('div');
     wrapper.className = 'form-group';
@@ -65,7 +64,6 @@ window.createFileInput = function(label, onFileSelect, accept, validation = {}) 
             warningElement.classList.remove('visible'); return;
         }
 
-        // --- UPDATED: Set the dirty flag on file selection ---
         window.isFormDirty = true;
 
         const reader = new FileReader();
@@ -112,11 +110,7 @@ window.createFileInput = function(label, onFileSelect, accept, validation = {}) 
     return wrapper;
 }
 
-/**
- * Creates a "Preview Section" button.
- * @param {string} sectionId - The ID of the element to scroll to in the main preview (e.g., 'about').
- */
-window.createPreviewButton = function(sectionId) {
+export function createPreviewButton(sectionId) {
     const button = document.createElement('button');
     button.className = 'preview-section-btn';
     button.innerHTML = `

@@ -1,9 +1,15 @@
+// /js/forms/template1/about.js
+
+// Step 1: Import the necessary helper functions from utils.js
+import { createInputField, createPreviewButton } from '../utils.js';
+
+// The main function remains the same, but it will now be the default export.
 function buildTemplate1AboutForm(formContainer, data, previewDoc) {
     if (!data.about.enabled) return;
 
     const aboutSection = document.createElement('div');
     aboutSection.className = 'form-section';
-    aboutSection.dataset.sectionKey = 'about'; // This key is used internally
+    aboutSection.dataset.sectionKey = 'about';
 
     const header = document.createElement('div');
     header.className = 'form-section-header';
@@ -29,18 +35,26 @@ function buildTemplate1AboutForm(formContainer, data, previewDoc) {
     const content = document.createElement('div');
     content.className = 'form-section-content';
 
-    // --- DEFINITIVELY CORRECTED TEXT SCRAPING ---
-    // This selector now correctly finds the <p> tag inside the section with id="about1".
+    // Scrape the default text from the live preview iframe.
     const defaultAbout = previewDoc.querySelector('#about1 p')?.textContent || '';
-    
+
+    // Initialize the data object if this is the first run.
+    if (data.about.description === null) {
+        data.about.description = defaultAbout;
+    }
+
+    // Now, create the input field using the reliable data object.
     content.appendChild(
-        createInputField('About Me Paragraph', 'about.description', defaultAbout, 'textarea', { wordLimit: 200, minHeight: 160 })
+        createInputField('About Me Paragraph', 'about.description', data.about.description, 'textarea', { wordLimit: 200, minHeight: 160 })
     );
     
-    // The "Preview" button correctly targets the <hr> tag with id="about" to scroll to.
+    // The "Preview" button targets the <hr> tag with id="about" to scroll to.
     content.appendChild(createPreviewButton('about'));
     
     aboutSection.appendChild(header);
     aboutSection.appendChild(content);
     formContainer.appendChild(aboutSection);
 }
+
+// Step 2: Add the export default line at the end of the file.
+export default buildTemplate1AboutForm;
